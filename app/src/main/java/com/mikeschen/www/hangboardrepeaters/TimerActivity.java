@@ -23,14 +23,14 @@ public class TimerActivity extends AppCompatActivity {
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
-            if (seconds == 10) {
+            if (seconds == 4) {
                 Log.d("thats 10", seconds + "time");
+//                timerHandler.removeCallbacks(timerRunnable);
+                timerTextView.setText(String.format("%d:%02d", 0, 0));
+            } else {
+                timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+                timerHandler.postDelayed(this, 500);
             }
-            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
-
-
-
-            timerHandler.postDelayed(this, 500);
         }
     };
 
@@ -39,7 +39,7 @@ public class TimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        timerTextView = (TextView) findViewById(R.id.text);
+        timerTextView = (TextView) findViewById(R.id.hangText);
 
         Button b = (Button) findViewById(R.id.startButton);
         b.setText("start");
