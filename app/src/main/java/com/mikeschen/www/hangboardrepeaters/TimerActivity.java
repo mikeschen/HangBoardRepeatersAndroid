@@ -37,11 +37,19 @@ public class TimerActivity extends AppCompatActivity {
 //                timerHandler.removeCallbacks(timerRunnable);
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 timerTextView.animate()
-                        .alpha(0.2f)
+                        .alpha(0.3f)
                         .scaleX(0.9f)
                         .scaleY(0.9f)
                         .setDuration(500);
+                timerTextView = (TextView) findViewById(R.id.pauseText);
+                timerHandler.removeCallbacks(timerRunnable);
+                timerHandler.postDelayed(this, 500);
+                startTime = System.currentTimeMillis();
             } else {
+                timerTextView.animate()
+                        .alpha(1f)
+                        .scaleX(1f)
+                        .scaleY(1f);
                 timerTextView.setText(String.format("%d:%02d", minutes, seconds));
                 timerHandler.postDelayed(this, 500);
 
