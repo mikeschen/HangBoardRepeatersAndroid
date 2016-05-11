@@ -21,15 +21,17 @@ public class TimerActivity extends AppCompatActivity {
     @BindView(R.id.hangText) TextView mHangText;
     @BindView(R.id.pauseText) TextView mPauseText;
     @BindView(R.id.restText) TextView mRestText;
+    @BindView(R.id.setsText) TextView mSetsText;
     @BindView(R.id.startButton) Button b;
 
     TextView timerTextView;
-    TextView pauseText;
     long startTime = 0;
     int hang = 2;
     int currentTimer = hang;
-    int pause = 5;
-    int rest = 10;
+    int pause = 4;
+    int rest = 6;
+    int i = 0;
+    int counter = 2;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -40,31 +42,42 @@ public class TimerActivity extends AppCompatActivity {
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
-            if (seconds == currentTimer) {
-                Log.d("thats 10", seconds + "time");
-                timerTextView.setText(String.format("%d:%02d", 0, 0));
-                timerTextView.animate()
-                        .alpha(0.3f)
-                        .scaleX(0.9f)
-                        .scaleY(0.9f)
-                        .setDuration(500);
-                timerTextView = mPauseText;
-                mPauseText = mRestText;
-                timerHandler.removeCallbacks(timerRunnable);
-                timerHandler.postDelayed(this, 500);
-                startTime = System.currentTimeMillis();
-                currentTimer = pause;
-                pause = rest;
-
-            } else {
-                timerTextView.animate()
-                        .alpha(1f)
-                        .scaleX(1f)
-                        .scaleY(1f);
-                timerTextView.setText(String.format("%d:%02d", minutes, seconds));
-                timerHandler.postDelayed(this, 500);
+                if (seconds == currentTimer) {
+                    Log.d("thats 10", seconds + "time");
+                    timerTextView.setText(String.format("%d:%02d", 0, 0));
+                    timerTextView.animate()
+                            .alpha(0.3f)
+                            .scaleX(0.9f)
+                            .scaleY(0.9f)
+                            .setDuration(500);
+                    timerTextView = mPauseText;
+                    currentTimer = pause;
+                    timerHandler.removeCallbacks(timerRunnable);
+                    timerHandler.postDelayed(this, 500);
+                    startTime = System.currentTimeMillis();
+                    mPauseText = mRestText;
+                    pause = rest;
+                    i++;
+                    Log.d("iEquals", i + "");
+                    if(i == 3) {
+                        currentTimer = hang;
+                        timerTextView = mHangText;
+                        i = 0;
+                        mPauseText = (TextView) findViewById(R.id.pauseText);
+                        mRestText = (TextView) findViewById(R.id.restText);
+                        //reset pause here
+                        mSetsText.setText(counter + "");
+                        counter++;
+                    }
+                } else {
+                    timerTextView.animate()
+                            .alpha(1f)
+                            .scaleX(1f)
+                            .scaleY(1f);
+                    timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+                    timerHandler.postDelayed(this, 500);
+                }
             }
-        }
     };
 
     @Override
