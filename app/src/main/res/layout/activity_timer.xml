@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hang Timer"
+        android:text="0:00"
         android:id="@+id/hangText"
         android:textColor="@color/colorSecondaryText"
         android:textAlignment="center"
@@ -64,7 +64,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pause Timer"
+        android:text="0:00"
         android:id="@+id/pauseText"
         android:textColor="@color/colorSecondaryText"
         android:textAlignment="center"
@@ -93,7 +93,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rest Timer"
+        android:text="0:00"
         android:id="@+id/restText"
         android:textColor="@color/colorSecondaryText"
         android:layout_below="@+id/restTextView"

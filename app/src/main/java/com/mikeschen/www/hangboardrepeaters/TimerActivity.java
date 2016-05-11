@@ -18,12 +18,14 @@ public class TimerActivity extends AppCompatActivity {
     @BindView(R.id.hangTextView) TextView mHangTextView;
     @BindView(R.id.pauseTextView) TextView mPauseTextView;
     @BindView(R.id.restTextView) TextView mRestTextView;
+    @BindView(R.id.setTextView) TextView mSetsTextView;
     @BindView(R.id.hangText) TextView mHangText;
     @BindView(R.id.pauseText) TextView mPauseText;
     @BindView(R.id.restText) TextView mRestText;
     @BindView(R.id.setsText) TextView mSetsText;
     @BindView(R.id.startButton) Button b;
 
+    TextView timerText;
     TextView timerTextView;
     long startTime = 0;
     int hang = 2;
@@ -45,11 +47,17 @@ public class TimerActivity extends AppCompatActivity {
                 if (seconds == currentTimer) {
                     Log.d("thats 10", seconds + "time");
                     timerTextView.setText(String.format("%d:%02d", 0, 0));
-                    timerTextView.animate()
+                    timerText.animate()
                             .alpha(0.3f)
                             .scaleX(0.9f)
                             .scaleY(0.9f)
                             .setDuration(500);
+                    timerTextView.animate()
+                        .alpha(0.3f)
+                        .scaleX(0.9f)
+                        .scaleY(0.9f)
+                        .setDuration(500);
+                    timerText = mPauseTextView;
                     timerTextView = mPauseText;
                     currentTimer = pause;
                     timerHandler.removeCallbacks(timerRunnable);
@@ -70,6 +78,10 @@ public class TimerActivity extends AppCompatActivity {
                         counter++;
                     }
                 } else {
+                    timerText.animate()
+                            .alpha(1f)
+                            .scaleX(1f)
+                            .scaleY(1f);
                     timerTextView.animate()
                             .alpha(1f)
                             .scaleX(1f)
@@ -89,6 +101,47 @@ public class TimerActivity extends AppCompatActivity {
         mHangTextView.setTypeface(custom_font);
         mPauseTextView.setTypeface(custom_font);
         mRestTextView.setTypeface(custom_font);
+        mHangTextView.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+        mPauseTextView.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+        mRestTextView.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+        mSetsTextView.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+        mHangText.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+        mPauseText.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+        mRestText.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+        mSetsText.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+        timerText = (TextView) findViewById(R.id.hangTextView);
         timerTextView = (TextView) findViewById(R.id.hangText);
         b.setTypeface(custom_font);
         b.setText("start");
