@@ -18,15 +18,19 @@ public class TimerActivity extends AppCompatActivity {
     @BindView(R.id.hangTextView) TextView mHangTextView;
     @BindView(R.id.pauseTextView) TextView mPauseTextView;
     @BindView(R.id.restTextView) TextView mRestTextView;
+    @BindView(R.id.hangText) TextView mHangText;
+    @BindView(R.id.pauseText) TextView mPauseText;
+    @BindView(R.id.restText) TextView mRestText;
+    @BindView(R.id.startButton) Button b;
 
     TextView timerTextView;
+    TextView pauseText;
     long startTime = 0;
     int hang = 2;
     int currentTimer = hang;
-    int pause = 4;
-    int rest = 6;
+    int pause = 5;
+    int rest = 10;
 
-    //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
 
@@ -44,12 +48,14 @@ public class TimerActivity extends AppCompatActivity {
                         .scaleX(0.9f)
                         .scaleY(0.9f)
                         .setDuration(500);
-                timerTextView = (TextView) findViewById(R.id.pauseText);
+                timerTextView = mPauseText;
+                mPauseText = mRestText;
                 timerHandler.removeCallbacks(timerRunnable);
                 timerHandler.postDelayed(this, 500);
                 startTime = System.currentTimeMillis();
                 currentTimer = pause;
                 pause = rest;
+
             } else {
                 timerTextView.animate()
                         .alpha(1f)
@@ -70,9 +76,8 @@ public class TimerActivity extends AppCompatActivity {
         mHangTextView.setTypeface(custom_font);
         mPauseTextView.setTypeface(custom_font);
         mRestTextView.setTypeface(custom_font);
-
         timerTextView = (TextView) findViewById(R.id.hangText);
-        Button b = (Button) findViewById(R.id.startButton);
+        b.setTypeface(custom_font);
         b.setText("start");
         b.setOnClickListener(new View.OnClickListener() {
 
