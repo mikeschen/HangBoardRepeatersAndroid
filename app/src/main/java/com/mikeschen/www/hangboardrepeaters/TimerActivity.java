@@ -21,6 +21,10 @@ public class TimerActivity extends AppCompatActivity {
 
     TextView timerTextView;
     long startTime = 0;
+    boolean hangtrue = true;
+    int hang = 3;
+    int pause = 4;
+    int rest = 2;
 
     //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
@@ -32,9 +36,8 @@ public class TimerActivity extends AppCompatActivity {
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
-            if (seconds == 4) {
+            if (seconds == hang) {
                 Log.d("thats 10", seconds + "time");
-//                timerHandler.removeCallbacks(timerRunnable);
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 timerTextView.animate()
                         .alpha(0.3f)
@@ -45,6 +48,7 @@ public class TimerActivity extends AppCompatActivity {
                 timerHandler.removeCallbacks(timerRunnable);
                 timerHandler.postDelayed(this, 500);
                 startTime = System.currentTimeMillis();
+                hang = pause;
             } else {
                 timerTextView.animate()
                         .alpha(1f)
@@ -52,7 +56,6 @@ public class TimerActivity extends AppCompatActivity {
                         .scaleY(1f);
                 timerTextView.setText(String.format("%d:%02d", minutes, seconds));
                 timerHandler.postDelayed(this, 500);
-
             }
         }
     };
@@ -85,6 +88,8 @@ public class TimerActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     @Override
