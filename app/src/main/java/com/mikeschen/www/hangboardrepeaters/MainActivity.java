@@ -2,6 +2,7 @@ package com.mikeschen.www.hangboardrepeaters;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.setsEditText) EditText mSetsEditText;
     @BindView(R.id.startButton) Button mStartButton;
     private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mSharedPreferencesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        mSharedPreferencesEditor = mSharedPreferences.edit();
         mStartButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mStartButton.setTypeface(custom_font);
@@ -51,21 +54,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (sets != null) {
             mSetsEditText.setText(sets);
         }
+
     }
 
     @Override
     public void onClick(View v) {
-        int hang = Integer.parseInt(mHangEditText.getText().toString());
-        int pause = Integer.parseInt(mPauseEditText.getText().toString());
-        int rounds = Integer.parseInt(mRoundsEditText.getText().toString());
-        int rest = Integer.parseInt(mRestEditText.getText().toString());
-        int sets = Integer.parseInt(mSetsEditText.getText().toString());
-        Intent intent = new Intent(MainActivity.this, TimerActivity.class);
-        intent.putExtra("hang", hang);
-        intent.putExtra("pause", pause);
-        intent.putExtra("rounds", rounds);
-        intent.putExtra("rest", rest);
-        intent.putExtra("sets", sets);
-        startActivity(intent);
+        try {
+            int hang = Integer.parseInt(mHangEditText.getText().toString());
+            mSharedPreferencesEditor.putString(Constants.KEY_USER_HANG, mHangEditText.getText().toString()).apply();
+            int pause = Integer.parseInt(mPauseEditText.getText().toString());
+            mSharedPreferencesEditor.putString(Constants.KEY_USER_PAUSE, mPauseEditText.getText().toString()).apply();
+            int rounds = Integer.parseInt(mRoundsEditText.getText().toString());
+            mSharedPreferencesEditor.putString(Constants.KEY_USER_ROUNDS, mRoundsEditText.getText().toString()).apply();
+            int rest = Integer.parseInt(mRestEditText.getText().toString());
+            mSharedPreferencesEditor.putString(Constants.KEY_USER_REST, mRestEditText.getText().toString()).apply();
+            int sets = Integer.parseInt(mSetsEditText.getText().toString());
+            mSharedPreferencesEditor.putString(Constants.KEY_USER_SETS, mSetsEditText.getText().toString()).apply();
+            Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+            intent.putExtra("hang", hang);
+            intent.putExtra("pause", pause);
+            intent.putExtra("rounds", rounds);
+            intent.putExtra("rest", rest);
+            intent.putExtra("sets", sets);
+            startActivity(intent);
+        } catch(NumberFormatException e) {
+            mHangEditText.setHint("Set Sec.");
+            mPauseEditText.setHint("Set Sec.");
+            mRoundsEditText.setHint("Set Num");
+            mRestEditText.setHint("Set Sec.");
+            mSetsEditText.setHint("Set Sets");
+        }
     }
 }

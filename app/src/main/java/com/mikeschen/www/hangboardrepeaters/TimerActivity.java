@@ -9,9 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -44,59 +41,64 @@ public class TimerActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            long millis = System.currentTimeMillis() - startTime;
-            int seconds = (int) (millis / 1000);
-            int minutes = seconds / 60;
-            seconds = seconds % 60;
-                if (seconds == currentTimer) {
-                    timerTextView.setText(String.format("%d:%02d", 0, 0));
-                    timerText.animate()
-                        .alpha(0.3f)
-                        .scaleX(0.9f)
-                        .scaleY(0.9f)
-                        .setDuration(500);
-                    timerTextView.animate()
-                        .alpha(0.3f)
-                        .scaleX(0.9f)
-                        .scaleY(0.9f)
-                        .setDuration(500);
-                    timerHandler.removeCallbacks(timerRunnable);
-                    timerHandler.postDelayed(this, 500);
-                    startTime = System.currentTimeMillis();
-                    i++;
-                    if (flipState) {
-                        currentTimer = pause;
-                        timerText = mPauseTextView;
-                        timerTextView = mPauseText;
-                        flipState = false;
-                    } else {
-                        currentTimer = hang;
-                        timerText = mHangTextView;
-                        timerTextView = mHangText;
-                        flipState = true;
-                    }
-                    if(i == rounds * 2) {
-                        currentTimer = rest;
-                        timerTextView = mRestText;
-                        timerText = mRestTextView;
-                        i = -1;
-                        mSetsText.setText(counter + "");
-                        counter++;
-                        flipState = false;
-                    }
+        long millis = System.currentTimeMillis() - startTime;
+        int seconds = (int) (millis / 1000);
+        int minutes = seconds / 60;
+        seconds = seconds % 60;
+            if (seconds == currentTimer) {
+                timerTextView.setText(String.format("%d:%02d", 0, 0));
+                timerText.animate()
+                    .alpha(0.3f)
+                    .scaleX(0.9f)
+                    .scaleY(0.9f)
+                    .setDuration(500);
+                timerTextView.animate()
+                    .alpha(0.3f)
+                    .scaleX(0.9f)
+                    .scaleY(0.9f)
+                    .setDuration(500);
+                timerHandler.removeCallbacks(timerRunnable);
+                timerHandler.postDelayed(this, 500);
+                startTime = System.currentTimeMillis();
+                i++;
+                if (flipState) {
+                    currentTimer = pause;
+                    timerText = mPauseTextView;
+                    timerTextView = mPauseText;
+                    flipState = false;
                 } else {
-                    timerText.animate()
-                            .alpha(1f)
-                            .scaleX(1f)
-                            .scaleY(1f);
-                    timerTextView.animate()
-                            .alpha(1f)
-                            .scaleX(1f)
-                            .scaleY(1f);
-                    timerTextView.setText(String.format("%d:%02d", minutes, seconds));
-                    timerHandler.postDelayed(this, 500);
+                    currentTimer = hang;
+                    timerText = mHangTextView;
+                    timerTextView = mHangText;
+                    flipState = true;
                 }
+                if(i == rounds * 2) {
+                    currentTimer = rest;
+                    timerTextView = mRestText;
+                    timerText = mRestTextView;
+                    i = -1;
+                    mSetsText.setText(counter + "/" + sets);
+                    counter++;
+                    flipState = false;
+                }
+                if(counter == sets + 2) {
+                    timerHandler.removeCallbacks(timerRunnable);
+                    mSetsText.setText("DONE");
+                    b.setText("stop");
+                }
+            } else {
+                timerText.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f);
+                timerTextView.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f);
+                timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+                timerHandler.postDelayed(this, 500);
             }
+        }
     };
 
     @Override
@@ -143,12 +145,12 @@ public class TimerActivity extends AppCompatActivity {
         hang = intent.getIntExtra("hang", 0);
         pause = intent.getIntExtra("pause", 0);
         rounds = intent.getIntExtra("rounds", 0);
-        Log.d("ROunds", rounds + "");
         rest = intent.getIntExtra("rest", 0);
         sets = intent.getIntExtra("sets", 0);
         timerText = (TextView) findViewById(R.id.hangTextView);
         timerTextView = (TextView) findViewById(R.id.hangText);
         currentTimer = hang;
+        mSetsText.setText("1/" + sets);
         b.setTypeface(custom_font);
         b.setText("start");
         b.setOnClickListener(new View.OnClickListener() {
