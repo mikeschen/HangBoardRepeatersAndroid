@@ -28,12 +28,13 @@ public class TimerActivity extends AppCompatActivity {
     TextView timerText;
     TextView timerTextView;
     long startTime = 0;
-    int hang = 2;
+    int hang = 3;
     int currentTimer = hang;
-    int pause = 4;
-    int rest = 6;
+    int pause = 6;
+    int rest = 180;
     int i = 0;
     int counter = 2;
+    boolean flipState = true;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -57,26 +58,33 @@ public class TimerActivity extends AppCompatActivity {
                         .scaleX(0.9f)
                         .scaleY(0.9f)
                         .setDuration(500);
-                    timerText = mPauseTextView;
-                    timerTextView = mPauseText;
-                    currentTimer = pause;
                     timerHandler.removeCallbacks(timerRunnable);
                     timerHandler.postDelayed(this, 500);
                     startTime = System.currentTimeMillis();
-                    mPauseText = mRestText;
-                    pause = rest;
                     i++;
                     Log.d("iEquals", i + "");
-                    if(i == 3) {
+                    if (flipState) {
+                        currentTimer = pause;
+                        timerText = mPauseTextView;
+                        timerTextView = mPauseText;
+                        flipState = false;
+                    } else {
                         currentTimer = hang;
+                        timerText = mHangTextView;
                         timerTextView = mHangText;
-                        i = 0;
-                        mPauseText = (TextView) findViewById(R.id.pauseText);
-                        mRestText = (TextView) findViewById(R.id.restText);
-                        //reset pause here
-                        mSetsText.setText(counter + "");
-                        counter++;
+                        flipState = true;
                     }
+
+//                    if(i == 3) {
+//                        currentTimer = hang;
+//                        timerTextView = mHangText;
+//                        i = 0;
+//                        mPauseText = (TextView) findViewById(R.id.pauseText);
+//                        mRestText = (TextView) findViewById(R.id.restText);
+//                        //reset pause here
+//                        mSetsText.setText(counter + "");
+//                        counter++;
+//                    }
                 } else {
                     timerText.animate()
                             .alpha(1f)
