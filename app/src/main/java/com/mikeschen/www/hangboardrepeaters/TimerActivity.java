@@ -32,7 +32,7 @@ public class TimerActivity extends AppCompatActivity {
     int currentTimer = hang;
     int pause = 4;
     int rest = 8;
-    int i = 0;
+    int i = 1;
     int counter = 2;
     boolean flipState = true;
 
@@ -46,7 +46,6 @@ public class TimerActivity extends AppCompatActivity {
             int minutes = seconds / 60;
             seconds = seconds % 60;
                 if (seconds == currentTimer) {
-                    Log.d("thats 10", seconds + "time");
                     timerTextView.setText(String.format("%d:%02d", 0, 0));
                     timerText.animate()
                             .alpha(0.3f)
@@ -62,7 +61,6 @@ public class TimerActivity extends AppCompatActivity {
                     timerHandler.postDelayed(this, 500);
                     startTime = System.currentTimeMillis();
                     i++;
-                    Log.d("iEquals", i + "");
                     if (flipState) {
                         currentTimer = pause;
                         timerText = mPauseTextView;
@@ -74,7 +72,7 @@ public class TimerActivity extends AppCompatActivity {
                         timerTextView = mHangText;
                         flipState = true;
                     }
-                    if(i == 4) {
+                    if(i == 5) {
                         currentTimer = rest;
                         timerTextView = mRestText;
                         timerText = mRestTextView;
@@ -83,6 +81,7 @@ public class TimerActivity extends AppCompatActivity {
 //                        mRestText = (TextView) findViewById(R.id.restText);
                         mSetsText.setText(counter + "");
                         counter++;
+                        flipState = false;
                     }
                 } else {
                     timerText.animate()
