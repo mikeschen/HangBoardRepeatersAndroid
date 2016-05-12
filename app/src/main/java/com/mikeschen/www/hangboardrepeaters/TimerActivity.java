@@ -1,5 +1,6 @@
 package com.mikeschen.www.hangboardrepeaters;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -28,11 +29,13 @@ public class TimerActivity extends AppCompatActivity {
     TextView timerText;
     TextView timerTextView;
     long startTime = 0;
-    int hang = 2;
-    int currentTimer = hang;
-    int pause = 4;
-    int rest = 8;
-    int i = 1;
+    int hang;
+    int pause;
+    int rounds;
+    int rest;
+    int sets;
+    int currentTimer;
+    int i = 0;
     int counter = 2;
     boolean flipState = true;
 
@@ -72,11 +75,11 @@ public class TimerActivity extends AppCompatActivity {
                         timerTextView = mHangText;
                         flipState = true;
                     }
-                    if(i == 5) {
+                    if(i == rounds * 2) {
                         currentTimer = rest;
                         timerTextView = mRestText;
                         timerText = mRestTextView;
-                        i = 0;
+                        i = -1;
                         mSetsText.setText(counter + "");
                         counter++;
                         flipState = false;
@@ -101,6 +104,7 @@ public class TimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
+
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mHangTextView.setTypeface(custom_font);
         mPauseTextView.setTypeface(custom_font);
@@ -135,8 +139,16 @@ public class TimerActivity extends AppCompatActivity {
                 .scaleX(0.9f)
                 .scaleY(0.9f)
                 .setDuration(500);
+        Intent intent = getIntent();
+        hang = intent.getIntExtra("hang", 0);
+        pause = intent.getIntExtra("pause", 0);
+        rounds = intent.getIntExtra("rounds", 0);
+        Log.d("ROunds", rounds + "");
+        rest = intent.getIntExtra("rest", 0);
+        sets = intent.getIntExtra("sets", 0);
         timerText = (TextView) findViewById(R.id.hangTextView);
         timerTextView = (TextView) findViewById(R.id.hangText);
+        currentTimer = hang;
         b.setTypeface(custom_font);
         b.setText("start");
         b.setOnClickListener(new View.OnClickListener() {

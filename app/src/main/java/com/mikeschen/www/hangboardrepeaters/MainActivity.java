@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     @BindView(R.id.hangEditText) EditText mHangEditText;
     @BindView(R.id.pauseEditText) EditText mPauseEditText;
+    @BindView(R.id.roundsEditText) EditText mRoundsEditText;
     @BindView(R.id.restEditText) EditText mRestEditText;
     @BindView(R.id.setsEditText) EditText mSetsEditText;
     @BindView(R.id.startButton) Button mStartButton;
@@ -32,25 +33,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mStartButton.setTypeface(custom_font);
         String hang = mSharedPreferences.getString(Constants.KEY_USER_HANG, null);
         String pause = mSharedPreferences.getString(Constants.KEY_USER_PAUSE, null);
+        String rounds = mSharedPreferences.getString(Constants.KEY_USER_ROUNDS, null);
         String rest = mSharedPreferences.getString(Constants.KEY_USER_REST, null);
         String sets = mSharedPreferences.getString(Constants.KEY_USER_SETS, null);
         if (hang != null) {
             mHangEditText.setText(hang);
         }
-        if (hang != null) {
+        if (pause != null) {
             mPauseEditText.setText(pause);
         }
-        if (hang != null) {
+        if (rounds != null) {
+            mRoundsEditText.setText(rounds);
+        }
+        if (rest != null) {
             mRestEditText.setText(rest);
         }
-        if (hang != null) {
+        if (sets != null) {
             mSetsEditText.setText(sets);
         }
     }
 
     @Override
     public void onClick(View v) {
+        int hang = Integer.parseInt(mHangEditText.getText().toString());
+        int pause = Integer.parseInt(mPauseEditText.getText().toString());
+        int rounds = Integer.parseInt(mRoundsEditText.getText().toString());
+        int rest = Integer.parseInt(mRestEditText.getText().toString());
+        int sets = Integer.parseInt(mSetsEditText.getText().toString());
         Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+        intent.putExtra("hang", hang);
+        intent.putExtra("pause", pause);
+        intent.putExtra("rounds", rounds);
+        intent.putExtra("rest", rest);
+        intent.putExtra("sets", sets);
         startActivity(intent);
     }
 }
