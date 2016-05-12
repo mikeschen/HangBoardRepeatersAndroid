@@ -48,10 +48,10 @@ public class TimerActivity extends AppCompatActivity {
                 if (seconds == currentTimer) {
                     timerTextView.setText(String.format("%d:%02d", 0, 0));
                     timerText.animate()
-                            .alpha(0.3f)
-                            .scaleX(0.9f)
-                            .scaleY(0.9f)
-                            .setDuration(500);
+                        .alpha(0.3f)
+                        .scaleX(0.9f)
+                        .scaleY(0.9f)
+                        .setDuration(500);
                     timerTextView.animate()
                         .alpha(0.3f)
                         .scaleX(0.9f)
@@ -77,8 +77,6 @@ public class TimerActivity extends AppCompatActivity {
                         timerTextView = mRestText;
                         timerText = mRestTextView;
                         i = 0;
-//                        mPauseText = (TextView) findViewById(R.id.pauseText);
-//                        mRestText = (TextView) findViewById(R.id.restText);
                         mSetsText.setText(counter + "");
                         counter++;
                         flipState = false;
