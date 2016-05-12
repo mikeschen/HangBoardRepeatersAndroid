@@ -28,10 +28,10 @@ public class TimerActivity extends AppCompatActivity {
     TextView timerText;
     TextView timerTextView;
     long startTime = 0;
-    int hang = 3;
+    int hang = 2;
     int currentTimer = hang;
-    int pause = 6;
-    int rest = 180;
+    int pause = 4;
+    int rest = 8;
     int i = 0;
     int counter = 2;
     boolean flipState = true;
@@ -74,17 +74,16 @@ public class TimerActivity extends AppCompatActivity {
                         timerTextView = mHangText;
                         flipState = true;
                     }
-
-//                    if(i == 3) {
-//                        currentTimer = hang;
-//                        timerTextView = mHangText;
-//                        i = 0;
+                    if(i == 4) {
+                        currentTimer = rest;
+                        timerTextView = mRestText;
+                        timerText = mRestTextView;
+                        i = 0;
 //                        mPauseText = (TextView) findViewById(R.id.pauseText);
 //                        mRestText = (TextView) findViewById(R.id.restText);
-//                        //reset pause here
-//                        mSetsText.setText(counter + "");
-//                        counter++;
-//                    }
+                        mSetsText.setText(counter + "");
+                        counter++;
+                    }
                 } else {
                     timerText.animate()
                             .alpha(1f)
@@ -124,11 +123,6 @@ public class TimerActivity extends AppCompatActivity {
                 .scaleX(0.9f)
                 .scaleY(0.9f)
                 .setDuration(500);
-        mSetsTextView.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
         mHangText.animate()
                 .alpha(0.3f)
                 .scaleX(0.9f)
@@ -140,11 +134,6 @@ public class TimerActivity extends AppCompatActivity {
                 .scaleY(0.9f)
                 .setDuration(500);
         mRestText.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-        mSetsText.animate()
                 .alpha(0.3f)
                 .scaleX(0.9f)
                 .scaleY(0.9f)
