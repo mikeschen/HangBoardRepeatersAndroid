@@ -72,7 +72,7 @@ public class TimerActivity extends AppCompatActivity {
                     timerTextView = mHangText;
                     flipState = true;
                 }
-                if(i == rounds * 2) {
+                if(i == rounds * 2 - 1) {
                     currentTimer = rest;
                     timerTextView = mRestText;
                     timerText = mRestTextView;
