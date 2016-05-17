@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -43,8 +44,9 @@ public class TimerActivity extends AppCompatActivity {
         public void run() {
         long millis = System.currentTimeMillis() - startTime;
         int seconds = (int) (millis / 1000);
-        int minutes = seconds / 60;
-        seconds = seconds % 60;
+            int secondsDisplay = (int) (millis / 1000);
+        int minutes = secondsDisplay / 60;
+        secondsDisplay = seconds % 60;
             if (seconds == currentTimer) {
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 timerText.animate()
@@ -73,7 +75,8 @@ public class TimerActivity extends AppCompatActivity {
                     flipState = true;
                 }
                 if(i == rounds * 2 - 1) {
-                    currentTimer = rest;
+                    currentTimer = rest ;
+                    Log.d("time", currentTimer + "");
                     timerTextView = mRestText;
                     timerText = mRestTextView;
                     i = -1;
@@ -95,7 +98,7 @@ public class TimerActivity extends AppCompatActivity {
                     .alpha(1f)
                     .scaleX(1f)
                     .scaleY(1f);
-                timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+                timerTextView.setText(String.format("%d:%02d", minutes, secondsDisplay));
                 timerHandler.postDelayed(this, 500);
             }
         }
@@ -104,6 +107,7 @@ public class TimerActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
 
