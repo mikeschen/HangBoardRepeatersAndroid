@@ -11,6 +11,7 @@
     tools:context="com.mikeschen.www.hangboardrepeaters.MainActivity">
 
     <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
