@@ -184,7 +184,6 @@
             android:padding="3dp"
             android:layout_gravity="center_horizontal" />
 
-
         <Button
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -194,7 +193,7 @@
         android:background="@color/colorPrimaryLight"
         android:textStyle="bold"
         android:textSize="28sp"
-            android:layout_marginTop="5dp"
+        android:layout_marginTop="5dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
