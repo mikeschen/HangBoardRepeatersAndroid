@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (sets != null) {
             mSetsEditText.setText(sets);
         }
-
     }
 
     @Override

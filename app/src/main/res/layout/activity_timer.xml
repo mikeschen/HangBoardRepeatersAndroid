@@ -139,7 +139,7 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:text="START"
         android:textColor="@color/colorSecondaryText"
         android:id="@+id/startButton"
