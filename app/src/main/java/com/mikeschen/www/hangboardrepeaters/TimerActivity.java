@@ -173,12 +173,12 @@ public class TimerActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        timerHandler.removeCallbacks(timerRunnable);
-        Button b = (Button)findViewById(R.id.startButton);
-        b.setText("start");
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        timerHandler.removeCallbacks(timerRunnable);
+//        Button b = (Button)findViewById(R.id.startButton);
+//        b.setText("start");
+//    }
 }
 
