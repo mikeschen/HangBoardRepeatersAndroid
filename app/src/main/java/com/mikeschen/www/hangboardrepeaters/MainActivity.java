@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch(NumberFormatException e) {
             mHangEditText.setHint("Set Sec.");
             mPauseEditText.setHint("Set Sec.");
-            mRoundsEditText.setHint("Set Num");
+            mRoundsEditText.setHint("Set Num.");
             mRestEditText.setHint("Set Sec.");
             mSetsEditText.setHint("Set Sets");
         }
