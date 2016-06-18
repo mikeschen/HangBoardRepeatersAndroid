@@ -22,6 +22,7 @@ public class TimerActivity extends AppCompatActivity {
     @BindView(R.id.pauseText) TextView mPauseText;
     @BindView(R.id.restText) TextView mRestText;
     @BindView(R.id.setsText) TextView mSetsText;
+    @BindView(R.id.roundsText) TextView mRoundsText;
     @BindView(R.id.startButton) Button b;
 
     TextView timerText;
@@ -35,6 +36,7 @@ public class TimerActivity extends AppCompatActivity {
     int currentTimer;
     int i = 0;
     int counter = 2;
+    int roundCounter = 2;
     boolean flipState = true;
 
     Handler timerHandler = new Handler();
@@ -73,10 +75,13 @@ public class TimerActivity extends AppCompatActivity {
                 timerText = mHangTextView;
                 timerTextView = mHangText;
                 flipState = true;
+                mRoundsText.setText(roundCounter + "/" + rounds);
+                roundCounter++;
             }
             if(i == rounds * 2 - 1) {
+                roundCounter = 1;
+                mRoundsText.setText(roundCounter + "/" + rounds);
                 currentTimer = rest ;
-                Log.d("time", currentTimer + "");
                 timerTextView = mRestText;
                 timerText = mRestTextView;
                 i = -1;
@@ -153,6 +158,7 @@ public class TimerActivity extends AppCompatActivity {
         timerText = (TextView) findViewById(R.id.hangTextView);
         timerTextView = (TextView) findViewById(R.id.hangText);
         currentTimer = hang;
+        mRoundsText.setText("1/" + rounds);
         mSetsText.setText("1/" + sets);
         b.setTypeface(custom_font);
         b.setText("start");
