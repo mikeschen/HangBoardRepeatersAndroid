@@ -19,37 +19,44 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.mikeschen.www.hangboardrepeaters.MainActivity">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/layout1"
-            android:padding="5dp">
-
-        <TextView
+        <GridLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Hang Time"
-            android:textColor="@color/colorPrimary"
-            android:id="@+id/hangTimeTextView"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:padding="3dp" />
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/gridLayoutMainLandscape">
 
-    <EditText
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/hangEditText"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:hint="Sec."
-            android:layout_margin="10dp"
-            android:background="@color/colorSecondaryText"
-            android:layout_below="@+id/hangTimeTextView"
-            android:padding="3dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Hang Time"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/hangTimeTextView"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_horizontal"  />
+
+            <EditText
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/hangEditText"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:hint="Sec."
+                android:background="@color/colorSecondaryText"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,115 +67,122 @@
                 android:id="@+id/pauseTimeTextView"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
-                android:padding="3dp" />
+                android:layout_row="0"
+                android:layout_column="1"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_horizontal" />
 
-    <EditText
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/pauseEditText"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:hint="Sec."
-            android:background="@color/colorSecondaryText"
-            android:layout_below="@+id/pauseTimeTextView"
-            android:padding="3dp" />
-        </LinearLayout>
+            <EditText
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/pauseEditText"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:hint="Sec."
+                android:background="@color/colorSecondaryText"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_horizontal"  />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layout1"
-            android:id="@+id/layout2"
-            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Number of Rounds"
+                android:textColor="@color/colorYellow"
+                android:id="@+id/roundsTextView"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Number of Rounds"
-            android:textColor="@color/colorYellow"
-            android:id="@+id/roundsTextView"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:padding="3dp" />
+            <EditText
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/roundsEditText"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:hint="Rounds"
+                android:background="@color/colorSecondaryText"
+                android:layout_row="1"
+                android:layout_column="3"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_horizontal" />
 
-        <EditText
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/roundsEditText"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:hint="Rounds"
-            android:layout_margin="10dp"
-            android:background="@color/colorSecondaryText"
-            android:layout_below="@+id/roundsTextView"
-            android:padding="3dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Rest Time"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/restTimeTextView"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_row="2"
+                android:layout_column="0"
+                android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Rest Time"
-            android:textColor="@color/colorAccent"
-            android:id="@+id/restTimeTextView"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:padding="3dp" />
+            <EditText
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/restEditText"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:hint="Sec."
+                android:background="@color/colorSecondaryText"
+                android:layout_row="3"
+                android:layout_column="0"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_horizontal"  />
 
-        <EditText
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/restEditText"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:hint="Sec."
-            android:background="@color/colorSecondaryText"
-            android:layout_below="@+id/restTimeTextView"
-            android:padding="3dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_below="@+id/layout2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Number of Sets"
+                android:textColor="@color/colorBlue"
+                android:id="@+id/setsTimeTextView"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_row="2"
+                android:layout_column="1"
+                android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Number of Sets"
-            android:textColor="@color/colorBlue"
-            android:id="@+id/setsTimeTextView"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:padding="3dp" />
+            <EditText
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/setsEditText"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:hint="Sets"
+                android:background="@color/colorSecondaryText"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:padding="3dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_horizontal"/>
+        </GridLayout>
 
-        <EditText
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/setsEditText"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            android:hint="Sets"
-            android:layout_margin="10dp"
-            android:background="@color/colorSecondaryText"
-            android:layout_below="@+id/setsTimeTextView"
-            android:padding="3dp" />
-        </LinearLayout>
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -182,5 +196,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 </LinearLayout>
