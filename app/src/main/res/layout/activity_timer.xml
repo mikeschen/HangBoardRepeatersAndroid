@@ -16,8 +16,6 @@
         android:layout_gravity="top|center"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:horizontalSpacing="1dp"
-        android:verticalSpacing="1dp"
         android:id="@+id/gridLayout">
 
          <TextView
@@ -28,9 +26,6 @@
             android:textColor="@color/colorPrimary"
             android:textSize="32sp"
             android:textStyle="bold"
-             android:layout_alignParentTop="true"
-             android:layout_alignParentLeft="true"
-             android:layout_alignParentStart="true"
              android:layout_row="0"
              android:layout_column="0"
              android:padding="3dp"
@@ -109,13 +104,12 @@
             android:layout_margin="5dp"
             android:layout_gravity="center_horizontal" />
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ROUND"
             android:id="@+id/roundTextView"
-            android:textColor="@color/colorBlue"
+            android:textColor="@color/colorYellow"
             android:textSize="32sp"
             android:textStyle="bold"
             android:padding="3dp"
