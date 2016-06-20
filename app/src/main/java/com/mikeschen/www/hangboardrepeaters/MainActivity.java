@@ -9,11 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    @BindView(R.id.hangTimeTextView) TextView mHangTimeTextView;
+    @BindView(R.id.pauseTimeTextView) TextView mPauseTimeTextView;
+    @BindView(R.id.restTimeTextView) TextView mRestTimeTextView;
+    @BindView(R.id.roundNumberTextView) TextView mRoundNumberTextView;
+    @BindView(R.id.setsTimeTextView) TextView mSetsTimeTextView;
+
     @BindView(R.id.hangEditText) EditText mHangEditText;
     @BindView(R.id.pauseEditText) EditText mPauseEditText;
     @BindView(R.id.roundsEditText) EditText mRoundsEditText;
@@ -32,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSharedPreferencesEditor = mSharedPreferences.edit();
         mStartButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        mHangTimeTextView.setTypeface(custom_font);
+        mPauseTimeTextView.setTypeface(custom_font);
+        mRestTimeTextView.setTypeface(custom_font);
+        mRoundNumberTextView.setTypeface(custom_font);
+        mSetsTimeTextView.setTypeface(custom_font);
         mStartButton.setTypeface(custom_font);
         String hang = mSharedPreferences.getString(Constants.KEY_USER_HANG, null);
         String pause = mSharedPreferences.getString(Constants.KEY_USER_PAUSE, null);

@@ -91,7 +91,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="ROUND"
                 android:textColor="@color/colorYellow"
-                android:id="@+id/roundsTextView"
+                android:id="@+id/roundTextView"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 android:layout_row="2"
