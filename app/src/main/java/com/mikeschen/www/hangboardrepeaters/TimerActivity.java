@@ -17,6 +17,7 @@ public class TimerActivity extends AppCompatActivity {
     @BindView(R.id.hangTextView) TextView mHangTextView;
     @BindView(R.id.pauseTextView) TextView mPauseTextView;
     @BindView(R.id.restTextView) TextView mRestTextView;
+    @BindView(R.id.roundTextView) TextView mRoundTextView;
     @BindView(R.id.setTextView) TextView mSetsTextView;
     @BindView(R.id.hangText) TextView mHangText;
     @BindView(R.id.pauseText) TextView mPauseText;
@@ -119,6 +120,8 @@ public class TimerActivity extends AppCompatActivity {
         mHangTextView.setTypeface(custom_font);
         mPauseTextView.setTypeface(custom_font);
         mRestTextView.setTypeface(custom_font);
+        mRoundTextView.setTypeface(custom_font);
+        mSetsTextView.setTypeface(custom_font);
         mHangTextView.animate()
                 .alpha(0.3f)
                 .scaleX(0.9f)

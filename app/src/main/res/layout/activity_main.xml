@@ -85,7 +85,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Number of Rounds"
                 android:textColor="@color/colorYellow"
-                android:id="@+id/roundsTextView"
+                android:id="@+id/roundNumberTextView"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_columnSpan="2"
