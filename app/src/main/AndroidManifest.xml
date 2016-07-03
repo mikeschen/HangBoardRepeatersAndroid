@@ -24,7 +24,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mikeschen.www.hangboardrepeaters.MainActivity" />
         </activity>
-        <activity android:name=".InstructionActivity"></activity>
+        <activity android:name=".InstructionActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mikeschen.www.hangboardrepeaters.MainActivity">
+            </meta-data>
+        </activity>
     </application>
 
 </manifest>
