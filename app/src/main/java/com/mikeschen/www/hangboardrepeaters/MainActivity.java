@@ -6,6 +6,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.restTimeTextView) TextView mRestTimeTextView;
     @BindView(R.id.roundNumberTextView) TextView mRoundNumberTextView;
     @BindView(R.id.setsTimeTextView) TextView mSetsTimeTextView;
-
     @BindView(R.id.hangEditText) EditText mHangEditText;
     @BindView(R.id.pauseEditText) EditText mPauseEditText;
     @BindView(R.id.roundsEditText) EditText mRoundsEditText;
@@ -65,6 +67,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (sets != null) {
             mSetsEditText.setText(sets);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_instruction:
+                Intent intent = new Intent(this, InstructionActivity.class);
+                this.startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
