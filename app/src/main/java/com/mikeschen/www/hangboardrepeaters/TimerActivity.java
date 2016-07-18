@@ -176,9 +176,9 @@ public class TimerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final Button b = (Button) v;
                 if (newWorkoutSwitch) {
-                    new CountDownTimer(3000, 1000) {
+                    new CountDownTimer(3000, 900) {
                         public void onTick(long millisUntilFinished) {
-                            b.setText("Get Ready: " + millisUntilFinished / 1000);
+                            b.setText("Get Ready!  " + millisUntilFinished / 1000);
                         }
 
                         public void onFinish() {
