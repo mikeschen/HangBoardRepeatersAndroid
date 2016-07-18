@@ -2,6 +2,7 @@ package com.mikeschen.www.hangboardrepeaters;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class TimerActivity extends AppCompatActivity {
     int i = 0;
     int counter = 2;
     int roundCounter = 2;
+    boolean newWorkoutSwitch = true;
     boolean flipState = true;
 
     Handler timerHandler = new Handler();
@@ -172,15 +174,31 @@ public class TimerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-            Button b = (Button) v;
-            if (b.getText().equals("stop")) {
-                timerHandler.removeCallbacks(timerRunnable);
-                b.setText("start");
-            } else {
-                startTime = System.currentTimeMillis();
-                timerHandler.postDelayed(timerRunnable, 0);
-                b.setText("stop");
-            }
+                final Button b = (Button) v;
+                if (newWorkoutSwitch) {
+                    new CountDownTimer(4000, 1000) {
+                        public void onTick(long millisUntilFinished) {
+                            b.setText("Get Ready: " + millisUntilFinished / 1000);
+                        }
+
+                        public void onFinish() {
+                            startTime = System.currentTimeMillis();
+                            timerHandler.postDelayed(timerRunnable, 0);
+                            b.setText("stop");
+                            newWorkoutSwitch = false;
+                        }
+                    }.start();
+                }
+                if (!newWorkoutSwitch) {
+                    if (b.getText().equals("stop")) {
+                        timerHandler.removeCallbacks(timerRunnable);
+                        b.setText("start");
+                    } else {
+                        startTime = System.currentTimeMillis();
+                        timerHandler.postDelayed(timerRunnable, 0);
+                        b.setText("stop");
+                    }
+                }
             }
         });
     }
