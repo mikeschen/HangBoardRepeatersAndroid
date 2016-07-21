@@ -17,7 +17,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TimerActivity extends AppCompatActivity {
+public class TimerActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.hangTextView) TextView mHangTextView;
     @BindView(R.id.pauseTextView) TextView mPauseTextView;
     @BindView(R.id.restTextView) TextView mRestTextView;
@@ -121,6 +121,7 @@ public class TimerActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
+        b.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mHangTextView.setTypeface(custom_font);
         mPauseTextView.setTypeface(custom_font);
@@ -170,37 +171,38 @@ public class TimerActivity extends AppCompatActivity {
         mSetsText.setText("1/" + sets);
         b.setTypeface(custom_font);
         b.setText("start");
-        b.setOnClickListener(new View.OnClickListener() {
+    }
 
-            @Override
-            public void onClick(View v) {
-            final Button b = (Button) v;
-            if (newWorkoutSwitch) {
-                new CountDownTimer(3000, 900) {
-                    public void onTick(long millisUntilFinished) {
-                        b.setText("Get Ready!  " + millisUntilFinished / 1000);
-                    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case (R.id.startButton):
+                if (newWorkoutSwitch) {
+                    new CountDownTimer(3000, 900) {
+                        public void onTick(long millisUntilFinished) {
+                            b.setText("Get Ready!  " + millisUntilFinished / 1000);
+                        }
 
-                    public void onFinish() {
+                        public void onFinish() {
+                            startTime = System.currentTimeMillis();
+                            timerHandler.postDelayed(timerRunnable, 0);
+                            b.setText("stop");
+                            newWorkoutSwitch = false;
+                        }
+                    }.start();
+                }
+                if (!newWorkoutSwitch) {
+                    if (b.getText().equals("stop")) {
+                        timerHandler.removeCallbacks(timerRunnable);
+                        b.setText("start");
+                    } else {
                         startTime = System.currentTimeMillis();
                         timerHandler.postDelayed(timerRunnable, 0);
                         b.setText("stop");
-                        newWorkoutSwitch = false;
                     }
-                }.start();
-            }
-            if (!newWorkoutSwitch) {
-                if (b.getText().equals("stop")) {
-                    timerHandler.removeCallbacks(timerRunnable);
-                    b.setText("start");
-                } else {
-                    startTime = System.currentTimeMillis();
-                    timerHandler.postDelayed(timerRunnable, 0);
-                    b.setText("stop");
                 }
-            }
-            }
-        });
+                break;
+        }
     }
 
     @Override
