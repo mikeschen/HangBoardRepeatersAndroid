@@ -2,6 +2,7 @@ package com.mikeschen.www.hangboardrepeaters;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -46,19 +47,23 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     int roundCounter = 2;
     boolean newWorkoutSwitch = true;
     boolean flipState = true;
-    boolean sound = false;
+    boolean soundSwitch = false;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
 
         @Override
         public void run() {
+        final MediaPlayer beep = MediaPlayer.create(TimerActivity.this, R.raw.buttonchime);
         long millis = System.currentTimeMillis() - startTime;
         int seconds = (int) (millis / 1000);
         int secondsDisplay = (int) (millis / 1000);
         int minutes = secondsDisplay / 60;
         secondsDisplay = seconds % 60;
         if (seconds == currentTimer) {
+            if (soundSwitch) {
+                beep.start();
+            }
             timerTextView.setText(String.format("%d:%02d", 0, 0));
             timerText.animate()
                 .alpha(0.3f)
@@ -205,11 +210,11 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case (R.id.soundButton):
-                if (sound) {
-                    sound = false;
+                if (soundSwitch) {
+                    soundSwitch = false;
                     mSoundButton.setImageResource(R.drawable.ic_volume_off_white_24dp);
                 } else {
-                    sound = true;
+                    soundSwitch = true;
                     mSoundButton.setImageResource(R.drawable.ic_volume_up_white_24dp);
                 }
                 break;
