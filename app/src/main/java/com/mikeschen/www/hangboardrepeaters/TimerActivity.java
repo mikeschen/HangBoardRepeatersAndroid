@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +29,8 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.restText) TextView mRestText;
     @BindView(R.id.setsText) TextView mSetsText;
     @BindView(R.id.roundsText) TextView mRoundsText;
-    @BindView(R.id.startButton) Button b;
+    @BindView(R.id.startButton) Button mStartButton;
+    @BindView(R.id.soundButton) ImageButton mSoundButton;
 
     TextView timerText;
     TextView timerTextView;
@@ -44,6 +46,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     int roundCounter = 2;
     boolean newWorkoutSwitch = true;
     boolean flipState = true;
+    boolean sound = false;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -98,7 +101,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
             if(counter == sets + 2) {
                 timerHandler.removeCallbacks(timerRunnable);
                 mSetsText.setText("DONE");
-                b.setText("stop");
+                mStartButton.setText("stop");
             }
         } else {
             timerText.animate()
@@ -121,7 +124,8 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
-        b.setOnClickListener(this);
+        mStartButton.setOnClickListener(this);
+        mSoundButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mHangTextView.setTypeface(custom_font);
         mPauseTextView.setTypeface(custom_font);
@@ -169,8 +173,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         currentTimer = hang;
         mRoundsText.setText("1/" + rounds);
         mSetsText.setText("1/" + sets);
-        b.setTypeface(custom_font);
-        b.setText("start");
+        mStartButton.setTypeface(custom_font);
     }
 
     @Override
@@ -180,26 +183,34 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 if (newWorkoutSwitch) {
                     new CountDownTimer(3000, 900) {
                         public void onTick(long millisUntilFinished) {
-                            b.setText("Get Ready!  " + millisUntilFinished / 1000);
+                            mStartButton.setText("Get Ready!  " + millisUntilFinished / 1000);
                         }
-
                         public void onFinish() {
                             startTime = System.currentTimeMillis();
                             timerHandler.postDelayed(timerRunnable, 0);
-                            b.setText("stop");
+                            mStartButton.setText("stop");
                             newWorkoutSwitch = false;
                         }
                     }.start();
                 }
                 if (!newWorkoutSwitch) {
-                    if (b.getText().equals("stop")) {
+                    if (mStartButton.getText().equals("stop")) {
                         timerHandler.removeCallbacks(timerRunnable);
-                        b.setText("start");
+                        mStartButton.setText("start");
                     } else {
                         startTime = System.currentTimeMillis();
                         timerHandler.postDelayed(timerRunnable, 0);
-                        b.setText("stop");
+                        mStartButton.setText("stop");
                     }
+                }
+                break;
+            case (R.id.soundButton):
+                if (sound) {
+                    sound = false;
+                    mSoundButton.setImageResource(R.drawable.ic_volume_off_white_24dp);
+                } else {
+                    sound = true;
+                    mSoundButton.setImageResource(R.drawable.ic_volume_up_white_24dp);
                 }
                 break;
         }
