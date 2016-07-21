@@ -159,6 +159,15 @@
             android:padding="3dp"
             android:layout_margin="5dp"
             android:layout_gravity="center_horizontal" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/colorAccent"
+            android:id="@+id/soundButton"
+            android:src="ic_volume_off_white_24dp"
+            android:layout_row="6"
+            android:layout_column="0" />
     </GridLayout>
 
     <Button
