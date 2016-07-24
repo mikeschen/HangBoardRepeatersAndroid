@@ -189,7 +189,7 @@
             android:text="SUBMIT"
             android:textColor="@color/colorSecondaryText"
             android:id="@+id/startButton"
-            android:background="@color/colorPrimaryLight"
+            android:background="@drawable/buttonred"
             android:textStyle="bold"
             android:textSize="22sp"
             android:layout_marginTop="5dp"
