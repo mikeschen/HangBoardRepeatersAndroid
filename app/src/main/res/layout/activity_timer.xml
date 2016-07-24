@@ -105,6 +105,7 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:scaleType="fitCenter"
             android:layout_rowSpan="2"
             android:background="@color/colorPrimaryDark"
             android:id="@+id/soundButton"
