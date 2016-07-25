@@ -3,6 +3,7 @@ package com.mikeschen.www.hangboardrepeaters;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         mSharedPreferencesEditor = mSharedPreferences.edit();
         mStartButton.setOnClickListener(this);
