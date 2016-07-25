@@ -2,6 +2,7 @@ package com.mikeschen.www.hangboardrepeaters;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -129,6 +130,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
