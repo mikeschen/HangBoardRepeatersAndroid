@@ -23,6 +23,9 @@ import android.widget.TextView;
 import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
 import com.mikeschen.www.hangboardrepeaters.Models.Days;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -210,10 +213,13 @@ public class TimerActivity extends ListActivity implements View.OnClickListener 
                 if (newWorkoutSwitch) {
                     ArrayAdapter<Days> adapter = (ArrayAdapter<Days>) getListAdapter();
                     Days comment = null;
-                    String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
-                    int nextInt = new Random().nextInt(3);
+
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    Date date = new Date();
+                    String comments = dateFormat.format(date);
+//                    int nextInt = new Random().nextInt(3);
                     // save the new comment to the database
-                    comment = datasource.createComment(comments[nextInt]);
+                    comment = datasource.createComment(comments);
                     adapter.add(comment);
                     new CountDownTimer(3000, 900) {
                         public void onTick(long millisUntilFinished) {
