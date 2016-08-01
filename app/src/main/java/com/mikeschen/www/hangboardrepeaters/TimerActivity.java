@@ -1,5 +1,6 @@
 package com.mikeschen.www.hangboardrepeaters;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
@@ -14,13 +15,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
+import com.mikeschen.www.hangboardrepeaters.Models.Days;
+
+import java.util.List;
+import java.util.Random;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TimerActivity extends AppCompatActivity implements View.OnClickListener {
+public class TimerActivity extends ListActivity implements View.OnClickListener {
     @BindView(R.id.hangTextView) TextView mHangTextView;
     @BindView(R.id.pauseTextView) TextView mPauseTextView;
     @BindView(R.id.restTextView) TextView mRestTextView;
@@ -49,6 +58,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     boolean newWorkoutSwitch = true;
     boolean flipState = true;
     boolean soundSwitch = false;
+    private DaysDataSource datasource;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -130,6 +140,16 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
+
+        datasource = new DaysDataSource(this);
+        datasource.open();
+        List<Days> values = datasource.getAllComments();
+        // use the SimpleCursorAdapter to show the
+        // elements in a ListView
+        ArrayAdapter<Days> adapter = new ArrayAdapter<Days>(this,
+                android.R.layout.simple_list_item_1, values);
+        setListAdapter(adapter);
+
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
@@ -188,6 +208,13 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case (R.id.startButton):
                 if (newWorkoutSwitch) {
+                    ArrayAdapter<Days> adapter = (ArrayAdapter<Days>) getListAdapter();
+                    Days comment = null;
+                    String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
+                    int nextInt = new Random().nextInt(3);
+                    // save the new comment to the database
+                    comment = datasource.createComment(comments[nextInt]);
+                    adapter.add(comment);
                     new CountDownTimer(3000, 900) {
                         public void onTick(long millisUntilFinished) {
                             mStartButton.setText("Get Ready!  " + millisUntilFinished / 1000);
