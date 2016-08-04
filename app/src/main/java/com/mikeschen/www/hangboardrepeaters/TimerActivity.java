@@ -278,10 +278,10 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onBackPressed() {
-        timerHandler.removeCallbacks(timerRunnable);
-        super.onBackPressed();
-
+    protected void onDestroy() {
+        if (timerRunnable != null)
+            timerHandler.removeCallbacks(timerRunnable);
+        super.onDestroy();
     }
 }
 
