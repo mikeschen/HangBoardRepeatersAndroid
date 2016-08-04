@@ -16,7 +16,7 @@ public class DaysDataSource {
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
     private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
-            MySQLiteHelper.COLUMN_COMMENT };
+            MySQLiteHelper.COLUMN_LOG };
 
     public DaysDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
@@ -30,49 +30,48 @@ public class DaysDataSource {
         dbHelper.close();
     }
 
-    public Days createComment(String comment) {
+    public Days createLog(String log) {
         ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.COLUMN_COMMENT, comment);
-        long insertId = database.insert(MySQLiteHelper.TABLE_COMMENTS, null,
+        values.put(MySQLiteHelper.COLUMN_LOG, log);
+        long insertId = database.insert(MySQLiteHelper.TABLE_LOGS, null,
                 values);
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_LOGS,
                 allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
                 null, null, null);
         cursor.moveToFirst();
-        Days newComment = cursorToComment(cursor);
+        Days newLog = cursorToLog(cursor);
         cursor.close();
-        return newComment;
+        return newLog;
     }
 
-    public void deleteComment(Days comment) {
-        long id = comment.getId();
-        System.out.println("Comment deleted with id: " + id);
-        database.delete(MySQLiteHelper.TABLE_COMMENTS, MySQLiteHelper.COLUMN_ID
+    public void deleteLog(Days log) {
+        long id = log.getId();
+        System.out.println("Log deleted with id: " + id);
+        database.delete(MySQLiteHelper.TABLE_LOGS, MySQLiteHelper.COLUMN_ID
                 + " = " + id, null);
     }
 
-    public List<Days> getAllComments() {
-        List<Days> comments = new ArrayList<Days>();
+    public List<Days> getAllLogs() {
+        List<Days> logs = new ArrayList<Days>();
 
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_LOGS,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Days comment = cursorToComment(cursor);
-            comments.add(comment);
+            Days log = cursorToLog(cursor);
+            logs.add(log);
             cursor.moveToNext();
         }
         // make sure to close the cursor
         cursor.close();
-        return comments;
+        return logs;
     }
 
-    private Days cursorToComment(Cursor cursor) {
-        Days comment = new Days();
-        comment.setId(cursor.getLong(0));
-        comment.setComment(cursor.getString(1));
-        return comment;
+    private Days cursorToLog (Cursor cursor) {
+        Days log = new Days();
+        log.setId(cursor.getLong(0));
+        log.setComment(cursor.getString(1));
+        return log;
     }
-
 }

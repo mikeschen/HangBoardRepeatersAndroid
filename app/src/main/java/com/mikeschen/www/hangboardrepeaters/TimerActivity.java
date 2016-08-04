@@ -146,7 +146,7 @@ public class TimerActivity extends ListActivity implements View.OnClickListener 
 
         datasource = new DaysDataSource(this);
         datasource.open();
-        List<Days> values = datasource.getAllComments();
+        List<Days> values = datasource.getAllLogs();
         // use the SimpleCursorAdapter to show the
         // elements in a ListView
         ArrayAdapter<Days> adapter = new ArrayAdapter<Days>(this,
@@ -212,15 +212,15 @@ public class TimerActivity extends ListActivity implements View.OnClickListener 
             case (R.id.startButton):
                 if (newWorkoutSwitch) {
                     ArrayAdapter<Days> adapter = (ArrayAdapter<Days>) getListAdapter();
-                    Days comment = null;
+                    Days log = null;
 
                     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                     Date date = new Date();
-                    String comments = dateFormat.format(date);
+                    String logs = dateFormat.format(date);
 //                    int nextInt = new Random().nextInt(3);
                     // save the new comment to the database
-                    comment = datasource.createComment(comments);
-                    adapter.add(comment);
+                    log = datasource.createLog(logs);
+                    adapter.add(log);
                     new CountDownTimer(3000, 900) {
                         public void onTick(long millisUntilFinished) {
                             mStartButton.setText("Get Ready!  " + millisUntilFinished / 1000);
