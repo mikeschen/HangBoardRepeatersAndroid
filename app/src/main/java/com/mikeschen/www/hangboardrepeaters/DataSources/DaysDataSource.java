@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.mikeschen.www.hangboardrepeaters.Databases.MySQLiteHelper;
 import com.mikeschen.www.hangboardrepeaters.Models.Days;
@@ -40,6 +41,7 @@ public class DaysDataSource {
                 null, null, null);
         cursor.moveToFirst();
         Days newLog = cursorToLog(cursor);
+        Log.d("LogDays", newLog + "");
         cursor.close();
         return newLog;
     }

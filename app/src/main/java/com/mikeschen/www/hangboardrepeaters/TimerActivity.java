@@ -8,6 +8,8 @@ import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TimerActivity extends ListActivity implements View.OnClickListener {
+public class TimerActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.hangTextView) TextView mHangTextView;
     @BindView(R.id.pauseTextView) TextView mPauseTextView;
     @BindView(R.id.restTextView) TextView mRestTextView;
@@ -65,73 +67,85 @@ public class TimerActivity extends ListActivity implements View.OnClickListener 
 
         @Override
         public void run() {
-        final MediaPlayer beep = MediaPlayer.create(TimerActivity.this, R.raw.buttonchime);
-        long millis = System.currentTimeMillis() - startTime;
-        int seconds = (int) (millis / 1000);
-        int secondsDisplay = (int) (millis / 1000);
-        int minutes = secondsDisplay / 60;
-        secondsDisplay = seconds % 60;
-        if (seconds == currentTimer) {
-            if (soundSwitch) {
-                beep.start();
-            }
-            timerTextView.setText(String.format("%d:%02d", 0, 0));
-            timerText.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-            timerTextView.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-            timerHandler.removeCallbacks(timerRunnable);
-            timerHandler.postDelayed(this, 500);
-            startTime = System.currentTimeMillis();
-            i++;
-            if (flipState) {
-                currentTimer = pause;
-                timerText = mPauseTextView;
-                timerTextView = mPauseText;
-                flipState = false;
-            } else {
-                currentTimer = hang;
-                timerText = mHangTextView;
-                timerTextView = mHangText;
-                flipState = true;
-                mRoundsText.setText(roundCounter + "/" + rounds);
-                roundCounter++;
-            }
-            if(i == rounds * 2 - 1) {
-                roundCounter = 1;
-                mRoundsText.setText(roundCounter + "/" + rounds);
-                currentTimer = rest ;
-                timerTextView = mRestText;
-                timerText = mRestTextView;
-                i = -1;
-                mSetsText.setText(counter + "/" + sets);
-                counter++;
-                flipState = false;
-            }
-            if(counter == sets + 2) {
+            final MediaPlayer beep = MediaPlayer.create(TimerActivity.this, R.raw.buttonchime);
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int secondsDisplay = (int) (millis / 1000);
+            int minutes = secondsDisplay / 60;
+            secondsDisplay = seconds % 60;
+            if (seconds == currentTimer) {
+                if (soundSwitch) {
+                    beep.start();
+                }
+                timerTextView.setText(String.format("%d:%02d", 0, 0));
+                timerText.animate()
+                    .alpha(0.3f)
+                    .scaleX(0.9f)
+                    .scaleY(0.9f)
+                    .setDuration(500);
+                timerTextView.animate()
+                    .alpha(0.3f)
+                    .scaleX(0.9f)
+                    .scaleY(0.9f)
+                    .setDuration(500);
                 timerHandler.removeCallbacks(timerRunnable);
-                mSetsText.setText("DONE");
-                mStartButton.setText("stop");
+                timerHandler.postDelayed(this, 500);
+                startTime = System.currentTimeMillis();
+                i++;
+                if (flipState) {
+                    currentTimer = pause;
+                    timerText = mPauseTextView;
+                    timerTextView = mPauseText;
+                    flipState = false;
+                } else {
+                    currentTimer = hang;
+                    timerText = mHangTextView;
+                    timerTextView = mHangText;
+                    flipState = true;
+                    mRoundsText.setText(roundCounter + "/" + rounds);
+                    roundCounter++;
+                }
+                if(i == rounds * 2 - 1) {
+                    roundCounter = 1;
+                    mRoundsText.setText(roundCounter + "/" + rounds);
+                    currentTimer = rest ;
+                    timerTextView = mRestText;
+                    timerText = mRestTextView;
+                    i = -1;
+                    mSetsText.setText(counter + "/" + sets);
+                    counter++;
+                    flipState = false;
+                }
+                if(counter == sets + 2) {
+                    timerHandler.removeCallbacks(timerRunnable);
+                    mSetsText.setText("DONE");
+                    datasource = new DaysDataSource(TimerActivity.this);
+                    datasource.open();
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    Date date = new Date();
+                    String logs = dateFormat.format(date);
+                    datasource.createLog(logs);
+                    datasource.close();
+                    mStartButton.setText("DONE");
+                    mStartButton.setEnabled(false);
+                    beep.reset();
+                    beep.release();
+                }
+            } else {
+                timerText.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f);
+                timerTextView.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f);
+                timerTextView.setText(String.format("%d:%02d", minutes, secondsDisplay));
+                timerHandler.postDelayed(this, 500);
             }
-        } else {
-            timerText.animate()
-                .alpha(1f)
-                .scaleX(1f)
-                .scaleY(1f);
-            timerTextView.animate()
-                .alpha(1f)
-                .scaleX(1f)
-                .scaleY(1f);
-            timerTextView.setText(String.format("%d:%02d", minutes, secondsDisplay));
-            timerHandler.postDelayed(this, 500);
+
         }
-        }
+
     };
 
     @Override
@@ -141,14 +155,12 @@ public class TimerActivity extends ListActivity implements View.OnClickListener 
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
 
-        datasource = new DaysDataSource(this);
-        datasource.open();
-        List<Days> values = datasource.getAllLogs();
-        // use the SimpleCursorAdapter to show the
-        // elements in a ListView
-        ArrayAdapter<Days> adapter = new ArrayAdapter<Days>(this,
-                android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);
+//        List<Days> values = datasource.getAllLogs();
+//        // use the SimpleCursorAdapter to show the
+//        // elements in a ListView
+//        ArrayAdapter<Days> adapter = new ArrayAdapter<Days>(this,
+//                android.R.layout.simple_list_item_1, values);
+//        setListAdapter(adapter);
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
@@ -208,16 +220,6 @@ public class TimerActivity extends ListActivity implements View.OnClickListener 
         switch (v.getId()) {
             case (R.id.startButton):
                 if (newWorkoutSwitch) {
-                    ArrayAdapter<Days> adapter = (ArrayAdapter<Days>) getListAdapter();
-                    Days log = null;
-
-                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                    Date date = new Date();
-                    String logs = dateFormat.format(date);
-//                    int nextInt = new Random().nextInt(3);
-                    // save the new comment to the database
-                    log = datasource.createLog(logs);
-                    adapter.add(log);
                     new CountDownTimer(3000, 900) {
                         public void onTick(long millisUntilFinished) {
                             mStartButton.setText("Get Ready!  " + millisUntilFinished / 1000);
@@ -273,6 +275,13 @@ public class TimerActivity extends ListActivity implements View.OnClickListener 
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        timerHandler.removeCallbacks(timerRunnable);
+        super.onBackPressed();
+
     }
 }
 
