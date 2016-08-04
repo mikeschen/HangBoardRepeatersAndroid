@@ -22,14 +22,14 @@
             android:configChanges="orientation|screenSize|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mikeschen.www.hangboardrepeaters.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity android:name=".InstructionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mikeschen.www.hangboardrepeaters.MainActivity">
-            </meta-data>
+                android:value=".MainActivity"></meta-data>
         </activity>
+        <activity android:name=".LogActivity"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:padding="@dimen/activity_vertical_margin"
-    tools:context="com.mikeschen.www.hangboardrepeaters.MainActivity">
+    tools:context=".MainActivity">
 
     <GridLayout
         android:layout_width="wrap_content"

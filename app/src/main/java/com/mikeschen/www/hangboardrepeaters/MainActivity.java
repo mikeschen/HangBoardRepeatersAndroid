@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -83,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.action_instruction:
                 Intent intent = new Intent(this, InstructionActivity.class);
                 this.startActivity(intent);
+                break;
+            case R.id.action_log:
+                Intent intent1 = new Intent(this, LogActivity.class);
+                this.startActivity(intent1);
                 break;
         }
         return super.onOptionsItemSelected(item);

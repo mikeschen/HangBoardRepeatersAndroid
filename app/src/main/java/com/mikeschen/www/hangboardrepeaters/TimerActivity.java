@@ -7,9 +7,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,7 +25,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -269,6 +266,10 @@ public class TimerActivity extends ListActivity implements View.OnClickListener 
             case R.id.action_instruction:
                 Intent intent = new Intent(this, InstructionActivity.class);
                 this.startActivity(intent);
+                break;
+            case R.id.action_log:
+                Intent intent1 = new Intent(this, LogActivity.class);
+                this.startActivity(intent1);
                 break;
         }
         return super.onOptionsItemSelected(item);
