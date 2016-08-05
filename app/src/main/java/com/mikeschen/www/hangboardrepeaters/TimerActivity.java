@@ -138,7 +138,6 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 timerTextView.setText(String.format("%d:%02d", minutes, secondsDisplay));
                 timerHandler.postDelayed(this, 500);
             }
-
         }
 
     };

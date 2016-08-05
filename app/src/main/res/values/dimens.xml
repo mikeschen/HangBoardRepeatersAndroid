@@ -6,4 +6,5 @@
     <dimen name="timer_size">42sp</dimen>
     <dimen name="layout_width">100dp</dimen>
     <dimen name="layout_height">40dp</dimen>
+    <dimen name="activity_horizontal_small_margin">5dp</dimen>
 </resources>
