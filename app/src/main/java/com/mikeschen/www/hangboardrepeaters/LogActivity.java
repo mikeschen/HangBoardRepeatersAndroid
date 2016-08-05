@@ -23,8 +23,6 @@ public class LogActivity extends ListActivity {
         datasource = new DaysDataSource(this);
         datasource.open();
         List<Days> values = datasource.getAllLogs();
-        // use the SimpleCursorAdapter to show the
-        // elements in a ListView
         ArrayAdapter<Days> adapter = new ArrayAdapter<Days>(this,
                 android.R.layout.simple_list_item_1, values);
         setListAdapter(adapter);

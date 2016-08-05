@@ -41,7 +41,6 @@ public class DaysDataSource {
                 null, null, null);
         cursor.moveToFirst();
         Days newLog = cursorToLog(cursor);
-        Log.d("LogDays", newLog + "");
         cursor.close();
         return newLog;
     }

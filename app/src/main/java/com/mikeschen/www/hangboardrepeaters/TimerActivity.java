@@ -1,32 +1,27 @@
 package com.mikeschen.www.hangboardrepeaters;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
-import com.mikeschen.www.hangboardrepeaters.Models.Days;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -121,7 +116,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                     mSetsText.setText("DONE");
                     datasource = new DaysDataSource(TimerActivity.this);
                     datasource.open();
-                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy - hh:mm a");
                     Date date = new Date();
                     String logs = dateFormat.format(date);
                     datasource.createLog(logs);
