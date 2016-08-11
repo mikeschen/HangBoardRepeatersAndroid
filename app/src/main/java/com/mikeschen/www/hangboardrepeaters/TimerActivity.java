@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -56,13 +57,14 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     boolean flipState = true;
     boolean soundSwitch = false;
     private DaysDataSource datasource;
+    SoundPool beep;
+    int buttonchimeId;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
 
         @Override
         public void run() {
-            final MediaPlayer beep = MediaPlayer.create(TimerActivity.this, R.raw.buttonchime);
             long millis = System.currentTimeMillis() - startTime;
             int seconds = (int) (millis / 1000);
             int secondsDisplay = (int) (millis / 1000);
@@ -70,7 +72,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
             secondsDisplay = seconds % 60;
             if (seconds == currentTimer) {
                 if (soundSwitch) {
-                    beep.start();
+                    beep.play(buttonchimeId, 1, 1, 1, 0, 1);
                 }
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 timerText.animate()
@@ -123,7 +125,6 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                     datasource.close();
                     mStartButton.setText("DONE");
                     mStartButton.setEnabled(false);
-                    beep.reset();
                     beep.release();
                 }
             } else {
@@ -156,6 +157,8 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
 //                android.R.layout.simple_list_item_1, values);
 //        setListAdapter(adapter);
 
+        beep = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
@@ -276,6 +279,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         if (timerRunnable != null)
             timerHandler.removeCallbacks(timerRunnable);
         super.onDestroy();
+        beep.release();
     }
 }
 
