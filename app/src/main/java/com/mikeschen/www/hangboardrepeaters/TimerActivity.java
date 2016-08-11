@@ -140,7 +140,6 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
                 timerHandler.postDelayed(this, 500);
             }
         }
-
     };
 
     @Override
