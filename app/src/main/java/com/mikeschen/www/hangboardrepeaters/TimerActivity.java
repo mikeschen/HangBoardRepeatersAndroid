@@ -149,13 +149,6 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
 
-//        List<Days> values = datasource.getAllLogs();
-//        // use the SimpleCursorAdapter to show the
-//        // elements in a ListView
-//        ArrayAdapter<Days> adapter = new ArrayAdapter<Days>(this,
-//                android.R.layout.simple_list_item_1, values);
-//        setListAdapter(adapter);
-
         beep = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
