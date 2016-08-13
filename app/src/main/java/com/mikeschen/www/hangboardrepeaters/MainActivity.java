@@ -18,7 +18,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements MainActivityView, View.OnClickListener {
     @BindView(R.id.hangTimeTextView) TextView mHangTimeTextView;
     @BindView(R.id.pauseTimeTextView) TextView mPauseTimeTextView;
     @BindView(R.id.restTimeTextView) TextView mRestTimeTextView;
@@ -33,11 +33,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
 
+    MainActivityPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        presenter = new MainActivityPresenter(this);
+
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         mSharedPreferencesEditor = mSharedPreferences.edit();
@@ -96,23 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         try {
-            int hang = Integer.parseInt(mHangEditText.getText().toString());
-            mSharedPreferencesEditor.putString(Constants.KEY_USER_HANG, mHangEditText.getText().toString()).apply();
-            int pause = Integer.parseInt(mPauseEditText.getText().toString());
-            mSharedPreferencesEditor.putString(Constants.KEY_USER_PAUSE, mPauseEditText.getText().toString()).apply();
-            int rounds = Integer.parseInt(mRoundsEditText.getText().toString());
-            mSharedPreferencesEditor.putString(Constants.KEY_USER_ROUNDS, mRoundsEditText.getText().toString()).apply();
-            int rest = Integer.parseInt(mRestEditText.getText().toString());
-            mSharedPreferencesEditor.putString(Constants.KEY_USER_REST, mRestEditText.getText().toString()).apply();
-            int sets = Integer.parseInt(mSetsEditText.getText().toString());
-            mSharedPreferencesEditor.putString(Constants.KEY_USER_SETS, mSetsEditText.getText().toString()).apply();
-            Intent intent = new Intent(MainActivity.this, TimerActivity.class);
-            intent.putExtra("hang", hang);
-            intent.putExtra("pause", pause);
-            intent.putExtra("rounds", rounds);
-            intent.putExtra("rest", rest);
-            intent.putExtra("sets", sets);
-            startActivity(intent);
+            presenter.launchOtherActivityButtonClicked(TimerActivity.class);
         } catch(NumberFormatException e) {
             mHangEditText.setHint("Set Sec.");
             mPauseEditText.setHint("Set Sec.");
@@ -120,5 +109,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mRestEditText.setHint("Set Sec.");
             mSetsEditText.setHint("Set Sets");
         }
+    }
+
+    @Override
+    public void launchOtherActivity(Class activity) {
+        int hang = Integer.parseInt(mHangEditText.getText().toString());
+        mSharedPreferencesEditor.putString(Constants.KEY_USER_HANG, mHangEditText.getText().toString()).apply();
+        int pause = Integer.parseInt(mPauseEditText.getText().toString());
+        mSharedPreferencesEditor.putString(Constants.KEY_USER_PAUSE, mPauseEditText.getText().toString()).apply();
+        int rounds = Integer.parseInt(mRoundsEditText.getText().toString());
+        mSharedPreferencesEditor.putString(Constants.KEY_USER_ROUNDS, mRoundsEditText.getText().toString()).apply();
+        int rest = Integer.parseInt(mRestEditText.getText().toString());
+        mSharedPreferencesEditor.putString(Constants.KEY_USER_REST, mRestEditText.getText().toString()).apply();
+        int sets = Integer.parseInt(mSetsEditText.getText().toString());
+        mSharedPreferencesEditor.putString(Constants.KEY_USER_SETS, mSetsEditText.getText().toString()).apply();
+        Intent intent = new Intent(MainActivity.this, activity);
+        intent.putExtra("hang", hang);
+        intent.putExtra("pause", pause);
+        intent.putExtra("rounds", rounds);
+        intent.putExtra("rest", rest);
+        intent.putExtra("sets", sets);
+        startActivity(intent);
     }
 }
