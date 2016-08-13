@@ -1,6 +1,4 @@
-package com.mikeschen.www.hangboardrepeaters;
-
-import android.app.Activity;
+package com.mikeschen.www.hangboardrepeaters.Views;
 
 public interface MainActivityView {
     void launchOtherActivity(Class activity);

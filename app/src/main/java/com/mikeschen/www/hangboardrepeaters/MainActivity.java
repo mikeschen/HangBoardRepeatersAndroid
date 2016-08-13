@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.mikeschen.www.hangboardrepeaters.Presenters.MainActivityPresenter;
+import com.mikeschen.www.hangboardrepeaters.Views.MainActivityView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

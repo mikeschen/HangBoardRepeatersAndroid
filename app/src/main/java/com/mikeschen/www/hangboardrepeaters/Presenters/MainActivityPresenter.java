@@ -1,4 +1,6 @@
-package com.mikeschen.www.hangboardrepeaters;
+package com.mikeschen.www.hangboardrepeaters.Presenters;
+
+import com.mikeschen.www.hangboardrepeaters.Views.MainActivityView;
 
 public class MainActivityPresenter {
     MainActivityView view;
