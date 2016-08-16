@@ -1,6 +1,5 @@
 package com.mikeschen.www.hangboardrepeaters.Presenters;
 
-import com.mikeschen.www.hangboardrepeaters.TimerActivity;
 import com.mikeschen.www.hangboardrepeaters.Views.TimerActivityView;
 
 public class TimerActivityPresenter {

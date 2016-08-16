@@ -3,7 +3,6 @@ package com.mikeschen.www.hangboardrepeaters;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
