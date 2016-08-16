@@ -19,6 +19,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
+import com.mikeschen.www.hangboardrepeaters.Presenters.TimerActivityPresenter;
+import com.mikeschen.www.hangboardrepeaters.Views.TimerActivityView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,7 +29,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TimerActivity extends AppCompatActivity implements View.OnClickListener {
+public class TimerActivity extends AppCompatActivity implements TimerActivityView, View.OnClickListener {
     @BindView(R.id.hangTextView) TextView mHangTextView;
     @BindView(R.id.pauseTextView) TextView mPauseTextView;
     @BindView(R.id.restTextView) TextView mRestTextView;
@@ -59,6 +61,8 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     private DaysDataSource datasource;
     SoundPool beep;
     int buttonchimeId;
+
+    TimerActivityPresenter presenter;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -149,6 +153,8 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_timer);
         ButterKnife.bind(this);
 
+        presenter = new TimerActivityPresenter(this);
+
         beep = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -208,29 +214,7 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.startButton):
-                if (newWorkoutSwitch) {
-                    new CountDownTimer(3000, 900) {
-                        public void onTick(long millisUntilFinished) {
-                            mStartButton.setText("Get Ready!  " + millisUntilFinished / 1000);
-                        }
-                        public void onFinish() {
-                            startTime = System.currentTimeMillis();
-                            timerHandler.postDelayed(timerRunnable, 0);
-                            mStartButton.setText("stop");
-                            newWorkoutSwitch = false;
-                        }
-                    }.start();
-                }
-                if (!newWorkoutSwitch) {
-                    if (mStartButton.getText().equals("stop")) {
-                        timerHandler.removeCallbacks(timerRunnable);
-                        mStartButton.setText("start");
-                    } else {
-                        startTime = System.currentTimeMillis();
-                        timerHandler.postDelayed(timerRunnable, 0);
-                        mStartButton.setText("stop");
-                    }
-                }
+                presenter.startRunnableButtonClicked();
                 break;
             case (R.id.soundButton):
                 if (soundSwitch) {
@@ -272,6 +256,33 @@ public class TimerActivity extends AppCompatActivity implements View.OnClickList
             timerHandler.removeCallbacks(timerRunnable);
         super.onDestroy();
         beep.release();
+    }
+
+    @Override
+    public void startRunnable() {
+        if (newWorkoutSwitch) {
+            new CountDownTimer(3000, 900) {
+                public void onTick(long millisUntilFinished) {
+                    mStartButton.setText("Get Ready!  " + millisUntilFinished / 1000);
+                }
+                public void onFinish() {
+                    startTime = System.currentTimeMillis();
+                    timerHandler.postDelayed(timerRunnable, 0);
+                    mStartButton.setText("stop");
+                    newWorkoutSwitch = false;
+                }
+            }.start();
+        }
+        if (!newWorkoutSwitch) {
+            if (mStartButton.getText().equals("stop")) {
+                timerHandler.removeCallbacks(timerRunnable);
+                mStartButton.setText("start");
+            } else {
+                startTime = System.currentTimeMillis();
+                timerHandler.postDelayed(timerRunnable, 0);
+                mStartButton.setText("stop");
+            }
+        }
     }
 }
 

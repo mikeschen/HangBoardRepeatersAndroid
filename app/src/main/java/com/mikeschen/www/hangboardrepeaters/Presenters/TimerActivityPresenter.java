@@ -1,19 +1,16 @@
 package com.mikeschen.www.hangboardrepeaters.Presenters;
 
 import com.mikeschen.www.hangboardrepeaters.TimerActivity;
+import com.mikeschen.www.hangboardrepeaters.Views.TimerActivityView;
 
-/**
- * Created by reviveit on 8/15/16.
- */
 public class TimerActivityPresenter {
     TimerActivityView view;
 
-    public void TimerActivityPresenter (TimerActivityView view) {
+    public TimerActivityPresenter (TimerActivityView view) {
         this.view = view;
     }
 
-    public void startRunnableButtonClicked () {
-        view.startRunnable;
-
+    public void startRunnableButtonClicked() {
+        view.startRunnable();
     }
 }
