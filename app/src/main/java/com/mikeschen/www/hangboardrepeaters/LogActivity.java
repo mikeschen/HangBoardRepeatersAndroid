@@ -26,8 +26,7 @@ public class LogActivity extends ListActivity {
         datasource.open();
         ListView lv = getListView();
         List<Days> values = datasource.getAllLogs();
-        ArrayAdapter<Days> adapter = new ArrayAdapter<Days>(this,
-                R.layout.white_text, values);
+        ArrayAdapter<Days> adapter = new ArrayAdapter<>(this, R.layout.white_text, values);
         lv.setAdapter(adapter);
     }
 
