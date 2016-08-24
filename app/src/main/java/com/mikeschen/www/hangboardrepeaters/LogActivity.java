@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
 import com.mikeschen.www.hangboardrepeaters.Models.Days;
 
 import java.util.List;
+
+import butterknife.BindView;
 
 public class LogActivity extends ListActivity {
     private DaysDataSource datasource;
@@ -19,13 +22,13 @@ public class LogActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
-
         datasource = new DaysDataSource(this);
         datasource.open();
+        ListView lv = getListView();
         List<Days> values = datasource.getAllLogs();
         ArrayAdapter<Days> adapter = new ArrayAdapter<Days>(this,
-                android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);
+                R.layout.white_text, values);
+        lv.setAdapter(adapter);
     }
 
     @Override
