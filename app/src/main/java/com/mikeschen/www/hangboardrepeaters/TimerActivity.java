@@ -2,6 +2,7 @@ package com.mikeschen.www.hangboardrepeaters;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
@@ -63,10 +64,11 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     private DaysDataSource datasource;
     SoundPool beep;
     int buttonchimeId;
-    int colorFrom = ContextCompat.getColor(R.color.green);
-    int colorTo = ContextCompat.getColor(R.color.red);
+    public Context context;
+    int colorFrom = ContextCompat.getColor(context, R.color.colorPrimary);
+    int colorTo = ContextCompat.getColor(context, R.color.colorPrimaryLight);
     ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-    colorAnimation.setDuration(250);
+//    colorAnimation.setDuration(250);
 
     TimerActivityPresenter presenter;
 
