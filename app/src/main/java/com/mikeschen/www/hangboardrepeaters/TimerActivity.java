@@ -229,10 +229,10 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             case (R.id.soundButton):
                 if (soundSwitch) {
                     soundSwitch = false;
-                    mSoundButton.setImageResource(R.drawable.ic_volume_off_white_24dp);
+                    mSoundButton.setImageResource(R.drawable.ic_volume_off_white_36dp);
                 } else {
                     soundSwitch = true;
-                    mSoundButton.setImageResource(R.drawable.ic_volume_up_white_24dp);
+                    mSoundButton.setImageResource(R.drawable.ic_volume_up_white_36dp);
                 }
                 break;
         }
