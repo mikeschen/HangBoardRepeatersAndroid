@@ -64,11 +64,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     private DaysDataSource datasource;
     SoundPool beep;
     int buttonchimeId;
-    public Context context;
-    int colorFrom = ContextCompat.getColor(context, R.color.colorPrimary);
-    int colorTo = ContextCompat.getColor(context, R.color.colorPrimaryLight);
-    ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-//    colorAnimation.setDuration(250);
 
     TimerActivityPresenter presenter;
 
@@ -218,10 +213,17 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         mStartButton.setTypeface(custom_font);
     }
 
+    private void animate() {
+        mStartButton.setScaleX(0.95f);
+        mStartButton.setScaleY(0.95f);
+        mStartButton.animate().scaleX(1).scaleY(1).start();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.startButton):
+                animate();
                 presenter.startRunnableButtonClicked();
                 break;
             case (R.id.soundButton):
