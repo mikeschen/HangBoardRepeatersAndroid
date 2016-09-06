@@ -214,8 +214,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     }
 
     private void animate() {
-        mStartButton.setScaleX(0.95f);
-        mStartButton.setScaleY(0.95f);
+        mStartButton.setScaleX(0.96f);
+        mStartButton.setScaleY(0.96f);
         mStartButton.animate().scaleX(1).scaleY(1).start();
     }
 
