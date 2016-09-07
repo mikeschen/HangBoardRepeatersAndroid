@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:text="Completed Workouts"
         android:id="@+id/completedTextView"
+        android:textColor="@color/colorPrimaryLight"
         android:background="#ffffff"
         android:alpha="0.65"
         android:padding="@dimen/activity_vertical_margin"
