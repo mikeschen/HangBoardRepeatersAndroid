@@ -1,7 +1,6 @@
 package com.mikeschen.www.hangboardrepeaters;
 
 import android.app.ListActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,8 +11,6 @@ import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
 import com.mikeschen.www.hangboardrepeaters.Models.Days;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 public class LogActivity extends ListActivity {
     private DaysDataSource datasource;

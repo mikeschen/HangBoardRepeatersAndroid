@@ -1,8 +1,5 @@
 package com.mikeschen.www.hangboardrepeaters;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ValueAnimator;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
@@ -10,7 +7,6 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -273,7 +269,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         if (newWorkoutSwitch) {
             new CountDownTimer(3000, 900) {
                 public void onTick(long millisUntilFinished) {
-                    mStartButton.setText("Get Ready!  " + millisUntilFinished / 1000);
+                    mStartButton.setText("Get Ready  " + millisUntilFinished / 1000);
                 }
                 public void onFinish() {
                     startTime = System.currentTimeMillis();
