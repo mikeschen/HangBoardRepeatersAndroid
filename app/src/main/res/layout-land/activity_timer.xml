@@ -180,7 +180,7 @@
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@null"
                 android:id="@+id/soundButton"
                 android:src="@drawable/ic_volume_off_white_36dp"
                 android:layout_row="2"
