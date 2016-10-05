@@ -52,6 +52,11 @@ public class DaysDataSource {
                 + " = " + id, null);
     }
 
+    public void deleteAllLogs() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("delete from " + MySQLiteHelper.TABLE_LOGS);
+    }
+
     public List<Days> getAllLogs() {
         List<Days> logs = new ArrayList<Days>();
 

@@ -1,6 +1,7 @@
 package com.mikeschen.www.hangboardrepeaters;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
+import com.mikeschen.www.hangboardrepeaters.Databases.MySQLiteHelper;
 import com.mikeschen.www.hangboardrepeaters.Models.Days;
 
 import java.util.List;
 
 public class LogActivity extends ListActivity implements View.OnClickListener {
     private DaysDataSource datasource;
+    public Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +52,8 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        db.deleteAllDayRecords();
-                        db.deleteAllFoodRecords();
-                        db.closeDB();
+                        datasource.deleteAllLogs();
+                        datasource.close();
                         refresh();
                     }
                 });
