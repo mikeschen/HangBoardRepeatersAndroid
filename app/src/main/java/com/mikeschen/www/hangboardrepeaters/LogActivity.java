@@ -51,10 +51,17 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void animate() {
+        mDeleteButton.setScaleX(0.96f);
+        mDeleteButton.setScaleY(0.96f);
+        mDeleteButton.animate().scaleX(1).scaleY(1).start();
+    }
+
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
             case(R.id.deleteButton) :
+                animate();
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("Delete Workouts");
                 builder.setMessage("Are you sure you want to delete all your workouts?");
