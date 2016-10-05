@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
@@ -19,14 +20,22 @@ import com.mikeschen.www.hangboardrepeaters.Models.Days;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class LogActivity extends ListActivity implements View.OnClickListener {
     private DaysDataSource datasource;
     public Context mContext;
+    @BindView(R.id.deleteButton) Button mDeleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
+        ButterKnife.bind(this);
+        mContext = this;
+
+        mDeleteButton.setOnClickListener(this);
         datasource = new DaysDataSource(this);
         datasource.open();
         ListView lv = getListView();
@@ -46,10 +55,9 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()) {
             case(R.id.deleteButton) :
-                Log.d("clicked", "clicked");
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle("Delete Data");
-                builder.setMessage("Are you sure you want to delete your history?");
+                builder.setTitle("Delete Workouts");
+                builder.setMessage("Are you sure you want to delete all your workouts?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
                     @Override
@@ -68,8 +76,10 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
                 });
 
                 builder.show();
+                break;
         }
     }
+
     public void refresh() {
         Intent intent = new Intent(LogActivity.this,LogActivity.class);
         startActivity(intent);
