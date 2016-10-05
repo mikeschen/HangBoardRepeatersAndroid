@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()) {
             case(R.id.deleteButton) :
+                Log.d("clicked", "clicked");
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("Delete Data");
                 builder.setMessage("Are you sure you want to delete your history?");
