@@ -41,7 +41,6 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
         mCompletedTextView.setTypeface(custom_font);
         mDeleteButton.setTypeface(custom_font);
 
-
         mDeleteButton.setOnClickListener(this);
         datasource = new DaysDataSource(this);
         datasource.open();
