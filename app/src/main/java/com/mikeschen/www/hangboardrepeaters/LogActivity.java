@@ -36,11 +36,11 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
         ButterKnife.bind(this);
+
         mContext = this;
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mCompletedTextView.setTypeface(custom_font);
         mDeleteButton.setTypeface(custom_font);
-
         mDeleteButton.setOnClickListener(this);
         datasource = new DaysDataSource(this);
         datasource.open();
@@ -84,7 +84,6 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 });
 
