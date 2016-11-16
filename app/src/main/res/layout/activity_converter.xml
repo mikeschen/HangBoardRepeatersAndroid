@@ -11,17 +11,17 @@
     tools:context="com.mikeschen.www.hangboardrepeaters.ConverterActivity">
 
     <TextView
-        android:id="@+id/grade"
+        android:id="@+id/gradeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:text="Pick a value..."
         />
     <NumberPicker
-        android:id="@+id/gradepicker"
+        android:id="@+id/gradeNumberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/grade"
+        android:layout_below="@id/gradeTextView"
         />
 
 
