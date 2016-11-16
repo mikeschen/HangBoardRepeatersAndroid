@@ -41,7 +41,7 @@ public class ConverterActivity extends AppCompatActivity {
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
                 universalGrades.clear();
                 mHuecoTextView.setText("Hueco: " + huecoMenu[newVal]);
-                gradeConverter(huecoMenu[newVal]);
+                gradeHuecoConverter(huecoMenu[newVal]);
                 if (universalGrades.size() == 1) {
                     mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)]);
                     mFontTextView.setText("Font: " + font[universalGrades.get(0)]);
@@ -55,7 +55,7 @@ public class ConverterActivity extends AppCompatActivity {
         });
     }
 
-    private void gradeConverter(String grade) {
+    private void gradeHuecoConverter(String grade) {
         for (int i = 0; i < hueco.length; i++) {
             if (grade == hueco[i]) {
                 universalGrades.add(i);
