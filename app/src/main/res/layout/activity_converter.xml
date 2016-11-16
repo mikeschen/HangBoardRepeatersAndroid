@@ -10,5 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mikeschen.www.hangboardrepeaters.ConverterActivity">
 
+    <TextView
+        android:id="@+id/grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="Pick a value..."
+        />
+    <NumberPicker
+        android:id="@+id/gradepicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/grade"
+        />
+
 
 </RelativeLayout>
