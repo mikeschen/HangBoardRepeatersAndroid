@@ -42,27 +42,27 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mContext =  this;
 
         mHuecoButton.setOnClickListener(this);
-        mHuecoNumberPicker.setMinValue(0);
-        mHuecoNumberPicker.setMaxValue(huecoMenu.length-1);
-        mHuecoNumberPicker.setDisplayedValues(huecoMenu);
-        mHuecoNumberPicker.setWrapSelectorWheel(true);
-        mHuecoNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                universalGrades.clear();
-                mHuecoTextView.setText("Hueco: " + huecoMenu[newVal]);
-                gradeHuecoConverter(huecoMenu[newVal]);
-                if (universalGrades.size() == 1) {
-                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)]);
-                    mFontTextView.setText("Font: " + font[universalGrades.get(0)]);
-                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)]);
-                } else {
-                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)] + " - " + yds[universalGrades.get(universalGrades.size() - 1)]);
-                    mFontTextView.setText("Font: " + font[universalGrades.get(0)] + " - " + font[universalGrades.get(universalGrades.size() - 1)]);
-                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
-                }
-            }
-        });
+//        mHuecoNumberPicker.setMinValue(0);
+//        mHuecoNumberPicker.setMaxValue(huecoMenu.length-1);
+//        mHuecoNumberPicker.setDisplayedValues(huecoMenu);
+//        mHuecoNumberPicker.setWrapSelectorWheel(true);
+//        mHuecoNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//            @Override
+//            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+//                universalGrades.clear();
+//                mHuecoTextView.setText("Hueco: " + huecoMenu[newVal]);
+//                gradeHuecoConverter(huecoMenu[newVal]);
+//                if (universalGrades.size() == 1) {
+//                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)]);
+//                    mFontTextView.setText("Font: " + font[universalGrades.get(0)]);
+//                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)]);
+//                } else {
+//                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)] + " - " + yds[universalGrades.get(universalGrades.size() - 1)]);
+//                    mFontTextView.setText("Font: " + font[universalGrades.get(0)] + " - " + font[universalGrades.get(universalGrades.size() - 1)]);
+//                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
+//                }
+//            }
+//        });
     }
 
     private void gradeHuecoConverter(String grade) {
@@ -77,41 +77,77 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch(v.getId()) {
             case(R.id.huecoButton) :
-                //                animate();
                 RelativeLayout linearLayout = new RelativeLayout(mContext);
                 final NumberPicker mHuecoNumberPicker = new NumberPicker(mContext);
-                mHuecoNumberPicker.setMinValue(0);
                 mHuecoNumberPicker.setMaxValue(huecoMenu.length - 1);
+                mHuecoNumberPicker.setMinValue(0);
                 mHuecoNumberPicker.setDisplayedValues(huecoMenu);
                 mHuecoNumberPicker.setWrapSelectorWheel(true);
 
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(50, 50);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(huecoMenu.length - 1, huecoMenu.length - 1);
                 RelativeLayout.LayoutParams numPicerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 numPicerParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 
                 linearLayout.setLayoutParams(params);
                 linearLayout.addView(mHuecoNumberPicker,numPicerParams);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle("Select Grade");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
+                alertDialogBuilder.setTitle("Select Grade");
+                alertDialogBuilder.setView(linearLayout);
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("Ok",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        Log.e("","New Quantity Value : "+ mHuecoNumberPicker.getValue());
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-//                        datasource.deleteAllLogs();
-//                        datasource.close();
-//                        refresh();
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-
-                builder.show();
-                break;
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+//                //                animate();
+//                RelativeLayout linearLayout = new RelativeLayout(mContext);
+//                final NumberPicker mHuecoNumberPicker = new NumberPicker(mContext);
+//                mHuecoNumberPicker.setMinValue(0);
+//                mHuecoNumberPicker.setMaxValue(huecoMenu.length - 1);
+//                mHuecoNumberPicker.setDisplayedValues(huecoMenu);
+//                mHuecoNumberPicker.setWrapSelectorWheel(true);
+//
+//                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(huecoMenu.length - 1, huecoMenu.length - 1);
+//                RelativeLayout.LayoutParams numPicerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                numPicerParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//
+//                linearLayout.setLayoutParams(params);
+//                linearLayout.addView(mHuecoNumberPicker,numPicerParams);
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+//                builder.setTitle("Select Grade");
+//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+////                        datasource.deleteAllLogs();
+////                        datasource.close();
+////                        refresh();
+//                    }
+//                });
+//
+//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                    }
+//                });
+//
+//                builder.show();
+//                break;
         }
     }
 
