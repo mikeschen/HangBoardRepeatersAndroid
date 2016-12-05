@@ -28,85 +28,6 @@
         android:layout_alignParentStart="true"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/huecoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="Hueco"
-        android:layout_below="@id/gradeConverterTextView"
-        />
-
-    <NumberPicker
-        android:id="@+id/huecoNumberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/huecoTextView"
-        />
-
-    <TextView
-        android:id="@+id/fontTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="Font"
-        android:layout_below="@id/huecoTextView"
-        />
-
-    <TextView
-        android:id="@+id/ydsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="YDS"
-        android:layout_below="@id/fontTextView"
-        />
-
-    <TextView
-        android:id="@+id/frenchTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="French"
-        android:layout_below="@id/ydsTextView"
-        />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:elevation="2dp"
-        android:text="Font"
-        android:textColor="@color/colorSecondaryText"
-        android:id="@+id/fontButton"
-        android:background="@drawable/buttonred"
-        android:textStyle="bold"
-        android:textSize="22sp"
-        android:layout_margin="5dp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:elevation="2dp"
-        android:text="YDS"
-        android:textColor="@color/colorSecondaryText"
-        android:id="@+id/ydsButton"
-        android:background="@drawable/buttonred"
-        android:textStyle="bold"
-        android:textSize="22sp"
-        android:layout_margin="5dp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:elevation="2dp"
-        android:text="French"
-        android:textColor="@color/colorSecondaryText"
-        android:id="@+id/frenchButton"
-        android:background="@drawable/buttonred"
-        android:textStyle="bold"
-        android:textSize="22sp"
-        android:layout_margin="5dp" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -117,9 +38,45 @@
         android:background="@drawable/buttonred"
         android:textStyle="bold"
         android:textSize="22sp"
-        android:layout_margin="5dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_margin="5dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/gradeConverterTextView"
+        android:elevation="2dp"
+        android:text="Font"
+        android:textColor="@color/colorSecondaryText"
+        android:id="@+id/fontButton"
+        android:background="@drawable/buttonyellow"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_margin="5dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/fontButton"
+        android:elevation="2dp"
+        android:text="YDS"
+        android:textColor="@color/colorSecondaryText"
+        android:id="@+id/ydsButton"
+        android:background="@drawable/buttonorange"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_margin="5dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/ydsButton"
+        android:elevation="2dp"
+        android:text="French"
+        android:textColor="@color/colorSecondaryText"
+        android:id="@+id/frenchButton"
+        android:background="@drawable/buttonblue"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_margin="5dp" />
 
 </RelativeLayout>

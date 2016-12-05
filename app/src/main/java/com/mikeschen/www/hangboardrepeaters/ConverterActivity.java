@@ -18,7 +18,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ConverterActivity extends AppCompatActivity implements View.OnClickListener{
-    @BindView(R.id.huecoNumberPicker) NumberPicker mHuecoNumberPicker;
     @BindView(R.id.huecoButton) Button mHuecoButton;
     @BindView(R.id.fontButton) Button mFontButton;
     @BindView(R.id.ydsButton) Button mYdsButton;
