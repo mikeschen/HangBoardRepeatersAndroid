@@ -18,11 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ConverterActivity extends AppCompatActivity implements View.OnClickListener{
-    @BindView(R.id.huecoTextView) TextView mHuecoTextView;
     @BindView(R.id.huecoNumberPicker) NumberPicker mHuecoNumberPicker;
-    @BindView(R.id.ydsTextView) TextView mYdsTextView;
-    @BindView(R.id.fontTextView) TextView mFontTextView;
-    @BindView(R.id.frenchTextView) TextView mFrenchTextView;
     @BindView(R.id.huecoButton) Button mHuecoButton;
     @BindView(R.id.fontButton) Button mFontButton;
     @BindView(R.id.ydsButton) Button mYdsButton;
@@ -48,32 +44,11 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mFontButton.setOnClickListener(this);
         mYdsButton.setOnClickListener(this);
         mFrenchButton.setOnClickListener(this);
-//        mHuecoNumberPicker.setMinValue(0);
-//        mHuecoNumberPicker.setMaxValue(huecoMenu.length-1);
-//        mHuecoNumberPicker.setDisplayedValues(huecoMenu);
-//        mHuecoNumberPicker.setWrapSelectorWheel(true);
-//        mHuecoNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-//            @Override
-//            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-//                universalGrades.clear();
-//                mHuecoTextView.setText("Hueco: " + huecoMenu[newVal]);
-//                gradeHuecoConverter(huecoMenu[newVal]);
-//                if (universalGrades.size() == 1) {
-//                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)]);
-//                    mFontTextView.setText("Font: " + font[universalGrades.get(0)]);
-//                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)]);
-//                } else {
-//                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)] + " - " + yds[universalGrades.get(universalGrades.size() - 1)]);
-//                    mFontTextView.setText("Font: " + font[universalGrades.get(0)] + " - " + font[universalGrades.get(universalGrades.size() - 1)]);
-//                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
-//                }
-//            }
-//        });
     }
 
-    private void gradeHuecoConverter(String grade) {
-        for (int i = 0; i < hueco.length; i++) {
-            if (grade == hueco[i]) {
+    private void gradeFinder(String grade, String[] gradeArray) {
+        for (int i = 0; i < gradeArray.length; i++) {
+            if (grade == gradeArray[i]) {
                 universalGrades.add(i);
             }
         }
@@ -86,50 +61,18 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
                 GradeConverter(huecoMenu);
                 break;
             case(R.id.fontButton) :
+                GradeConverter(fontMenu);
                 break;
             case(R.id.ydsButton) :
+                GradeConverter(yds);
                 break;
             case(R.id.frenchButton) :
+                GradeConverter(french);
                 break;
-//                //                animate();
-//                RelativeLayout linearLayout = new RelativeLayout(mContext);
-//                final NumberPicker mHuecoNumberPicker = new NumberPicker(mContext);
-//                mHuecoNumberPicker.setMinValue(0);
-//                mHuecoNumberPicker.setMaxValue(huecoMenu.length - 1);
-//                mHuecoNumberPicker.setDisplayedValues(huecoMenu);
-//                mHuecoNumberPicker.setWrapSelectorWheel(true);
-//
-//                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(huecoMenu.length - 1, huecoMenu.length - 1);
-//                RelativeLayout.LayoutParams numPicerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//                numPicerParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-//
-//                linearLayout.setLayoutParams(params);
-//                linearLayout.addView(mHuecoNumberPicker,numPicerParams);
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-//                builder.setTitle("Select Grade");
-//                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-////                        datasource.deleteAllLogs();
-////                        datasource.close();
-////                        refresh();
-//                    }
-//                });
-//
-//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                    }
-//                });
-//
-//                builder.show();
-//                break;
         }
     }
 
-    private void GradeConverter(String[] gradeMenu) {
+    private void GradeConverter(final String[] gradeMenu) {
         RelativeLayout linearLayout = new RelativeLayout(mContext);
         final NumberPicker mGradeNumberPicker = new NumberPicker(mContext);
         mGradeNumberPicker.setMaxValue(gradeMenu.length - 1);
@@ -140,16 +83,24 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
                 universalGrades.clear();
-                mHuecoTextView.setText("Hueco: " + huecoMenu[newVal]);
-                gradeHuecoConverter(huecoMenu[newVal]);
-                if (universalGrades.size() == 1) {
-                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)]);
-                    mFontTextView.setText("Font: " + font[universalGrades.get(0)]);
-                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)]);
+                if (gradeMenu == huecoMenu) {
+                    mHuecoButton.setText("Hueco: " + huecoMenu[newVal]);
+                    gradeFinder(huecoMenu[newVal], hueco);
+                    if (universalGrades.size() == 1) {
+                        mYdsButton.setText("Yds: " + yds[universalGrades.get(0)]);
+                        mFontButton.setText("Font: " + font[universalGrades.get(0)]);
+                        mFrenchButton.setText("French: " + french[universalGrades.get(0)]);
+                    } else {
+                        mYdsButton.setText("Yds: " + yds[universalGrades.get(0)] + " - " + yds[universalGrades.get(universalGrades.size() - 1)]);
+                        mFontButton.setText("Font: " + font[universalGrades.get(0)] + " - " + font[universalGrades.get(universalGrades.size() - 1)]);
+                        mFrenchButton.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
+                    }
+                } else if (gradeMenu == fontMenu) {
+
+                } else if (gradeMenu == yds) {
+
                 } else {
-                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)] + " - " + yds[universalGrades.get(universalGrades.size() - 1)]);
-                    mFontTextView.setText("Font: " + font[universalGrades.get(0)] + " - " + font[universalGrades.get(universalGrades.size() - 1)]);
-                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
+
                 }
             }
         });
@@ -170,8 +121,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int id) {
-                                Log.e("","New Quantity Value : "+ mHuecoNumberPicker.getValue());
-
+                                Log.e("","New Quantity Value : "+ mGradeNumberPicker.getValue());
                             }
                         })
                 .setNegativeButton("Cancel",
