@@ -2,6 +2,7 @@ package com.mikeschen.www.hangboardrepeaters;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -43,6 +43,11 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mFontButton.setOnClickListener(this);
         mYdsButton.setOnClickListener(this);
         mFrenchButton.setOnClickListener(this);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        mHuecoButton.setTypeface(custom_font);
+        mFontButton.setTypeface(custom_font);
+        mYdsButton.setTypeface(custom_font);
+        mFrenchButton.setTypeface(custom_font);
     }
 
     private void gradeFinder(String grade, String[] gradeArray) {
@@ -51,21 +56,31 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
                 universalGrades.add(i);
             }
         }
-    };
+    }
+
+    private void animate(Button button) {
+        button.setScaleX(0.96f);
+        button.setScaleY(0.96f);
+        button.animate().scaleX(1).scaleY(1).start();
+    }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
             case(R.id.huecoButton) :
+                animate(mHuecoButton);
                 GradeConverter(huecoMenu);
                 break;
             case(R.id.fontButton) :
+                animate(mFontButton);
                 GradeConverter(fontMenu);
                 break;
             case(R.id.ydsButton) :
+                animate(mYdsButton);
                 GradeConverter(yds);
                 break;
             case(R.id.frenchButton) :
+                animate(mFrenchButton);
                 GradeConverter(french);
                 break;
         }
@@ -95,11 +110,41 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
                         mFrenchButton.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
                     }
                 } else if (gradeMenu == fontMenu) {
-
+                    mFontButton.setText("Font: " + fontMenu[newVal]);
+                    gradeFinder(fontMenu[newVal], font);
+                    if (universalGrades.size() == 1) {
+                        mYdsButton.setText("Yds: " + yds[universalGrades.get(0)]);
+                        mHuecoButton.setText("Hueco: " + hueco[universalGrades.get(0)]);
+                        mFrenchButton.setText("French: " + french[universalGrades.get(0)]);
+                    } else {
+                        mYdsButton.setText("Yds: " + yds[universalGrades.get(0)] + " - " + yds[universalGrades.get(universalGrades.size() - 1)]);
+                        mHuecoButton.setText("Hueco: " + hueco[universalGrades.get(0)] + " - " + hueco[universalGrades.get(universalGrades.size() - 1)]);
+                        mFrenchButton.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
+                    }
                 } else if (gradeMenu == yds) {
-
+                    mYdsButton.setText("YDS: " + yds[newVal]);
+                    gradeFinder(yds[newVal], yds);
+                    if (universalGrades.size() == 1) {
+                        mHuecoButton.setText("Hueco: " + hueco[universalGrades.get(0)]);
+                        mFontButton.setText("Font: " + font[universalGrades.get(0)]);
+                        mFrenchButton.setText("French: " + french[universalGrades.get(0)]);
+                    } else {
+                        mHuecoButton.setText("Hueco: " + hueco[universalGrades.get(0)] + " - " + hueco[universalGrades.get(universalGrades.size() - 1)]);
+                        mFontButton.setText("Font: " + font[universalGrades.get(0)] + " - " + font[universalGrades.get(universalGrades.size() - 1)]);
+                        mFrenchButton.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
+                    }
                 } else {
-
+                    mFrenchButton.setText("French: " + french[newVal]);
+                    gradeFinder(french[newVal], french);
+                    if (universalGrades.size() == 1) {
+                        mYdsButton.setText("Yds: " + yds[universalGrades.get(0)]);
+                        mFontButton.setText("Font: " + font[universalGrades.get(0)]);
+                        mHuecoButton.setText("Hueco: " + hueco[universalGrades.get(0)]);
+                    } else {
+                        mYdsButton.setText("Yds: " + yds[universalGrades.get(0)] + " - " + yds[universalGrades.get(universalGrades.size() - 1)]);
+                        mFontButton.setText("Font: " + font[universalGrades.get(0)] + " - " + font[universalGrades.get(universalGrades.size() - 1)]);
+                        mHuecoButton.setText("French: " + hueco[universalGrades.get(0)] + " - " + hueco[universalGrades.get(universalGrades.size() - 1)]);
+                    }
                 }
             }
         });
