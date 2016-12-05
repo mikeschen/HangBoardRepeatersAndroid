@@ -24,6 +24,9 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.fontTextView) TextView mFontTextView;
     @BindView(R.id.frenchTextView) TextView mFrenchTextView;
     @BindView(R.id.huecoButton) Button mHuecoButton;
+    @BindView(R.id.fontButton) Button mFontButton;
+    @BindView(R.id.ydsButton) Button mYdsButton;
+    @BindView(R.id.frenchButton) Button mFrenchButton;
 
     final String[] huecoMenu = {"VB", "V0", "V0+", "V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14", "V15", "V16", "V17"};
     final String[] hueco = {"VB", "VB", "VB", "VB", "VB", "VB", "VB", "VB", "VB", "VB", "V0", "V0+", "V1", "V2", "V2", "V3", "V4", "V4", "V5", "V5", "V6", "V7", "V8", "V8", "V9", "V10", "V11", "V12", "V13", "V14", "V15", "V16", "V17"};
@@ -42,6 +45,9 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mContext =  this;
 
         mHuecoButton.setOnClickListener(this);
+        mFontButton.setOnClickListener(this);
+        mYdsButton.setOnClickListener(this);
+        mFrenchButton.setOnClickListener(this);
 //        mHuecoNumberPicker.setMinValue(0);
 //        mHuecoNumberPicker.setMaxValue(huecoMenu.length-1);
 //        mHuecoNumberPicker.setDisplayedValues(huecoMenu);
@@ -113,6 +119,13 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
                                 });
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
+                break;
+            case(R.id.fontButton) :
+                break;
+            case(R.id.ydsButton) :
+                break;
+            case(R.id.frenchButton) :
+                break;
 //                //                animate();
 //                RelativeLayout linearLayout = new RelativeLayout(mContext);
 //                final NumberPicker mHuecoNumberPicker = new NumberPicker(mContext);
