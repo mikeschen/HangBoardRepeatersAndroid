@@ -136,6 +136,23 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mGradeNumberPicker.setMinValue(0);
         mGradeNumberPicker.setDisplayedValues(gradeMenu);
         mGradeNumberPicker.setWrapSelectorWheel(true);
+        mGradeNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+                universalGrades.clear();
+                mHuecoTextView.setText("Hueco: " + huecoMenu[newVal]);
+                gradeHuecoConverter(huecoMenu[newVal]);
+                if (universalGrades.size() == 1) {
+                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)]);
+                    mFontTextView.setText("Font: " + font[universalGrades.get(0)]);
+                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)]);
+                } else {
+                    mYdsTextView.setText("Yds: " + yds[universalGrades.get(0)] + " - " + yds[universalGrades.get(universalGrades.size() - 1)]);
+                    mFontTextView.setText("Font: " + font[universalGrades.get(0)] + " - " + font[universalGrades.get(universalGrades.size() - 1)]);
+                    mFrenchTextView.setText("French: " + french[universalGrades.get(0)] + " - " + french[universalGrades.get(universalGrades.size() - 1)]);
+                }
+            }
+        });
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(gradeMenu.length - 1, gradeMenu.length - 1);
         RelativeLayout.LayoutParams numPicerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
