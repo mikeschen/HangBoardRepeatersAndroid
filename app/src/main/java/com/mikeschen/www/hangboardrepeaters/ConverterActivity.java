@@ -93,6 +93,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mGradeNumberPicker.setMinValue(0);
         mGradeNumberPicker.setDisplayedValues(gradeMenu);
         mGradeNumberPicker.setWrapSelectorWheel(true);
+//        mGradeNumberPicker.setValue();
         mGradeNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
@@ -165,7 +166,6 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int id) {
-                                Log.e("","New Quantity Value : "+ mGradeNumberPicker.getValue());
                             }
                         })
                 .setNegativeButton("Cancel",

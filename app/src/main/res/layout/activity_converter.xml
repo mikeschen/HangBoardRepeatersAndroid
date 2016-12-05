@@ -31,6 +31,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_below="@id/gradeConverterTextView"
         android:elevation="2dp"
         android:text="Hueco"
         android:textColor="@color/colorSecondaryText"
@@ -43,12 +44,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/gradeConverterTextView"
+        android:layout_below="@id/huecoButton"
         android:elevation="2dp"
         android:text="Font"
         android:textColor="@color/colorSecondaryText"
         android:id="@+id/fontButton"
-        android:background="@drawable/buttonyellow"
+        android:background="@drawable/buttongreen"
         android:textStyle="bold"
         android:textSize="22sp"
         android:layout_margin="5dp" />
@@ -61,7 +62,7 @@
         android:text="YDS"
         android:textColor="@color/colorSecondaryText"
         android:id="@+id/ydsButton"
-        android:background="@drawable/buttonorange"
+        android:background="@drawable/buttonblue"
         android:textStyle="bold"
         android:textSize="22sp"
         android:layout_margin="5dp" />
@@ -74,7 +75,7 @@
         android:text="French"
         android:textColor="@color/colorSecondaryText"
         android:id="@+id/frenchButton"
-        android:background="@drawable/buttonblue"
+        android:background="@drawable/buttonorange"
         android:textStyle="bold"
         android:textSize="22sp"
         android:layout_margin="5dp" />

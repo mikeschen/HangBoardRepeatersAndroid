@@ -252,6 +252,10 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 Intent intent1 = new Intent(this, LogActivity.class);
                 this.startActivity(intent1);
                 break;
+            case R.id.action_converter:
+                Intent intent2 = new Intent(this, ConverterActivity.class);
+                this.startActivity(intent2);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
