@@ -83,42 +83,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch(v.getId()) {
             case(R.id.huecoButton) :
-                RelativeLayout linearLayout = new RelativeLayout(mContext);
-                final NumberPicker mHuecoNumberPicker = new NumberPicker(mContext);
-                mHuecoNumberPicker.setMaxValue(huecoMenu.length - 1);
-                mHuecoNumberPicker.setMinValue(0);
-                mHuecoNumberPicker.setDisplayedValues(huecoMenu);
-                mHuecoNumberPicker.setWrapSelectorWheel(true);
-
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(huecoMenu.length - 1, huecoMenu.length - 1);
-                RelativeLayout.LayoutParams numPicerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                numPicerParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-
-                linearLayout.setLayoutParams(params);
-                linearLayout.addView(mHuecoNumberPicker,numPicerParams);
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
-                alertDialogBuilder.setTitle("Select Grade");
-                alertDialogBuilder.setView(linearLayout);
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("Ok",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,
-                                                        int id) {
-                                        Log.e("","New Quantity Value : "+ mHuecoNumberPicker.getValue());
-
-                                    }
-                                })
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,
-                                                        int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                GradeConverter(huecoMenu);
                 break;
             case(R.id.fontButton) :
                 break;
@@ -164,4 +129,42 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    private void GradeConverter(String[] gradeMenu) {
+        RelativeLayout linearLayout = new RelativeLayout(mContext);
+        final NumberPicker mGradeNumberPicker = new NumberPicker(mContext);
+        mGradeNumberPicker.setMaxValue(gradeMenu.length - 1);
+        mGradeNumberPicker.setMinValue(0);
+        mGradeNumberPicker.setDisplayedValues(gradeMenu);
+        mGradeNumberPicker.setWrapSelectorWheel(true);
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(gradeMenu.length - 1, gradeMenu.length - 1);
+        RelativeLayout.LayoutParams numPicerParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        numPicerParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+
+        linearLayout.setLayoutParams(params);
+        linearLayout.addView(mGradeNumberPicker,numPicerParams);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
+        alertDialogBuilder.setTitle("Select Grade");
+        alertDialogBuilder.setView(linearLayout);
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+                                Log.e("","New Quantity Value : "+ mHuecoNumberPicker.getValue());
+
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 }
