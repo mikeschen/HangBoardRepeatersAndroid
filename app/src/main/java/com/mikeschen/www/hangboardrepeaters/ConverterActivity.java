@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ConverterActivity extends AppCompatActivity implements View.OnClickListener{
+    @BindView(R.id.gradeConverterTextView) TextView mGradeConverterTextView;
     @BindView(R.id.huecoButton) Button mHuecoButton;
     @BindView(R.id.fontButton) Button mFontButton;
     @BindView(R.id.ydsButton) Button mYdsButton;
@@ -44,6 +46,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mYdsButton.setOnClickListener(this);
         mFrenchButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        mGradeConverterTextView.setTypeface(custom_font);
         mHuecoButton.setTypeface(custom_font);
         mFontButton.setTypeface(custom_font);
         mYdsButton.setTypeface(custom_font);
@@ -96,7 +99,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
 //        mGradeNumberPicker.setValue();
         mGradeNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 universalGrades.clear();
                 if (gradeMenu == huecoMenu) {
                     mHuecoButton.setText("Hueco: " + huecoMenu[newVal]);
