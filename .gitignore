@@ -5,5 +5,5 @@
 /.idea/libraries
 /build
 /.idea/vcs.xml
-/.idea/misc.xml
+.idea/misc.xml
 app/libs/

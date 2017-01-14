@@ -96,7 +96,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mGradeNumberPicker.setMinValue(0);
         mGradeNumberPicker.setDisplayedValues(gradeMenu);
         mGradeNumberPicker.setWrapSelectorWheel(true);
-//        mGradeNumberPicker.setValue();
+//      mGradeNumberPicker.setValue();
         mGradeNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -165,16 +165,11 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         alertDialogBuilder.setView(linearLayout);
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("Ok",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-                            }
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {}
                         })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         });
