@@ -119,6 +119,14 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 if(counter == sets + 2) {
                     timerHandler.removeCallbacks(timerRunnable);
                     mSetsText.setText("DONE");
+                    mRoundTextView.animate()
+                            .alpha(0.3f)
+                            .scaleX(0.9f)
+                            .scaleY(0.9f);
+                    mRoundsText.animate()
+                            .alpha(0.3f)
+                            .scaleX(0.9f)
+                            .scaleY(0.9f);
                     datasource = new DaysDataSource(TimerActivity.this);
                     datasource.open();
                     DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy - hh:mm a");
@@ -127,7 +135,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     datasource.createLog(logs);
                     datasource.close();
                     mStartButton.setText("DONE");
-                    mStartButton.setEnabled(false);
                     beep.release();
                 }
             } else {
@@ -219,8 +226,13 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.startButton):
-                animate();
-                presenter.startRunnableButtonClicked();
+                if(mStartButton.getText().equals("DONE")) {
+                    Intent intent1 = new Intent(this, LogActivity.class);
+                    this.startActivity(intent1);
+                } else {
+                    animate();
+                    presenter.startRunnableButtonClicked();
+                }
                 break;
             case (R.id.soundButton):
                 if (soundSwitch) {
