@@ -78,16 +78,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     beep.play(buttonchimeId, 1, 1, 1, 0, 1);
                 }
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
-                timerText.animate()
-                    .alpha(0.3f)
-                    .scaleX(0.9f)
-                    .scaleY(0.9f)
-                    .setDuration(500);
-                timerTextView.animate()
-                    .alpha(0.3f)
-                    .scaleX(0.9f)
-                    .scaleY(0.9f)
-                    .setDuration(500);
+                fade(timerText);
+                fade(timerTextView);
                 timerHandler.removeCallbacks(timerRunnable);
                 timerHandler.postDelayed(this, 500);
                 startTime = System.currentTimeMillis();
@@ -119,14 +111,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 if(counter == sets + 2) {
                     timerHandler.removeCallbacks(timerRunnable);
                     mSetsText.setText("DONE");
-                    mRoundTextView.animate()
-                            .alpha(0.3f)
-                            .scaleX(0.9f)
-                            .scaleY(0.9f);
-                    mRoundsText.animate()
-                            .alpha(0.3f)
-                            .scaleX(0.9f)
-                            .scaleY(0.9f);
+                    fade(mRoundTextView);
+                    fade(mRoundsText);
                     datasource = new DaysDataSource(TimerActivity.this);
                     datasource.open();
                     DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy - hh:mm a");
@@ -172,36 +158,12 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         mRestTextView.setTypeface(custom_font);
         mRoundTextView.setTypeface(custom_font);
         mSetsTextView.setTypeface(custom_font);
-        mHangTextView.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-        mPauseTextView.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-        mRestTextView.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-        mHangText.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-        mPauseText.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
-        mRestText.animate()
-                .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
-                .setDuration(500);
+        fade(mHangTextView);
+        fade(mPauseTextView);
+        fade(mRestTextView);
+        fade(mHangText);
+        fade(mPauseText);
+        fade(mRestText);
         Intent intent = getIntent();
         hang = intent.getIntExtra("hang", 0);
         pause = intent.getIntExtra("pause", 0);
@@ -216,10 +178,18 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         mStartButton.setTypeface(custom_font);
     }
 
-    private void animate() {
+    private void animateButton() {
         mStartButton.setScaleX(0.96f);
         mStartButton.setScaleY(0.96f);
         mStartButton.animate().scaleX(1).scaleY(1).start();
+    }
+
+    private void fade(TextView fadeText) {
+        fadeText.animate()
+                .alpha(0.3f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
     }
 
     @Override
@@ -230,7 +200,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     Intent intent1 = new Intent(this, LogActivity.class);
                     this.startActivity(intent1);
                 } else {
-                    animate();
+                    animateButton();
                     presenter.startRunnableButtonClicked();
                 }
                 break;
@@ -257,16 +227,16 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_instruction:
-                Intent intent = new Intent(this, InstructionActivity.class);
-                this.startActivity(intent);
+                Intent instructionIntent = new Intent(this, InstructionActivity.class);
+                this.startActivity(instructionIntent);
                 break;
             case R.id.action_log:
-                Intent intent1 = new Intent(this, LogActivity.class);
-                this.startActivity(intent1);
+                Intent logIntent = new Intent(this, LogActivity.class);
+                this.startActivity(logIntent);
                 break;
             case R.id.action_converter:
-                Intent intent2 = new Intent(this, ConverterActivity.class);
-                this.startActivity(intent2);
+                Intent converterIntent = new Intent(this, ConverterActivity.class);
+                this.startActivity(converterIntent);
                 break;
         }
         return super.onOptionsItemSelected(item);
