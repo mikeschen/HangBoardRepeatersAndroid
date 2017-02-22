@@ -60,6 +60,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     private DaysDataSource datasource;
     SoundPool beep;
     int buttonchimeId;
+    SoundPool warn;
+    int restwarningId;
 
     TimerActivityPresenter presenter;
 
@@ -74,9 +76,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             int minutes = secondsDisplay / 60;
             secondsDisplay = seconds % 60;
             if (seconds == currentTimer) {
-                if (soundSwitch) {
-                    beep.play(buttonchimeId, 1, 1, 1, 0, 1);
-                }
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 fade(timerText);
                 fade(timerTextView);
@@ -84,6 +83,13 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 timerHandler.postDelayed(this, 500);
                 startTime = System.currentTimeMillis();
                 i++;
+                if (soundSwitch) {
+                    if(i == rounds * 2 - 1) {
+                        warn.play(restwarningId, 1, 1, 1, 0, 1);
+                    } else {
+                        beep.play(buttonchimeId, 1, 1, 1, 0, 1);
+                    }
+                }
                 if (flipState) {
                     currentTimer = pause;
                     timerText = mPauseTextView;
@@ -100,7 +106,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 if(i == rounds * 2 - 1) {
                     roundCounter = 1;
                     mRoundsText.setText(roundCounter + "/" + rounds);
-                    currentTimer = rest ;
+                    currentTimer = rest;
                     timerTextView = mRestText;
                     timerText = mRestTextView;
                     i = -1;
@@ -121,6 +127,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     datasource.createLog(logs);
                     datasource.close();
                     mStartButton.setText("DONE");
+                    warn.release();
                     beep.release();
                 }
             } else {
@@ -149,6 +156,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
 
         beep = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
+        warn = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        restwarningId = warn.load(this, R.raw.restwarning, 1);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
