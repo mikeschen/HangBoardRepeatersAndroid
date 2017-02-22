@@ -157,7 +157,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         beep = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
         warn = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        restwarningId = warn.load(this, R.raw.restwarning, 1);
+        restwarningId = warn.load(this, R.raw.warning, 1);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
