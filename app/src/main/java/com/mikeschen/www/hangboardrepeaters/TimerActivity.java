@@ -62,6 +62,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     int buttonchimeId;
     SoundPool warn;
     int restwarningId;
+    SoundPool endAlarm;
+    int endAlarmId;
 
     TimerActivityPresenter presenter;
 
@@ -116,6 +118,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 }
                 if(counter == sets + 2) {
                     timerHandler.removeCallbacks(timerRunnable);
+                    endAlarm.play(endAlarmId, 1, 1, 1, 0, 1);
                     mSetsText.setText("DONE");
                     fade(mRoundTextView);
                     fade(mRoundsText);
@@ -158,6 +161,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
         warn = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         restwarningId = warn.load(this, R.raw.warning, 1);
+        endAlarm = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        endAlarmId = endAlarm.load(this, R.raw.endalarm, 1);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
