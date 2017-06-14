@@ -80,4 +80,17 @@
         android:textSize="22sp"
         android:layout_margin="5dp" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/frenchButton"
+        android:elevation="2dp"
+        android:text="UIAA"
+        android:textColor="@color/colorSecondaryText"
+        android:id="@+id/uiaaButton"
+        android:background="@drawable/buttonyellow"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_margin="5dp" />
+
 </RelativeLayout>
