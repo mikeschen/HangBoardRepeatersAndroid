@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.media.AudioAttributes;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.os.Build;
 
 import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
 import com.mikeschen.www.hangboardrepeaters.Presenters.TimerActivityPresenter;
@@ -58,12 +61,14 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     boolean flipState = true;
     boolean soundSwitch = false;
     private DaysDataSource datasource;
-    SoundPool beep;
+//    SoundPool beep;
     int buttonchimeId;
-    SoundPool warn;
+//    SoundPool warn;
     int restwarningId;
-    SoundPool endAlarm;
+//    SoundPool endAlarm;
     int endAlarmId;
+
+    SoundPool ourSounds;
 
     TimerActivityPresenter presenter;
 
@@ -87,9 +92,10 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 i++;
                 if (soundSwitch) {
                     if(i == rounds * 2 - 1) {
-                        warn.play(restwarningId, 1, 1, 1, 0, 1);
+                        ourSounds.play(restwarningId, 0.9f, 0.9f, 1, 0, 1);
                     } else {
-                        beep.play(buttonchimeId, 1, 1, 1, 0, 1);
+                        ourSounds.play(buttonchimeId, 0.9f, 0.9f, 1, 0, 1);
+                        Log.d("", "here");
                     }
                 }
                 if (flipState) {
@@ -118,7 +124,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 }
                 if(counter == sets + 2) {
                     timerHandler.removeCallbacks(timerRunnable);
-                    endAlarm.play(endAlarmId, 1, 1, 1, 0, 1);
+                    ourSounds.play(endAlarmId, 0.9f, 0.9f, 1, 0, 1);
                     mSetsText.setText("DONE");
                     fade(mRoundTextView);
                     fade(mRoundsText);
@@ -130,8 +136,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     datasource.createLog(logs);
                     datasource.close();
                     mStartButton.setText("DONE");
-                    warn.release();
-                    beep.release();
+//                    warn.release();
+//                    beep.release();
                 }
             } else {
                 timerText.animate()
@@ -157,13 +163,13 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
 
         presenter = new TimerActivityPresenter(this);
 
-        beep = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
-        warn = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        restwarningId = warn.load(this, R.raw.warning, 1);
-        endAlarm = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        endAlarmId = endAlarm.load(this, R.raw.endalarm, 1);
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+//        beep = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+//        buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
+//        warn = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+//        restwarningId = warn.load(this, R.raw.warning, 1);
+//        endAlarm = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+//        endAlarmId = endAlarm.load(this, R.raw.endalarm, 1);
+//        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
@@ -190,6 +196,31 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         mRoundsText.setText("1/" + rounds);
         mSetsText.setText("1/" + sets);
         mStartButton.setTypeface(custom_font);
+        initializeSoundPool();
+    }
+
+    private void initializeSoundPool() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .build();
+
+            ourSounds = new SoundPool.Builder()
+                    .setMaxStreams(3)
+                    .setAudioAttributes(audioAttributes)
+                    .build();
+
+            buttonchimeId = ourSounds.load(this, R.raw.buttonchime, 1);
+            restwarningId = ourSounds.load(this, R.raw.warning, 1);
+            endAlarmId = ourSounds.load(this, R.raw.endalarm, 1);
+        } else {
+            ourSounds = new SoundPool(3, AudioManager.STREAM_MUSIC, 1);
+            buttonchimeId = ourSounds.load(this, R.raw.buttonchime, 1);
+            restwarningId = ourSounds.load(this, R.raw.warning, 1);
+            endAlarmId = ourSounds.load(this, R.raw.endalarm, 1);
+        }
     }
 
     private void animateButton() {
@@ -261,7 +292,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         if (timerRunnable != null)
             timerHandler.removeCallbacks(timerRunnable);
         super.onDestroy();
-        beep.release();
+//        beep.release();
     }
 
     @Override
@@ -272,6 +303,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     mStartButton.setText("Get Ready  " + millisUntilFinished / 1000);
                 }
                 public void onFinish() {
+                    ourSounds.play(buttonchimeId, 0.9f, 0.9f, 1, 0, 1);
                     startTime = System.currentTimeMillis();
                     timerHandler.postDelayed(timerRunnable, 0);
                     mStartButton.setText("stop");
