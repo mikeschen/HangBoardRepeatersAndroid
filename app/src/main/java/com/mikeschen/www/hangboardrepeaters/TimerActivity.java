@@ -95,7 +95,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                         ourSounds.play(restwarningId, 0.9f, 0.9f, 1, 0, 1);
                     } else {
                         ourSounds.play(buttonchimeId, 0.9f, 0.9f, 1, 0, 1);
-                        Log.d("", "here");
                     }
                 }
                 if (flipState) {
@@ -200,7 +199,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     }
 
     private void initializeSoundPool() {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -292,7 +290,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         if (timerRunnable != null)
             timerHandler.removeCallbacks(timerRunnable);
         super.onDestroy();
-//        beep.release();
+        ourSounds.release();
     }
 
     @Override
