@@ -59,13 +59,10 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     int roundCounter = 2;
     boolean newWorkoutSwitch = true;
     boolean flipState = true;
-    boolean soundSwitch = false;
+    boolean soundSwitch = true;
     private DaysDataSource datasource;
-//    SoundPool beep;
     int buttonchimeId;
-//    SoundPool warn;
     int restwarningId;
-//    SoundPool endAlarm;
     int endAlarmId;
 
     SoundPool ourSounds;
@@ -135,8 +132,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     datasource.createLog(logs);
                     datasource.close();
                     mStartButton.setText("DONE");
-//                    warn.release();
-//                    beep.release();
                 }
             } else {
                 timerText.animate()
@@ -162,13 +157,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
 
         presenter = new TimerActivityPresenter(this);
 
-//        beep = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-//        buttonchimeId = beep.load(this, R.raw.buttonchime, 1);
-//        warn = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-//        restwarningId = warn.load(this, R.raw.warning, 1);
-//        endAlarm = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-//        endAlarmId = endAlarm.load(this, R.raw.endalarm, 1);
-//        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
@@ -301,7 +289,9 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     mStartButton.setText("Get Ready  " + millisUntilFinished / 1000);
                 }
                 public void onFinish() {
-                    ourSounds.play(buttonchimeId, 0.9f, 0.9f, 1, 0, 1);
+                    if(soundSwitch) {
+                        ourSounds.play(buttonchimeId, 0.9f, 0.9f, 1, 0, 1);
+                    }
                     startTime = System.currentTimeMillis();
                     timerHandler.postDelayed(timerRunnable, 0);
                     mStartButton.setText("stop");
