@@ -97,4 +97,10 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        datasource.close();
+        super.onDestroy();
+    }
 }
