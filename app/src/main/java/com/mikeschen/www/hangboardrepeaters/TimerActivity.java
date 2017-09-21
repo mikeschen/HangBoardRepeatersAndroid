@@ -284,7 +284,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     @Override
     public void startRunnable() {
         if (newWorkoutSwitch) {
-            new CountDownTimer(3000, 900) {
+            new CountDownTimer(5000, 1000) {
                 public void onTick(long millisUntilFinished) {
                     mStartButton.setText("Get Ready  " + millisUntilFinished / 1000);
                 }
