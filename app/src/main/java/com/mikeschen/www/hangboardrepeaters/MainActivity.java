@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
     @BindView(R.id.restEditText) EditText mRestEditText;
     @BindView(R.id.setsEditText) EditText mSetsEditText;
     @BindView(R.id.startButton) Button mStartButton;
+    @BindView(R.id.presetButton) Button mPresetButton;
+
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
 
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         mSharedPreferencesEditor = mSharedPreferences.edit();
         mStartButton.setOnClickListener(this);
+        mPresetButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mHangTimeTextView.setTypeface(custom_font);
         mPauseTimeTextView.setTypeface(custom_font);
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         mRoundNumberTextView.setTypeface(custom_font);
         mSetsTimeTextView.setTypeface(custom_font);
         mStartButton.setTypeface(custom_font);
+        mPresetButton.setTypeface(custom_font);
         String hang = mSharedPreferences.getString(Constants.KEY_USER_HANG, null);
         String pause = mSharedPreferences.getString(Constants.KEY_USER_PAUSE, null);
         String rounds = mSharedPreferences.getString(Constants.KEY_USER_ROUNDS, null);
@@ -107,14 +111,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
 
     @Override
     public void onClick(View v) {
-        try {
-            presenter.launchOtherActivityButtonClicked(TimerActivity.class);
-        } catch(NumberFormatException e) {
-            mHangEditText.setHint("Set Sec.");
-            mPauseEditText.setHint("Set Sec.");
-            mRoundsEditText.setHint("Set Num.");
-            mRestEditText.setHint("Set Sec.");
-            mSetsEditText.setHint("Set Sets");
+        switch (v.getId()) {
+            case (R.id.presetButton):
+                mHangEditText.setText("7");
+                mPauseEditText.setText("3");
+                mRoundsEditText.setText("6");
+                mRestEditText.setText("180");
+                mSetsEditText.setText("5");
+                break;
+            case (R.id.startButton):
+                try {
+                    presenter.launchOtherActivityButtonClicked(TimerActivity.class);
+                } catch (NumberFormatException e) {
+                    mHangEditText.setHint("Set Sec.");
+                    mPauseEditText.setHint("Set Sec.");
+                    mRoundsEditText.setHint("Set Num.");
+                    mRestEditText.setHint("Set Sec.");
+                    mSetsEditText.setHint("Set Sets");
+                }
+                break;
         }
     }
 

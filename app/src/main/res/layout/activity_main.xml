@@ -182,7 +182,18 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:elevation="2dp"
-        android:text="SUBMIT"
+        android:text="DEFAULT"
+        android:textColor="@color/colorSecondaryText"
+        android:id="@+id/presetButton"
+        android:background="@drawable/buttonred"
+        android:textStyle="bold"
+        android:textSize="28sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:elevation="2dp"
+        android:text="SET"
         android:textColor="@color/colorSecondaryText"
         android:id="@+id/startButton"
         android:background="@drawable/buttonred"

@@ -187,7 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:elevation="2dp"
-            android:text="SUBMIT"
+            android:text="SET"
             android:textColor="@color/colorSecondaryText"
             android:id="@+id/startButton"
             android:background="@drawable/buttonred"
