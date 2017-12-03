@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.presetButton):
+                animateButton();
                 mHangEditText.setText("7");
                 mPauseEditText.setText("3");
                 mRoundsEditText.setText("6");
@@ -152,5 +153,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         intent.putExtra("rest", rest);
         intent.putExtra("sets", sets);
         startActivity(intent);
+    }
+
+    private void animateButton() {
+        mPresetButton.setScaleX(0.96f);
+        mPresetButton.setScaleY(0.96f);
+        mPresetButton.animate().scaleX(1).scaleY(1).start();
     }
 }
