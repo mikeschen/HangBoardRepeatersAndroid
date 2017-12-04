@@ -212,7 +212,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/buttonred"
                 android:elevation="2dp"
-                android:text="SET"
+                android:text="READY"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="28sp"
                 android:textStyle="bold" />
