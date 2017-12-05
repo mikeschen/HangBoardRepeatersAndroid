@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Hangboard Repeaters</string>
+
+    <string name="hangtime">HANG TIME</string>
+    <string name="pausetime">PAUSE TIME</string>
+    <string name="numberrounds">NUMBER OF ROUNDS</string>
+    <string name="resttime">REST TIME</string>
+    <string name="numbersets">NUMBER OF SETS</string>
+    <string name="defaultbutton">DEFAULT</string>
+    <string name="readybutton">READY</string>
+    <string name="hang">HANG</string>
+    <string name="pause">PAUSE</string>
+    <string name="rest">REST</string>
+    <string name="round">ROUND</string>
+    <string name="set">SET</string>
+    <string name="startbutton">START</string>
+
     <string name="instructions">
 \u2022 Be sure to be properly warmed-up before using the fingerboard. Laps first on boulder problems or routes is highly recommended.\n
 \n \u2022 Starting with a set on the jug holds of the hangboard is also recommended.\n
