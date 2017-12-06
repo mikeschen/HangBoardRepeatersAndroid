@@ -120,7 +120,9 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 }
                 if(counter == sets + 2) {
                     timerHandler.removeCallbacks(timerRunnable);
-                    ourSounds.play(endAlarmId, 0.9f, 0.9f, 1, 0, 1);
+                    if(soundSwitch) {
+                        ourSounds.play(endAlarmId, 0.9f, 0.9f, 1, 0, 1);
+                    }
                     mSetsText.setText("DONE");
                     fade(mRoundTextView);
                     fade(mRoundsText);
@@ -177,8 +179,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         rounds = intent.getIntExtra("rounds", 0);
         rest = intent.getIntExtra("rest", 0);
         sets = intent.getIntExtra("sets", 0);
-        timerText = (TextView) findViewById(R.id.hangTextView);
-        timerTextView = (TextView) findViewById(R.id.hangText);
+        timerText = findViewById(R.id.hangTextView);
+        timerTextView = findViewById(R.id.hangText);
         currentTimer = hang;
         mRoundsText.setText("1/" + rounds);
         mSetsText.setText("1/" + sets);

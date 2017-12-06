@@ -25,11 +25,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LogActivity extends ListActivity implements View.OnClickListener {
+public class LogActivity extends ListActivity {
     private DaysDataSource datasource;
     public Context mContext;
     @BindView(R.id.completedTextView) TextView mCompletedTextView;
-    @BindView(R.id.deleteButton) Button mDeleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,6 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
         mContext = this;
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mCompletedTextView.setTypeface(custom_font);
-        mDeleteButton.setTypeface(custom_font);
-        mDeleteButton.setOnClickListener(this);
         datasource = new DaysDataSource(this);
         datasource.open();
         ListView lv = getListView();
@@ -56,37 +53,26 @@ public class LogActivity extends ListActivity implements View.OnClickListener {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void animate() {
-        mDeleteButton.setScaleX(0.96f);
-        mDeleteButton.setScaleY(0.96f);
-        mDeleteButton.animate().scaleX(1).scaleY(1).start();
-    }
+    public void deleteButton(View target) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Delete Workouts");
+        builder.setMessage("Are you sure you want to delete all your workouts?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case(R.id.deleteButton) :
-                animate();
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle("Delete Workouts");
-                builder.setMessage("Are you sure you want to delete all your workouts?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                datasource.deleteAllLogs();
+                datasource.close();
+                refresh();
+            }
+        });
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        datasource.deleteAllLogs();
-                        datasource.close();
-                        refresh();
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.show();
-                break;
-        }
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
     }
 
     public void refresh() {

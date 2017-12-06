@@ -8,8 +8,8 @@ android {
         applicationId "com.mikeschen.www.hangboardrepeaters"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 35
-        versionName "2.2.6"
+        versionCode 37
+        versionName "2.2.7"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -26,6 +26,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:26.0.0'
     compile 'com.jakewharton:butterknife:8.0.1'
+    compile 'com.android.support:design:26.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.1'
     testCompile "org.mockito:mockito-core:1.+"
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
