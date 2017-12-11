@@ -15,6 +15,10 @@
     <string name="round">ROUND</string>
     <string name="set">SET</string>
     <string name="startbutton">START</string>
+    <string name="done">DONE</string>
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
+    <string name="getready">GET READY </string>
 
     <string name="instructions">
 \u2022 Be sure to be properly warmed-up before using the fingerboard. Laps first on boulder problems or routes is highly recommended.\n

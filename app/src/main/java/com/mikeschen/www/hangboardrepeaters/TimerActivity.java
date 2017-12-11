@@ -123,7 +123,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     if(soundSwitch) {
                         ourSounds.play(endAlarmId, 0.9f, 0.9f, 1, 0, 1);
                     }
-                    mSetsText.setText("DONE");
+                    mSetsText.setText(getString(R.string.done));
                     fade(mRoundTextView);
                     fade(mRoundsText);
                     datasource = new DaysDataSource(TimerActivity.this);
@@ -133,7 +133,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     String logs = dateFormat.format(date);
                     datasource.createLog(logs);
                     datasource.close();
-                    mStartButton.setText("DONE");
+                    mStartButton.setText(getString(R.string.done));
                 }
             } else {
                 timerText.animate()
@@ -229,7 +229,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.startButton):
-                if(mStartButton.getText().equals("DONE")) {
+                if(mStartButton.getText().equals(getString(R.string.done))) {
                     Intent intent1 = new Intent(this, LogActivity.class);
                     this.startActivity(intent1);
                 } else {
@@ -288,7 +288,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         if (newWorkoutSwitch) {
             new CountDownTimer(5000, 1000) {
                 public void onTick(long millisUntilFinished) {
-                    mStartButton.setText("Get Ready  " + millisUntilFinished / 1000);
+                    mStartButton.setText(getString(R.string.getready) + millisUntilFinished / 1000);
                 }
                 public void onFinish() {
                     if(soundSwitch) {
@@ -296,19 +296,19 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     }
                     startTime = System.currentTimeMillis();
                     timerHandler.postDelayed(timerRunnable, 0);
-                    mStartButton.setText("stop");
+                    mStartButton.setText(getString(R.string.stop));
                     newWorkoutSwitch = false;
                 }
             }.start();
         }
         if (!newWorkoutSwitch) {
-            if (mStartButton.getText().equals("stop")) {
+            if (mStartButton.getText().equals(getString(R.string.stop))) {
                 timerHandler.removeCallbacks(timerRunnable);
-                mStartButton.setText("start");
+                mStartButton.setText(getString(R.string.start));
             } else {
                 startTime = System.currentTimeMillis();
                 timerHandler.postDelayed(timerRunnable, 0);
-                mStartButton.setText("stop");
+                mStartButton.setText(getString(R.string.stop));
             }
         }
     }
