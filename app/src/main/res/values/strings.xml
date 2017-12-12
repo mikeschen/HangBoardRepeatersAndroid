@@ -19,6 +19,10 @@
     <string name="start">START</string>
     <string name="stop">STOP</string>
     <string name="getready">GET READY </string>
+    <string name="completedworkouts">COMPLETED WORKOUTS</string>
+    <string name="gradeconverter">Grade Converter</string>
+    <string name="log">Log</string>
+    <string name="instructiontitle">Instructions</string>
 
     <string name="instructions">
 \u2022 Be sure to be properly warmed-up before using the fingerboard. Laps first on boulder problems or routes is highly recommended.\n

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hangboard Repeaters</string>
+    <string name="hangtime">tiempo de suspensión</string>
+    <string name="pausetime">tiempo de pausa</string>
+    <string name="numberrounds">número de rondas</string>
+    <string name="resttime">tiempo de descanso</string>
+    <string name="numbersets">número de conjuntos</string>
+    <string name="defaultbutton">básico</string>
+    <string name="readybutton">listo</string>
+    <string name="hang">colgar</string>
+    <string name="pause">pausa</string>
+    <string name="rest">descanso</string>
+    <string name="round">ronda</string>
+    <string name="set">conjunto</string>
+    <string name="startbutton">comienzo</string>
+    <string name="stop">detener</string>
+    <string name="start">comienzo</string>
+    <string name="done">terminado</string>
+    <string name="getready">prepararse</string>
+    <string name="completedworkouts">entrenamientos completados</string>
+    <string name="gradeconverter">convertidor de grado</string>
+    <string name="log">estadísticas</string>
+    <string name="instructiontitle">instrucciones</string>
+</resources>
