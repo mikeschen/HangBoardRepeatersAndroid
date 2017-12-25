@@ -22,18 +22,25 @@
     <string name="gradeconverter">Klassenkonverter</string>
     <string name="log">Statistiken</string>
     <string name="instructiontitle">Anleitung</string>
-
     <string name="instructions">
-\u2022 Be sure to be properly warmed-up before using the fingerboard. Laps first on boulder problems or routes is highly recommended.\n
-\n \u2022 Starting with a set on the jug holds of the hangboard is also recommended.\n
-\n \u2022 When hanging on a hold, fingers should be in a half-crimp position. The arms should be in a very slightly bent position, the muscles should be “engaged”.\n
-\n \u2022 Hang from the hold on the hangboard for the number of seconds you entered.\n
-\n \u2022 Pause for the number of seconds you entered.\n
-\n \u2022 Repeat for the number of rounds you entered.\n
-\n \u2022 Rest for the number of seconds you entered. At least 90 seconds is recommended.\n
-\n \u2022 Repeat for the number of sets you entered.\n
-\n \u2022 A recommended workout for beginners is 5 hangs of 8
-seconds each, with 5 seconds rest between hangs. This is 1 set. You will do a total of 5 sets
-(so 25 total hangs), resting 3 minutes between each set.\n
+        \u2022 Achten Sie darauf, dass Sie vor der Verwendung des Griffbretts richtig aufgewärmt sind.
+        Laps zuerst auf Boulder Probleme oder Routen ist sehr zu empfehlen.\n
+        \n \u2022 Beginnend mit einem Set auf der Kanne empfiehlt sich auch das Halten des Hangboards. \n
+        \n \u2022 Beim Aufhängen sollten die Finger in einer halb gecrimpten Position sein.
+        Die Arme sollten in einer sehr leicht gebeugten Position sein, die Muskeln sollten "verlobt" sein. \n
+        \n \u2022 Halte dich für die Anzahl der Sekunden, die du eingegeben hast, an das Hangboard. \n
+        \n \u2022 Pause für die Anzahl der Sekunden, die Sie eingegeben haben. \n
+        \n \u2022 Wiederhole die Anzahl der Runden, die du eingegeben hast. \n
+        \n \u2022 Ruhe für die Anzahl der Sekunden, die Sie eingegeben haben. Mindestens 90 Sekunden wird empfohlen. \n
+        \n \u2022 Wiederholen Sie dies für die Anzahl der eingegebenen Sätze. \n
+        \n \u2022 Ein empfohlenes Training für Anfänger ist 5 Hänge von 8
+        Sekunden jeweils, mit 5 Sekunden Pause zwischen den hängen. Dies ist 1 Satz. Sie werden insgesamt 5 Sätze machen
+        (also insgesamt 25 hängen), ruht 3 Minuten zwischen jedem Satz. \n
     </string>
+    <string name="ok">OK</string>
+    <string name="grade">Wählen Grade</string>
+    <string name="cancel">Stornieren</string>
+    <string name="workoutspopup">Möchtest du wirklich alle deine Workouts löschen?</string>
+    <string name="deleteworkouts">Trainings löschen</string>
+
 </resources>

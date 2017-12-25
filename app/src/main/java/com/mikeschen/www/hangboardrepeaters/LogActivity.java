@@ -55,9 +55,9 @@ public class LogActivity extends ListActivity {
 
     public void deleteButton(View target) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("Delete Workouts");
-        builder.setMessage("Are you sure you want to delete all your workouts?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle(getString(R.string.deleteworkouts));
+        builder.setMessage(getString(R.string.workoutspopup));
+        builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -67,7 +67,7 @@ public class LogActivity extends ListActivity {
             }
         });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

@@ -22,19 +22,24 @@
     <string name="completedworkouts">COMPLETED WORKOUTS</string>
     <string name="gradeconverter">Grade Converter</string>
     <string name="log">Log</string>
-    <string name="instructiontitle">Instructions</string>
+    <string name="deleteworkouts">Delete Workouts</string>
+    <string name="workoutspopup">Are you sure you want to delete all your workouts?</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="grade">Select Grade</string>
 
     <string name="instructions">
-\u2022 Be sure to be properly warmed-up before using the fingerboard. Laps first on boulder problems or routes is highly recommended.\n
-\n \u2022 Starting with a set on the jug holds of the hangboard is also recommended.\n
-\n \u2022 When hanging on a hold, fingers should be in a half-crimp position. The arms should be in a very slightly bent position, the muscles should be “engaged”.\n
-\n \u2022 Hang from the hold on the hangboard for the number of seconds you entered.\n
-\n \u2022 Pause for the number of seconds you entered.\n
-\n \u2022 Repeat for the number of rounds you entered.\n
-\n \u2022 Rest for the number of seconds you entered. At least 90 seconds is recommended.\n
-\n \u2022 Repeat for the number of sets you entered.\n
-\n \u2022 A recommended workout for beginners is 5 hangs of 8
-seconds each, with 5 seconds rest between hangs. This is 1 set. You will do a total of 5 sets
-(so 25 total hangs), resting 3 minutes between each set.\n
+        \u2022 Be sure to be properly warmed-up before using the fingerboard. Laps first on boulder problems or routes is highly recommended.\n
+        \n \u2022 Starting with a set on the jug holds of the hangboard is also recommended.\n
+        \n \u2022 When hanging on a hold, fingers should be in a half-crimp position. The arms should be in a very slightly bent position, the muscles should be “engaged”.\n
+        \n \u2022 Hang from the hold on the hangboard for the number of seconds you entered.\n
+        \n \u2022 Pause for the number of seconds you entered.\n
+        \n \u2022 Repeat for the number of rounds you entered.\n
+        \n \u2022 Rest for the number of seconds you entered. At least 90 seconds is recommended.\n
+        \n \u2022 Repeat for the number of sets you entered.\n
+        \n \u2022 A recommended workout for beginners is 5 hangs of 8
+        seconds each, with 5 seconds rest between hangs. This is 1 set. You will do a total of 5 sets
+        (so 25 total hangs), resting 3 minutes between each set.\n
     </string>
+    <string name="instructiontitle">Instructions</string>
 </resources>
