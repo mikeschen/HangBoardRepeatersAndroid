@@ -23,19 +23,15 @@
     <string name="log">Statistiken</string>
     <string name="instructiontitle">Anleitung</string>
     <string name="instructions">
-        \u2022 Achten Sie darauf, dass Sie vor der Verwendung des Griffbretts richtig aufgewärmt sind.
-        Laps zuerst auf Boulder Probleme oder Routen ist sehr zu empfehlen.\n
+        \u2022 Achten Sie darauf, dass Sie vor der Verwendung des Griffbretts richtig aufgewärmt sind. Laps zuerst auf Boulder Probleme oder Routen ist sehr zu empfehlen.\n
         \n \u2022 Beginnend mit einem Set auf der Kanne empfiehlt sich auch das Halten des Hangboards. \n
-        \n \u2022 Beim Aufhängen sollten die Finger in einer halb gecrimpten Position sein.
-        Die Arme sollten in einer sehr leicht gebeugten Position sein, die Muskeln sollten "verlobt" sein. \n
+        \n \u2022 Beim Aufhängen sollten die Finger in einer halb gecrimpten Position sein. Die Arme sollten in einer sehr leicht gebeugten Position sein, die Muskeln sollten "verlobt" sein. \n
         \n \u2022 Halte dich für die Anzahl der Sekunden, die du eingegeben hast, an das Hangboard. \n
         \n \u2022 Pause für die Anzahl der Sekunden, die Sie eingegeben haben. \n
         \n \u2022 Wiederhole die Anzahl der Runden, die du eingegeben hast. \n
         \n \u2022 Ruhe für die Anzahl der Sekunden, die Sie eingegeben haben. Mindestens 90 Sekunden wird empfohlen. \n
         \n \u2022 Wiederholen Sie dies für die Anzahl der eingegebenen Sätze. \n
-        \n \u2022 Ein empfohlenes Training für Anfänger ist 5 Hänge von 8
-        Sekunden jeweils, mit 5 Sekunden Pause zwischen den hängen. Dies ist 1 Satz. Sie werden insgesamt 5 Sätze machen
-        (also insgesamt 25 hängen), ruht 3 Minuten zwischen jedem Satz. \n
+        \n \u2022 Ein empfohlenes Training für Anfänger ist 5 Hänge von 8 Sekunden jeweils, mit 5 Sekunden Pause zwischen den hängen. Dies ist 1 Satz. Sie werden insgesamt 5 Sätze machen (also insgesamt 25 hängen), ruht 3 Minuten zwischen jedem Satz. \n
     </string>
     <string name="ok">OK</string>
     <string name="grade">Wählen Grade</string>

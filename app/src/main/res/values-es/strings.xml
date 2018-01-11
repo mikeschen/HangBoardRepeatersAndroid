@@ -24,18 +24,15 @@
     <string name="instructiontitle">Instrucciones</string>
 
     <string name="instructions">
-        \u2026 Asegúrese de estar bien calentado antes de usar el diapasón. Las vueltas primero en problemas o rutas de canto rodado son muy recomendables. \n
-        \n \u2022 Comenzando con un conjunto en la jarra, se espera que el tablero sea recomendado. \ n
-        \n \u2022 Cuando cuelgue en una posición de espera, los dedos deben estar en una posición medio engarzada.
-        Los brazos deben estar "enganchados" en una posición muy levemente doblada
-        \n \u2022 Cuelgue de la bodega en el tablero por el número de segundos que ingresó. n
+        \u2022 Asegúrese de estar bien calentado antes de usar el diapasón. Las vueltas primero en problemas o rutas de canto rodado son muy recomendables. \n
+        \n \u2022 Comenzando con un conjunto en la jarra, se espera que el tablero sea recomendado. \n
+        \n \u2022 Cuando cuelgue en una bodega, los dedos deben estar en una posición semicerrada. Los brazos deben estar en una posición muy ligeramente doblada, los músculos deben estar enganchados. \n
+        \n \u2022 Cuelgue de la bodega en el tablero por el número de segundos que ingresó. \n
         \n \u2022 Pausa por la cantidad de segundos que ingresaste. \n
         \n \u2022 Repite para la cantidad de rondas que ingresaste. \n
         \n \u2022 Descanse por la cantidad de segundos que ingresó. Se recomiendan al menos 90 segundos. \n
         \n \u2022 Repita para la cantidad de conjuntos que ingresó. \n
-        \n \u2022 Un entrenamiento recomendado para principiantes es 5 bloqueos de 8
-        segundos cada uno, con 5 segundos de descanso entre cuelgues. Esto es 1 juego. Quieres hacer un total de 5 sets
-        (por lo que 25 bloqueos totales), descansando 3 minutos entre cada conjunto. \n
+        \n \u2022 Un entrenamiento recomendado para principiantes es 5 bloqueos de 8 segundos cada uno, con 5 segundos de descanso entre cuelgues. Esto es 1 juego. Quieres hacer un total de 5 sets (por lo que 25 bloqueos totales), descansando 3 minutos entre cada conjunto. \n
     </string>
     <string name="ok"> Sí</string>
     <string name="cancel"> Cancelar</string>
