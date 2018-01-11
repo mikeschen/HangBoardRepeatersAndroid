@@ -4,7 +4,7 @@ Rock Climbing Interval Timer for a hangboard/fingerboard that list seconds for h
 
 #### Authors: Michael Schennum
 
-<img src="http://www.mikeschen.com/resources/images/apps/casestudies/hangboard-lg.jpg" width="200">
+<img src="http://www.mikeschen.com/resources/images/apps/casestudies/hangboard-lg.jpg" width="400">
 
 ## Description
 
