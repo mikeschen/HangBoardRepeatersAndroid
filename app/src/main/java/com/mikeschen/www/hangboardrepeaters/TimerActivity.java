@@ -200,13 +200,13 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     .setAudioAttributes(audioAttributes)
                     .build();
 
-            buttonchimeId = ourSounds.load(this, R.raw.buttonchime, 1);
-            restwarningId = ourSounds.load(this, R.raw.warning, 1);
+            buttonchimeId = ourSounds.load(this, R.raw.electricchime, 1);
+            restwarningId = ourSounds.load(this, R.raw.buttonchime, 1);
             endAlarmId = ourSounds.load(this, R.raw.endalarm, 1);
         } else {
             ourSounds = new SoundPool(3, AudioManager.STREAM_MUSIC, 1);
-            buttonchimeId = ourSounds.load(this, R.raw.buttonchime, 1);
-            restwarningId = ourSounds.load(this, R.raw.warning, 1);
+            buttonchimeId = ourSounds.load(this, R.raw.electricchime, 1);
+            restwarningId = ourSounds.load(this, R.raw.buttonchime, 1);
             endAlarmId = ourSounds.load(this, R.raw.endalarm, 1);
         }
     }
