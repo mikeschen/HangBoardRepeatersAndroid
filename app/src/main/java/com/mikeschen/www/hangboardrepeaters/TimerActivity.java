@@ -62,6 +62,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     boolean soundSwitch = true;
     private DaysDataSource datasource;
     int buttonchimeId;
+    int pausechimeId;
     int restwarningId;
     int endAlarmId;
 
@@ -90,6 +91,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 if (soundSwitch) {
                     if(i == rounds * 2 - 1) {
                         ourSounds.play(restwarningId, 0.9f, 0.9f, 1, 0, 1);
+                    } else if(flipState) {
+                        ourSounds.play(pausechimeId, 0.9f, 0.9f, 1, 0, 1);
                     } else {
                         ourSounds.play(buttonchimeId, 0.9f, 0.9f, 1, 0, 1);
                     }
@@ -196,16 +199,18 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     .build();
 
             ourSounds = new SoundPool.Builder()
-                    .setMaxStreams(3)
+                    .setMaxStreams(4)
                     .setAudioAttributes(audioAttributes)
                     .build();
 
             buttonchimeId = ourSounds.load(this, R.raw.electricchime, 1);
+            pausechimeId = ourSounds.load(this, R.raw.pausechime, 1);
             restwarningId = ourSounds.load(this, R.raw.buttonchime, 1);
             endAlarmId = ourSounds.load(this, R.raw.endalarm, 1);
         } else {
             ourSounds = new SoundPool(3, AudioManager.STREAM_MUSIC, 1);
             buttonchimeId = ourSounds.load(this, R.raw.electricchime, 1);
+            pausechimeId = ourSounds.load(this, R.raw.pausechime, 1);
             restwarningId = ourSounds.load(this, R.raw.buttonchime, 1);
             endAlarmId = ourSounds.load(this, R.raw.endalarm, 1);
         }
