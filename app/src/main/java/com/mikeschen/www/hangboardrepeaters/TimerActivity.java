@@ -133,7 +133,9 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     datasource.open();
                     DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy - hh:mm a");
                     Date date = new Date();
-                    String logs = dateFormat.format(date);
+                    String formattedDate = dateFormat.format(date);
+                    String workOutStats = " - Hang: " + hang + ", Pause: " + pause + ", Rounds: " + rounds + ", Rest: " + rest + ", Sets: " + sets;
+                    String logs = formattedDate + workOutStats;
                     datasource.createLog(logs);
                     datasource.close();
                     mStartButton.setText(getString(R.string.done));
