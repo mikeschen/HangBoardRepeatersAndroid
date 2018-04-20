@@ -102,16 +102,6 @@
             android:layout_margin="3dp"
             android:layout_gravity="center_horizontal" />
 
-        <!--<ImageButton-->
-            <!--android:scaleType="fitCenter"-->
-            <!--android:layout_rowSpan="2"-->
-            <!--android:id="@+id/soundButton"-->
-            <!--android:src="@drawable/ic_volume_up_white_36dp"-->
-            <!--android:background="@null"-->
-            <!--android:layout_row="2"-->
-            <!--android:layout_column="1"-->
-            <!--android:layout_gravity="center" />-->
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/soundButton"
             android:layout_width="wrap_content"

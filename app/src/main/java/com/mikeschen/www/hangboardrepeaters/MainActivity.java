@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
     @BindView(R.id.setsEditText) EditText mSetsEditText;
     @BindView(R.id.startButton) Button mStartButton;
     @BindView(R.id.presetButton) Button mPresetButton;
+    @BindView(R.id.powerButton) Button mPowerButton;
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
@@ -51,16 +53,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         mSharedPreferencesEditor = mSharedPreferences.edit();
-        mStartButton.setOnClickListener(this);
         mPresetButton.setOnClickListener(this);
+        mPowerButton.setOnClickListener(this);
+        mStartButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mHangTimeTextView.setTypeface(custom_font);
         mPauseTimeTextView.setTypeface(custom_font);
         mRestTimeTextView.setTypeface(custom_font);
         mRoundNumberTextView.setTypeface(custom_font);
         mSetsTimeTextView.setTypeface(custom_font);
-        mStartButton.setTypeface(custom_font);
         mPresetButton.setTypeface(custom_font);
+        mPowerButton.setTypeface(custom_font);
+        mStartButton.setTypeface(custom_font);
         String hang = mSharedPreferences.getString(Constants.KEY_USER_HANG, null);
         String pause = mSharedPreferences.getString(Constants.KEY_USER_PAUSE, null);
         String rounds = mSharedPreferences.getString(Constants.KEY_USER_ROUNDS, null);
@@ -113,12 +117,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.presetButton):
-                animateButton();
+                animatePresetButton();
                 mHangEditText.setText("7");
                 mPauseEditText.setText("3");
                 mRoundsEditText.setText("6");
                 mRestEditText.setText("180");
                 mSetsEditText.setText("5");
+                break;
+            case (R.id.powerButton):
+                animatePowerButton();
+                mHangEditText.setText("10");
+                mPauseEditText.setText("180");
+                mRoundsEditText.setText("5");
+                mRestEditText.setText("1");
+                mSetsEditText.setText("1");
                 break;
             case (R.id.startButton):
                 try {
@@ -155,9 +167,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         startActivity(intent);
     }
 
-    private void animateButton() {
+    private void animatePresetButton() {
         mPresetButton.setScaleX(0.96f);
         mPresetButton.setScaleY(0.96f);
         mPresetButton.animate().scaleX(1).scaleY(1).start();
+    }
+
+    private void animatePowerButton() {
+        mPowerButton.setScaleX(0.96f);
+        mPowerButton.setScaleY(0.96f);
+        mPowerButton.animate().scaleX(1).scaleY(1).start();
     }
 }
