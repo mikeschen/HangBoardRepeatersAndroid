@@ -20,13 +20,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.os.Build;
 
-import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
 import com.mikeschen.www.hangboardrepeaters.Presenters.TimerActivityPresenter;
 import com.mikeschen.www.hangboardrepeaters.Views.TimerActivityView;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +55,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     boolean newWorkoutSwitch = true;
     boolean flipState = true;
     boolean soundSwitch = true;
-    private DaysDataSource datasource;
     int buttonchimeId;
     int pausechimeId;
     int restwarningId;
@@ -124,20 +118,11 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 if(counter == sets + 2) {
                     timerHandler.removeCallbacks(timerRunnable);
                     if(soundSwitch) {
-                        ourSounds.play(endAlarmId, 0.9f, 0.9f, 1, 0, 1);
+                        ourSounds.play(endAlarmId, 0.7f, 0.7f, 1, 0, 1);
                     }
                     mSetsText.setText(getString(R.string.done));
                     fade(mRoundTextView);
                     fade(mRoundsText);
-                    datasource = new DaysDataSource(TimerActivity.this);
-                    datasource.open();
-                    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy - hh:mm a");
-                    Date date = new Date();
-                    String formattedDate = dateFormat.format(date);
-                    String workOutStats = " - Hang: " + hang + ", Pause: " + pause + ", Rounds: " + rounds + ", Rest: " + rest + ", Sets: " + sets;
-                    String logs = formattedDate + workOutStats;
-                    datasource.createLog(logs);
-                    datasource.close();
                     mStartButton.setText(getString(R.string.logworkout));
                 }
             } else {
@@ -238,6 +223,11 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             case (R.id.startButton):
                 if(mStartButton.getText().equals(getString(R.string.logworkout))) {
                     Intent intent1 = new Intent(this, CreateLogActivity.class);
+                    intent1.putExtra("hang", hang);
+                    intent1.putExtra("pause", pause);
+                    intent1.putExtra("rounds", rounds);
+                    intent1.putExtra("rest", rest);
+                    intent1.putExtra("sets", sets);
                     this.startActivity(intent1);
                 } else {
                     animateButton();
