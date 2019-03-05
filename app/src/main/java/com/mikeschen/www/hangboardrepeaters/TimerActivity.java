@@ -138,7 +138,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     String logs = formattedDate + workOutStats;
                     datasource.createLog(logs);
                     datasource.close();
-                    mStartButton.setText(getString(R.string.done));
+                    mStartButton.setText(getString(R.string.logworkout));
                 }
             } else {
                 timerText.animate()
@@ -236,8 +236,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     public void onClick(View v) {
         switch (v.getId()) {
             case (R.id.startButton):
-                if(mStartButton.getText().equals(getString(R.string.done))) {
-                    Intent intent1 = new Intent(this, LogActivity.class);
+                if(mStartButton.getText().equals(getString(R.string.logworkout))) {
+                    Intent intent1 = new Intent(this, CreateLogActivity.class);
                     this.startActivity(intent1);
                 } else {
                     animateButton();
