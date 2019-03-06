@@ -77,6 +77,28 @@
             android:layout_margin="5dp"
             android:layout_gravity="center_horizontal" />
 
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_row="4"
+            android:layout_column="0"
+            >
+            <RadioButton android:id="@+id/lbsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lbs"
+                android:textColor="@color/colorOffWhite"
+                android:buttonTint="@color/colorBlue"/>
+            <RadioButton android:id="@+id/kgButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="kg"
+                android:textColor="@color/colorOffWhite"
+                android:buttonTint="@color/colorBlue"/>
+        </RadioGroup>
+
+
     </GridLayout>
 
     <GridLayout

@@ -6,4 +6,6 @@ public class Constants {
     public static final String KEY_USER_ROUNDS = "rounds";
     public static final String KEY_USER_REST = "rest";
     public static final String KEY_USER_SETS = "sets";
+    public static final String KEY_USER_SIZE = "size";
+    public static final String KEY_USER_WEIGHT = "weight";
 }
