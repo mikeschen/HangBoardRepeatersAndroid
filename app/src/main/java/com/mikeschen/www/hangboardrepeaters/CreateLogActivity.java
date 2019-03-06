@@ -33,8 +33,7 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
     int rest;
     int sets;
     private DaysDataSource datasource;
-    private static final String TAG = "MyActivity";
-    String weightUnit;
+    String weightUnit = "lbs";
     String size;
     String weight;
     String sizeLog = "";
@@ -86,12 +85,16 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
                 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy - hh:mm a -");
                 Date date = new Date();
                 String formattedDate = dateFormat.format(date);
-
-                    sizeLog = " Size: " + mSizeEditText.getText().toString() + ",";
-
-
-                    weightLog = " Weight: " + mWeightEditText.getText().toString() + ",";
-
+                String getSizeEditText = mSizeEditText.getText().toString();
+                mSharedPreferencesEditor.putString(Constants.KEY_USER_SIZE, mSizeEditText.getText().toString()).apply();
+                String getWeightEditText = mWeightEditText.getText().toString();
+                mSharedPreferencesEditor.putString(Constants.KEY_USER_WEIGHT, mWeightEditText.getText().toString()).apply();
+                if (!getSizeEditText.isEmpty()) {
+                    sizeLog = " Hold Size: " + getSizeEditText + "mm,";
+                }
+                if (!getWeightEditText.isEmpty()) {
+                    weightLog = " Weight: " + mWeightEditText.getText().toString() + weightUnit + ",";
+                }
                 String workOutStats = " Hang: " + hang + ", Pause: " + pause + ", Rounds: " + rounds + ", Rest: " + rest + ", Sets: " + sets;
                 String logs = formattedDate + sizeLog + weightLog + workOutStats;
                 datasource.createLog(logs);
@@ -112,7 +115,7 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
 
     public void loadRadioButtons(){
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mLbsButton.setChecked(mSharedPreferences.getBoolean("Lbs", true));
+        mLbsButton.setChecked(mSharedPreferences.getBoolean("Lbs", false));
         mKgButton.setChecked(mSharedPreferences.getBoolean("Kg", false));
     }
 }

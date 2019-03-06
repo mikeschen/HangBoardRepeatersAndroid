@@ -38,12 +38,24 @@
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/homeButton"
+        android:layout_alignParentRight="true"
+        android:onClick="homeButton"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/baseline_home_white_36dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/deleteButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         android:onClick="deleteButton"
         android:clickable="true"
+        android:backgroundTint="@color/colorPrimaryLight"
         android:src="@drawable/ic_delete_white_36dp" />
 
 </RelativeLayout>

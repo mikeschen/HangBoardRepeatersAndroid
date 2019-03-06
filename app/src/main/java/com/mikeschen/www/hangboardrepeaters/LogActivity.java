@@ -75,6 +75,10 @@ public class LogActivity extends ListActivity {
         builder.show();
     }
 
+    public void homeButton(View target) {
+        startActivity(new Intent(LogActivity.this, MainActivity.class));
+    }
+
     public void refresh() {
         Intent intent = new Intent(LogActivity.this,LogActivity.class);
         startActivity(intent);
