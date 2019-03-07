@@ -69,7 +69,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:hint="Weight"
+            android:hint="weight"
             android:background="@color/colorSecondaryText"
             android:layout_row="3"
             android:layout_column="0"
@@ -88,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="lbs"
+                android:textSize="20sp"
                 android:textColor="@color/colorOffWhite"
                 android:buttonTint="@color/colorBlue"
                 android:checked="true"
@@ -96,6 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="kg"
+                android:textSize="20sp"
                 android:textColor="@color/colorOffWhite"
                 android:buttonTint="@color/colorBlue"/>
         </RadioGroup>

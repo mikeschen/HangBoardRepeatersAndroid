@@ -2,6 +2,7 @@ package com.mikeschen.www.hangboardrepeaters;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.preference.PreferenceManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.mikeschen.www.hangboardrepeaters.DataSources.DaysDataSource;
 
@@ -22,7 +24,9 @@ import butterknife.ButterKnife;
 
 public class CreateLogActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.sizeEditText) EditText mSizeEditText;
+    @BindView(R.id.sizeTextView) TextView mSizeTextView;
     @BindView(R.id.weightEditText) EditText mWeightEditText;
+    @BindView(R.id.weightTextView) TextView mWeightTextView;
     @BindView(R.id.logButton) Button mLogButton;
     @BindView(R.id.lbsButton) RadioButton mLbsButton;
     @BindView(R.id.kgButton) RadioButton mKgButton;
@@ -48,6 +52,13 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
         ButterKnife.bind(this);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(CreateLogActivity.this);
         mSharedPreferencesEditor = mSharedPreferences.edit();
+        mLogButton.setOnClickListener(this);
+        mLbsButton.setOnClickListener(this);
+        mKgButton.setOnClickListener(this);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        mSizeTextView.setTypeface(custom_font);
+        mWeightTextView.setTypeface(custom_font);
+        mLogButton.setTypeface(custom_font);
         Intent intent = getIntent();
         hang = intent.getIntExtra("hang", 0);
         pause = intent.getIntExtra("pause", 0);
@@ -62,9 +73,6 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
         if (weight != null) {
             mWeightEditText.setText(weight);
         }
-        mLogButton.setOnClickListener(this);
-        mLbsButton.setOnClickListener(this);
-        mKgButton.setOnClickListener(this);
         loadRadioButtons();
     }
 
