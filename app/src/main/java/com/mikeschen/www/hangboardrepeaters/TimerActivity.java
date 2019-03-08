@@ -285,7 +285,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         if (newWorkoutSwitch) {
             new CountDownTimer(5000, 1000) {
                 public void onTick(long millisUntilFinished) {
-                    mStartButton.setText(getString(R.string.getready) + millisUntilFinished / 1000);
+                    mStartButton.setText(getString(R.string.getready) + " " + millisUntilFinished / 1000);
                 }
                 public void onFinish() {
                     if(soundSwitch) {

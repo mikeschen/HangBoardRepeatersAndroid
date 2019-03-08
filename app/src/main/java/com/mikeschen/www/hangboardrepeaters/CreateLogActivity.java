@@ -27,6 +27,8 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.sizeTextView) TextView mSizeTextView;
     @BindView(R.id.weightEditText) EditText mWeightEditText;
     @BindView(R.id.weightTextView) TextView mWeightTextView;
+    @BindView(R.id.notesEditText) EditText mNotesEditText;
+    @BindView(R.id.notesTextView) TextView mNotesTextView;
     @BindView(R.id.logButton) Button mLogButton;
     @BindView(R.id.lbsButton) RadioButton mLbsButton;
     @BindView(R.id.kgButton) RadioButton mKgButton;
@@ -42,6 +44,7 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
     String weight;
     String sizeLog = "";
     String weightLog = "";
+    String noteLog = "";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
 
@@ -58,6 +61,7 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mSizeTextView.setTypeface(custom_font);
         mWeightTextView.setTypeface(custom_font);
+        mNotesTextView.setTypeface(custom_font);
         mLogButton.setTypeface(custom_font);
         Intent intent = getIntent();
         hang = intent.getIntExtra("hang", 0);
@@ -93,18 +97,19 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
                 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy - hh:mm a -");
                 Date date = new Date();
                 String formattedDate = dateFormat.format(date);
-                String getSizeEditText = mSizeEditText.getText().toString();
                 mSharedPreferencesEditor.putString(Constants.KEY_USER_SIZE, mSizeEditText.getText().toString()).apply();
-                String getWeightEditText = mWeightEditText.getText().toString();
                 mSharedPreferencesEditor.putString(Constants.KEY_USER_WEIGHT, mWeightEditText.getText().toString()).apply();
-                if (!getSizeEditText.isEmpty()) {
-                    sizeLog = " Hold Size: " + getSizeEditText + "mm,";
+                if (!mSizeEditText.getText().toString().isEmpty()) {
+                    sizeLog = " Hold Size: " + mSizeEditText.getText().toString() + "mm,";
                 }
-                if (!getWeightEditText.isEmpty()) {
+                if (!mWeightEditText.getText().toString().isEmpty()) {
                     weightLog = " Weight: " + mWeightEditText.getText().toString() + weightUnit + ",";
                 }
+                if (!mNotesEditText.getText().toString().isEmpty()) {
+                    noteLog = " - Notes: " + mNotesEditText.getText().toString();
+                }
                 String workOutStats = " Hang: " + hang + ", Pause: " + pause + ", Rounds: " + rounds + ", Rest: " + rest + ", Sets: " + sets;
-                String logs = formattedDate + sizeLog + weightLog + workOutStats;
+                String logs = formattedDate + sizeLog + weightLog + workOutStats + noteLog;
                 datasource.createLog(logs);
                 datasource.close();
                 Intent intent1 = new Intent(this, LogActivity.class);
