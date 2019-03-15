@@ -131,7 +131,8 @@
             android:layout_column="0"
             android:padding="3dp"
             android:layout_margin="5dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:inputType="textImeMultiLine" />
 
     </GridLayout>
 
