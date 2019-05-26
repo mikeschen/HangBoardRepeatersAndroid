@@ -12,7 +12,7 @@ An interval timer for users to hang on a rock climbing fingerboard for different
 
 ## Technologies
 
-Android, Java, XML, SQLite
+Android, Java, XML, SQLite, YouTube Android Player API
 
 ## Setup
 
