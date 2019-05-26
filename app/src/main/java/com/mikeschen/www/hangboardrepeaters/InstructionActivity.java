@@ -1,9 +1,7 @@
 package com.mikeschen.www.hangboardrepeaters;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;import com.mikeschen.www.hangboardrepeaters.R;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -30,7 +28,7 @@ public class InstructionActivity extends YouTubeBaseActivity implements
     @Override
     public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
         if (!wasRestored) {
-            player.cueVideo("fhWaJi1Hsfo"); // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
+            player.cueVideo("vyhdpNGtF78"); // Plays https://www.youtube.com/watch?v=vyhdpNGtF78
         }
     }
 
