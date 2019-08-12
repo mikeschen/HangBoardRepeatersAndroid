@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
     @BindView(R.id.startButton) Button mStartButton;
     @BindView(R.id.presetButton) Button mPresetButton;
     @BindView(R.id.powerButton) Button mPowerButton;
+    @BindView(R.id.saveButton) Button mSaveButton;
+    @BindView(R.id.custButton) Button mCustButton;
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         mSharedPreferencesEditor = mSharedPreferences.edit();
         mPresetButton.setOnClickListener(this);
         mPowerButton.setOnClickListener(this);
+        mSaveButton.setOnClickListener(this);
+        mCustButton.setOnClickListener(this);
         mStartButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
         mHangTimeTextView.setTypeface(custom_font);
@@ -65,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         mPresetButton.setTypeface(custom_font);
         mPowerButton.setTypeface(custom_font);
         mStartButton.setTypeface(custom_font);
+        mSaveButton.setTypeface(custom_font);
+        mCustButton.setTypeface(custom_font);
         String hang = mSharedPreferences.getString(Constants.KEY_USER_HANG, null);
         String pause = mSharedPreferences.getString(Constants.KEY_USER_PAUSE, null);
         String rounds = mSharedPreferences.getString(Constants.KEY_USER_ROUNDS, null);
@@ -132,6 +138,37 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
                 mRestEditText.setText("1");
                 mSetsEditText.setText("1");
                 break;
+            case (R.id.saveButton):
+                animateSaveButton();
+                mSharedPreferencesEditor.putString(Constants.SAVED_USER_HANG, mHangEditText.getText().toString()).apply();
+                mSharedPreferencesEditor.putString(Constants.SAVED_USER_PAUSE, mPauseEditText.getText().toString()).apply();
+                mSharedPreferencesEditor.putString(Constants.SAVED_USER_ROUNDS, mRoundsEditText.getText().toString()).apply();
+                mSharedPreferencesEditor.putString(Constants.SAVED_USER_REST, mRestEditText.getText().toString()).apply();
+                mSharedPreferencesEditor.putString(Constants.SAVED_USER_SETS, mSetsEditText.getText().toString()).apply();
+                break;
+            case (R.id.custButton):
+                animateCustButton();
+                String hang = mSharedPreferences.getString(Constants.SAVED_USER_HANG, null);
+                String pause = mSharedPreferences.getString(Constants.SAVED_USER_PAUSE, null);
+                String rounds = mSharedPreferences.getString(Constants.SAVED_USER_ROUNDS, null);
+                String rest = mSharedPreferences.getString(Constants.SAVED_USER_REST, null);
+                String sets = mSharedPreferences.getString(Constants.SAVED_USER_SETS, null);
+                if (hang != null) {
+                    mHangEditText.setText(hang);
+                }
+                if (pause != null) {
+                    mPauseEditText.setText(pause);
+                }
+                if (rounds != null) {
+                    mRoundsEditText.setText(rounds);
+                }
+                if (rest != null) {
+                    mRestEditText.setText(rest);
+                }
+                if (sets != null) {
+                    mSetsEditText.setText(sets);
+                }
+                break;
             case (R.id.startButton):
                 try {
                     presenter.launchOtherActivityButtonClicked(TimerActivity.class);
@@ -177,5 +214,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         mPowerButton.setScaleX(0.96f);
         mPowerButton.setScaleY(0.96f);
         mPowerButton.animate().scaleX(1).scaleY(1).start();
+    }
+
+    private void animateSaveButton() {
+        mSaveButton.setScaleX(0.96f);
+        mSaveButton.setScaleY(0.96f);
+        mSaveButton.animate().scaleX(1).scaleY(1).start();
+    }
+
+    private void animateCustButton() {
+        mCustButton.setScaleX(0.96f);
+        mCustButton.setScaleY(0.96f);
+        mCustButton.animate().scaleX(1).scaleY(1).start();
     }
 }
