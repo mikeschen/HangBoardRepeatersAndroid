@@ -28,6 +28,8 @@
     <string name="log">Log</string>
     <string name="deleteworkouts">Delete Workouts</string>
     <string name="workoutspopup">Are you sure you want to delete all your workouts?</string>
+    <string name="saveworkouts">Save Workout</string>
+    <string name="prefspopup">Are you sure you want to save this custom workout?</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="grade">Select Grade</string>

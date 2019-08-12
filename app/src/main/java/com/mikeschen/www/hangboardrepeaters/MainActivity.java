@@ -1,11 +1,14 @@
 package com.mikeschen.www.hangboardrepeaters;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mikeschen.www.hangboardrepeaters.Presenters.MainActivityPresenter;
 import com.mikeschen.www.hangboardrepeaters.Views.MainActivityView;
@@ -23,6 +27,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainActivityView, View.OnClickListener {
+    public Context mContext;
+
     @BindView(R.id.hangTimeTextView) TextView mHangTimeTextView;
     @BindView(R.id.pauseTimeTextView) TextView mPauseTimeTextView;
     @BindView(R.id.restTimeTextView) TextView mRestTimeTextView;
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        mContext = this;
 
         presenter = new MainActivityPresenter(this);
 
@@ -129,6 +136,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
                 mRoundsEditText.setText("6");
                 mRestEditText.setText("180");
                 mSetsEditText.setText("5");
+                Toast preset = Toast.makeText(getApplicationContext(),
+                        "Repeaters",
+                        Toast.LENGTH_SHORT);
+
+                preset.show();
                 break;
             case (R.id.powerButton):
                 animatePowerButton();
@@ -137,14 +149,35 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
                 mRoundsEditText.setText("5");
                 mRestEditText.setText("1");
                 mSetsEditText.setText("1");
+                Toast power = Toast.makeText(getApplicationContext(),
+                        "Max Hangs",
+                        Toast.LENGTH_SHORT);
+
+                power.show();
                 break;
             case (R.id.saveButton):
                 animateSaveButton();
-                mSharedPreferencesEditor.putString(Constants.SAVED_USER_HANG, mHangEditText.getText().toString()).apply();
-                mSharedPreferencesEditor.putString(Constants.SAVED_USER_PAUSE, mPauseEditText.getText().toString()).apply();
-                mSharedPreferencesEditor.putString(Constants.SAVED_USER_ROUNDS, mRoundsEditText.getText().toString()).apply();
-                mSharedPreferencesEditor.putString(Constants.SAVED_USER_REST, mRestEditText.getText().toString()).apply();
-                mSharedPreferencesEditor.putString(Constants.SAVED_USER_SETS, mSetsEditText.getText().toString()).apply();
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle(getString(R.string.saveworkouts));
+                builder.setMessage(getString(R.string.prefspopup));
+                builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mSharedPreferencesEditor.putString(Constants.SAVED_USER_HANG, mHangEditText.getText().toString()).apply();
+                        mSharedPreferencesEditor.putString(Constants.SAVED_USER_PAUSE, mPauseEditText.getText().toString()).apply();
+                        mSharedPreferencesEditor.putString(Constants.SAVED_USER_ROUNDS, mRoundsEditText.getText().toString()).apply();
+                        mSharedPreferencesEditor.putString(Constants.SAVED_USER_REST, mRestEditText.getText().toString()).apply();
+                        mSharedPreferencesEditor.putString(Constants.SAVED_USER_SETS, mSetsEditText.getText().toString()).apply();
+                    }
+                });
+
+                builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder.show();
                 break;
             case (R.id.custButton):
                 animateCustButton();
@@ -168,6 +201,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
                 if (sets != null) {
                     mSetsEditText.setText(sets);
                 }
+                Toast custom = Toast.makeText(getApplicationContext(),
+                        "Custom Workout",
+                        Toast.LENGTH_SHORT);
+
+                custom.show();
                 break;
             case (R.id.startButton):
                 try {
