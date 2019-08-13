@@ -8,7 +8,7 @@ Rock Climbing Interval Timer for a hangboard/fingerboard that list seconds for h
 
 ## Description
 
-An interval timer for users to hang on a rock climbing fingerboard for different amounts of hang pause and rest time.
+An interval timer for users to hang on a rock climbing hangboard for different amounts of hang pause and rest time.
 
 ## Technologies
 
