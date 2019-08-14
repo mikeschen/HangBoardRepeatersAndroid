@@ -218,10 +218,34 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/custButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:elevation="2dp"
+                android:background="@drawable/buttonwhite"
+                android:text="@string/custbutton"
+                android:textColor="@color/colorBlue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:elevation="2dp"
+                android:background="@drawable/buttonwhite"
+                android:text="@string/savebutton"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/startButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:background="@drawable/buttonred"
                 android:elevation="2dp"
                 android:text="@string/readybutton"

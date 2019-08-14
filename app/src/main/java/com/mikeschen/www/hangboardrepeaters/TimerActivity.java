@@ -128,12 +128,12 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             } else {
                 timerText.animate()
                     .alpha(1f)
-                    .scaleX(1f)
-                    .scaleY(1f);
+                    .scaleX(1.1f)
+                    .scaleY(1.1f);
                 timerTextView.animate()
                     .alpha(1f)
-                    .scaleX(1f)
-                    .scaleY(1f);
+                    .scaleX(1.1f)
+                    .scaleY(1.1f);
                 timerTextView.setText(String.format("%d:%02d", minutes, secondsDisplay));
                 timerHandler.postDelayed(this, 500);
             }
@@ -212,8 +212,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     private void fade(TextView fadeText) {
         fadeText.animate()
                 .alpha(0.3f)
-                .scaleX(0.9f)
-                .scaleY(0.9f)
+                .scaleX(0.8f)
+                .scaleY(0.8f)
                 .setDuration(500);
     }
 
