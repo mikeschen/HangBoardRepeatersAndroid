@@ -91,7 +91,6 @@
                 android:textSize="20sp"
                 android:textColor="@color/colorOffWhite"
                 android:buttonTint="@color/colorBlue"
-                android:checked="true"
                 />
             <RadioButton android:id="@+id/kgButton"
                 android:layout_width="wrap_content"
