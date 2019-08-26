@@ -27,7 +27,9 @@
     <string name="gradeconverter">Grade Converter</string>
     <string name="log">Log</string>
     <string name="deleteworkouts">Delete Workouts</string>
+    <string name="deleteworkout">Delete Workout</string>
     <string name="workoutspopup">Are you sure you want to delete all your workouts?</string>
+    <string name="workoutpopup">Are you sure you want to delete this workout?</string>
     <string name="saveworkouts">Save Workout</string>
     <string name="prefspopup">Are you sure you want to save this custom workout?</string>
     <string name="ok">Ok</string>
