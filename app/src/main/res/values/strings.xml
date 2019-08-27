@@ -23,7 +23,7 @@
     <string name="start">START</string>
     <string name="stop">STOP</string>
     <string name="getready">GET READY </string>
-    <string name="completedworkouts">COMPLETED WORKOUTS</string>
+    <string name="completedworkouts">%2$d COMPLETED WORKOUTS</string>
     <string name="gradeconverter">Grade Converter</string>
     <string name="log">Log</string>
     <string name="deleteworkouts">Delete Workouts</string>

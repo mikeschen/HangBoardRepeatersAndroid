@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 public class LogActivity extends ListActivity {
     private DaysDataSource datasource;
     public Context mContext;
+    int recordCount;
     @BindView(R.id.completedTextView) TextView mCompletedTextView;
 
     @Override
@@ -39,16 +40,17 @@ public class LogActivity extends ListActivity {
         mCompletedTextView.setTypeface(custom_font);
         datasource = new DaysDataSource(this);
         datasource.open();
+        recordCount = datasource.count();
+        mCompletedTextView.setText(getString(R.string.completedworkouts, "", recordCount));
         final ListView lv = getListView();
         List<Days> values = datasource.getAllLogs();
         ArrayAdapter<Days> adapter = new ArrayAdapter<>(this, R.layout.white_text, values);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
-            public void onItemClick(AdapterView<?> l, View v, int position,
-                                    long id) {
-            deleteOneButton(lv, position);
-        }
+            public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+                deleteOneButton(lv, position);
+            }
         });
     }
 
@@ -73,6 +75,8 @@ public class LogActivity extends ListActivity {
                     Days log = (Days) lv.getAdapter().getItem(position);
                     datasource.deleteLog(log);
                     adapter.remove(log);
+                    recordCount = datasource.count();
+                    mCompletedTextView.setText(getString(R.string.completedworkouts, "", recordCount));
                 }
                 adapter.notifyDataSetChanged();
             }

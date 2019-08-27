@@ -74,6 +74,12 @@ public class DaysDataSource {
         return logs;
     }
 
+    public int count() {
+        String sql = "SELECT * FROM " +  MySQLiteHelper.TABLE_LOGS;
+        int recordCount = database.rawQuery(sql, null).getCount();
+        return recordCount;
+    }
+
     private Days cursorToLog (Cursor cursor) {
         Days log = new Days();
         log.setId(cursor.getLong(0));
