@@ -71,10 +71,9 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
         public void run() {
             long millis = System.currentTimeMillis() - startTime;
             int seconds = (int) (millis / 1000);
-            int secondsDisplay = (int) (millis / 1000);
-            int countdownDisplay = currentTimer - secondsDisplay;
+            int countdownDisplay = currentTimer - seconds;
             int minutes = countdownDisplay / 60;
-            secondsDisplay = countdownDisplay % 60;
+            int secondsDisplay = countdownDisplay % 60;
             if (seconds == currentTimer) {
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 fade(timerText);
