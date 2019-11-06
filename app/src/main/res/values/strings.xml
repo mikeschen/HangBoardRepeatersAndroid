@@ -25,6 +25,7 @@
     <string name="getready">GET READY </string>
     <string name="completedworkouts">%2$d COMPLETED WORKOUTS</string>
     <string name="gradeconverter">Grade Converter</string>
+    <string name="ticklist">Tick List</string>
     <string name="log">Log</string>
     <string name="deleteworkouts">Delete Workouts</string>
     <string name="deleteworkout">Delete Workout</string>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
@@ -120,6 +121,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
             case R.id.action_converter:
                 Intent intent2 = new Intent(this, ConverterActivity.class);
                 this.startActivity(intent2);
+                break;
+            case R.id.tick_list:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://grypped.netlify.com"));
+                startActivity(browserIntent);
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.media.AudioAttributes;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -267,6 +268,10 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             case R.id.action_converter:
                 Intent converterIntent = new Intent(this, ConverterActivity.class);
                 this.startActivity(converterIntent);
+                break;
+            case R.id.tick_list:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://grypped.netlify.com"));
+                startActivity(browserIntent);
                 break;
         }
         return super.onOptionsItemSelected(item);
