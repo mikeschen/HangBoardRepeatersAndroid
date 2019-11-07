@@ -17,7 +17,7 @@
         android:visible="true"
         app:showAsAction="never" />
     <item
-        android:id="@+id/tick_list"
+        android:id="@+id/action_tick"
         android:title="@string/ticklist"
         android:visible="true"
         app:showAsAction="never" />
