@@ -48,7 +48,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         mYdsButton.setOnClickListener(this);
         mFrenchButton.setOnClickListener(this);
         mUiaaButton.setOnClickListener(this);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "BebasNeue.ttf");
         mGradeConverterTextView.setTypeface(custom_font);
         mHuecoButton.setTypeface(custom_font);
         mFontButton.setTypeface(custom_font);

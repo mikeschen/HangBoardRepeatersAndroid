@@ -36,7 +36,7 @@ public class LogActivity extends ListActivity {
         setContentView(R.layout.activity_log);
         ButterKnife.bind(this);
         mContext = this;
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "BebasNeue.ttf");
         mCompletedTextView.setTypeface(custom_font);
         datasource = new DaysDataSource(this);
         datasource.open();

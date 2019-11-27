@@ -152,7 +152,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
 
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "BebasNeue.ttf");
         mHangTextView.setTypeface(custom_font);
         mPauseTextView.setTypeface(custom_font);
         mRestTextView.setTypeface(custom_font);

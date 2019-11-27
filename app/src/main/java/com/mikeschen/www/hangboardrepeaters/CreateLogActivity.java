@@ -58,7 +58,7 @@ public class CreateLogActivity extends AppCompatActivity implements View.OnClick
         mLogButton.setOnClickListener(this);
         mLbsButton.setOnClickListener(this);
         mKgButton.setOnClickListener(this);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "BebasNeue.ttf");
         mSizeTextView.setTypeface(custom_font);
         mWeightTextView.setTypeface(custom_font);
         mNotesTextView.setTypeface(custom_font);

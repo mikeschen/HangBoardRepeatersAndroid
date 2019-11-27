@@ -8,8 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/huecoland"
@@ -28,19 +27,19 @@
             android:id="@+id/gridLayoutMainLandscape">
 
             <TextView
+                android:id="@+id/hangTimeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/hangtime"
-                android:textColor="@color/colorPrimary"
-                android:id="@+id/hangTimeTextView"
-                android:textSize="@dimen/main_text_size"
-                android:textStyle="bold"
                 android:layout_row="0"
                 android:layout_column="0"
-                android:padding="3dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
-                android:layout_gravity="center_horizontal"  />
+                android:padding="3dp"
+                android:text="@string/hangtime"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorSecondaryVariant"
+                android:textSize="@dimen/main_text_size"
+                android:textStyle="bold" />
 
             <EditText
                 android:layout_width="65dp"
@@ -59,19 +58,19 @@
                 android:layout_gravity="center_horizontal" />
 
             <TextView
+                android:id="@+id/pauseTimeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/pausetime"
-                android:textColor="@color/colorPrimaryLight"
-                android:id="@+id/pauseTimeTextView"
-                android:textSize="@dimen/main_text_size"
-                android:textStyle="bold"
                 android:layout_row="0"
                 android:layout_column="1"
-                android:padding="3dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
-                android:layout_gravity="center_horizontal" />
+                android:padding="3dp"
+                android:text="@string/pausetime"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorSecondaryVariant"
+                android:textSize="@dimen/main_text_size"
+                android:textStyle="bold" />
 
             <EditText
                 android:layout_width="65dp"
@@ -90,19 +89,19 @@
                 android:layout_gravity="center_horizontal"  />
 
             <TextView
+                android:id="@+id/roundNumberTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/numberrounds"
-                android:textColor="@color/colorYellow"
-                android:id="@+id/roundNumberTextView"
-                android:textSize="@dimen/main_text_size"
-                android:textStyle="bold"
                 android:layout_row="0"
                 android:layout_column="3"
-                android:padding="3dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
-                android:layout_gravity="center_horizontal" />
+                android:padding="3dp"
+                android:text="@string/numberrounds"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryLight"
+                android:textSize="@dimen/main_text_size"
+                android:textStyle="bold" />
 
             <EditText
                 android:layout_width="65dp"
@@ -152,19 +151,19 @@
                 android:layout_gravity="center_horizontal"  />
 
             <TextView
+                android:id="@+id/setsTimeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/numbersets"
-                android:textColor="@color/colorBlue"
-                android:id="@+id/setsTimeTextView"
-                android:textSize="@dimen/main_text_size"
-                android:textStyle="bold"
-                android:padding="3dp"
-                android:layout_margin="5dp"
                 android:layout_row="2"
                 android:layout_column="1"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:padding="3dp"
+                android:text="@string/numbersets"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/main_text_size"
+                android:textStyle="bold" />
 
             <EditText
                 android:layout_width="65dp"
@@ -201,8 +200,8 @@
                 android:background="@drawable/buttonwhite"
                 android:elevation="2dp"
                 android:text="@string/defaultbutton"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
+                android:textColor="@color/colorSecondaryVariant"
+                android:textSize="@dimen/log_text_size"
                 android:textStyle="bold" />
 
             <Button
@@ -214,7 +213,7 @@
                 android:elevation="2dp"
                 android:text="@string/powerbutton"
                 android:textColor="@color/colorPrimaryLight"
-                android:textSize="16sp"
+                android:textSize="@dimen/log_text_size"
                 android:textStyle="bold" />
 
             <Button
@@ -222,11 +221,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:elevation="2dp"
                 android:background="@drawable/buttonwhite"
+                android:elevation="2dp"
                 android:text="@string/custbutton"
-                android:textColor="@color/colorBlue"
-                android:textSize="16sp"
+                android:textColor="@color/colorPrimaryVariant"
+                android:textSize="@dimen/log_text_size"
                 android:textStyle="bold" />
 
             <Button
@@ -238,7 +237,7 @@
                 android:background="@drawable/buttonwhite"
                 android:text="@string/savebutton"
                 android:textColor="@color/colorAccent"
-                android:textSize="16sp"
+                android:textSize="@dimen/log_text_size"
                 android:textStyle="bold" />
 
             <Button
@@ -246,7 +245,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="@drawable/buttonred"
+                android:background="@drawable/buttonprimary"
                 android:elevation="2dp"
                 android:text="@string/readybutton"
                 android:textColor="@color/colorSecondaryText"

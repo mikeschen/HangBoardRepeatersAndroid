@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
         mSaveButton.setOnClickListener(this);
         mCustButton.setOnClickListener(this);
         mStartButton.setOnClickListener(this);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "Bebas.ttf");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "BebasNeue.ttf");
         mHangTimeTextView.setTypeface(custom_font);
         mPauseTimeTextView.setTypeface(custom_font);
         mRestTimeTextView.setTypeface(custom_font);
