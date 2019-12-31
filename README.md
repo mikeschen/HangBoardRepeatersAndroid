@@ -3,7 +3,7 @@
 Rock Climbing Interval Timer for a hangboard/fingerboard that list seconds for hanging and resting to train fingers.
 
 #### Authors: Michael Schennum
-<mikeschenphoto@gmail.com><http://mikeschen.com>
+<http://mikeschen.com> | <mikeschenphoto@gmail.com>
 
 <img src="http://www.mikeschen.com/resources/images/apps/casestudies/hangboard-lg.jpg" width="400">
 
