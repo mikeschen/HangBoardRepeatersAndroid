@@ -85,9 +85,9 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 i++;
                 if (soundSwitch) {
                     if(i == rounds * 2 - 1) {
-                        ourSounds.play(restwarningId, 0.9f, 0.9f, 1, 0, 1);
+                        ourSounds.play(restwarningId, 0.8f, 0.8f, 1, 0, 1);
                     } else if(flipState) {
-                        ourSounds.play(pausechimeId, 0.9f, 0.9f, 1, 0, 1);
+                        ourSounds.play(pausechimeId, 0.8f, 0.8f, 1, 0, 1);
                     } else {
                         ourSounds.play(buttonchimeId, 0.9f, 0.9f, 1, 0, 1);
                     }
@@ -191,16 +191,16 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     .setAudioAttributes(audioAttributes)
                     .build();
 
-            buttonchimeId = ourSounds.load(this, R.raw.electricchime, 1);
+            buttonchimeId = ourSounds.load(this, R.raw.hangchime, 1);
             pausechimeId = ourSounds.load(this, R.raw.pausechime, 1);
-            restwarningId = ourSounds.load(this, R.raw.buttonchime, 1);
-            endAlarmId = ourSounds.load(this, R.raw.endalarm, 1);
+            restwarningId = ourSounds.load(this, R.raw.restchime, 1);
+            endAlarmId = ourSounds.load(this, R.raw.countdownchime, 1);
         } else {
             ourSounds = new SoundPool(3, AudioManager.STREAM_MUSIC, 1);
-            buttonchimeId = ourSounds.load(this, R.raw.electricchime, 1);
+            buttonchimeId = ourSounds.load(this, R.raw.hangchime, 1);
             pausechimeId = ourSounds.load(this, R.raw.pausechime, 1);
-            restwarningId = ourSounds.load(this, R.raw.buttonchime, 1);
-            endAlarmId = ourSounds.load(this, R.raw.endalarm, 1);
+            restwarningId = ourSounds.load(this, R.raw.restchime, 1);
+            endAlarmId = ourSounds.load(this, R.raw.countdownchime, 1);
         }
     }
 

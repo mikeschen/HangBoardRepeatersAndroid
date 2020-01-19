@@ -8,8 +8,8 @@ android {
         applicationId "com.mikeschen.www.hangboardrepeaters"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 58
-        versionName "2.4.9"
+        versionCode 59
+        versionName "2.5.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
