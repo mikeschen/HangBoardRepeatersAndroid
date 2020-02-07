@@ -79,7 +79,6 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 fade(timerText);
                 fade(timerTextView);
-                timerHandler.removeCallbacks(timerRunnable);
                 timerHandler.postDelayed(this, 500);
                 startTime = System.currentTimeMillis();
                 i++;
@@ -116,7 +115,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                     counter++;
                     flipState = false;
                 }
-                if(counter == sets + 2) {
+                if(counter - 2 == sets) {
                     timerHandler.removeCallbacks(timerRunnable);
                     if(soundSwitch) {
                         ourSounds.play(endAlarmId, 0.7f, 0.7f, 1, 0, 1);
