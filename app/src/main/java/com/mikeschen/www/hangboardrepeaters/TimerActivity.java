@@ -269,7 +269,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 this.startActivity(converterIntent);
                 break;
             case R.id.action_tick:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://grypped.netlify.com"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mikeschen.com/grypped"));
                 startActivity(browserIntent);
                 break;
         }
