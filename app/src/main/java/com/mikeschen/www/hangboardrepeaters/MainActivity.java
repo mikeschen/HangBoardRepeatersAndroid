@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView,
                 this.startActivity(intent2);
                 break;
             case R.id.action_tick:
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://grypped.netlify.com"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mikeschen.com/grypped"));
                 startActivity(browserIntent);
                 break;
         }
