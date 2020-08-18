@@ -60,6 +60,8 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     int pausechimeId;
     int restwarningId;
     int endAlarmId;
+    int fivesecondsId;
+//    private static final String TAG = "MyActivity";
 
     SoundPool ourSounds;
 
@@ -75,6 +77,12 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             int countdownDisplay = currentTimer - seconds;
             int minutes = countdownDisplay / 60;
             int secondsDisplay = countdownDisplay % 60;
+//            Log.d(TAG, "run: " + countdownDisplay);
+            if (soundSwitch) {
+                if (countdownDisplay == 5) {
+                    ourSounds.play(fivesecondsId, 0.9f, 0.9f, 1, 0, 1);
+                }
+            }
             if (seconds == currentTimer) {
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 fade(timerText);
@@ -194,12 +202,13 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             pausechimeId = ourSounds.load(this, R.raw.pausechime, 1);
             restwarningId = ourSounds.load(this, R.raw.restchime, 1);
             endAlarmId = ourSounds.load(this, R.raw.countdownchime, 1);
+            fivesecondsId = ourSounds.load(this, R.raw.fivesecondschime, 1);
         } else {
             ourSounds = new SoundPool(3, AudioManager.STREAM_MUSIC, 1);
             buttonchimeId = ourSounds.load(this, R.raw.hangchime, 1);
-            pausechimeId = ourSounds.load(this, R.raw.pausechime, 1);
             restwarningId = ourSounds.load(this, R.raw.restchime, 1);
             endAlarmId = ourSounds.load(this, R.raw.countdownchime, 1);
+            fivesecondsId = ourSounds.load(this, R.raw.fivesecondschime, 1);
         }
     }
 
