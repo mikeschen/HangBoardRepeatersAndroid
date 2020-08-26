@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.os.Build;
+import android.widget.Toast;
 
 import com.mikeschen.www.hangboardrepeaters.Presenters.TimerActivityPresenter;
 import com.mikeschen.www.hangboardrepeaters.Views.TimerActivityView;
@@ -40,6 +41,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     @BindView(R.id.roundsText) TextView mRoundsText;
     @BindView(R.id.startButton) Button mStartButton;
     @BindView(R.id.soundButton) ImageButton mSoundButton;
+    @BindView(R.id.countSoundButton) ImageButton mCountSoundButton;
 
     TextView timerText;
     TextView timerTextView;
@@ -56,10 +58,13 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
     boolean newWorkoutSwitch = true;
     boolean flipState = true;
     boolean soundSwitch = true;
+    boolean countSoundSwitch = false;
     int buttonchimeId;
     int pausechimeId;
     int restwarningId;
     int endAlarmId;
+    int fivesecondsId;
+//    private static final String TAG = "MyActivity";
 
     SoundPool ourSounds;
 
@@ -75,6 +80,12 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             int countdownDisplay = currentTimer - seconds;
             int minutes = countdownDisplay / 60;
             int secondsDisplay = countdownDisplay % 60;
+//            Log.d(TAG, "run: " + countdownDisplay);
+            if (countSoundSwitch) {
+                if (countdownDisplay == 5) {
+                    ourSounds.play(fivesecondsId, 0.8f, 0.8f, 1, 0, 1);
+                }
+            }
             if (seconds == currentTimer) {
                 timerTextView.setText(String.format("%d:%02d", 0, 0));
                 fade(timerText);
@@ -151,6 +162,7 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
 
         mStartButton.setOnClickListener(this);
         mSoundButton.setOnClickListener(this);
+        mCountSoundButton.setOnClickListener(this);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "BebasNeue.ttf");
         mHangTextView.setTypeface(custom_font);
         mPauseTextView.setTypeface(custom_font);
@@ -194,12 +206,13 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
             pausechimeId = ourSounds.load(this, R.raw.pausechime, 1);
             restwarningId = ourSounds.load(this, R.raw.restchime, 1);
             endAlarmId = ourSounds.load(this, R.raw.countdownchime, 1);
+            fivesecondsId = ourSounds.load(this, R.raw.fivesecondschime, 1);
         } else {
             ourSounds = new SoundPool(3, AudioManager.STREAM_MUSIC, 1);
             buttonchimeId = ourSounds.load(this, R.raw.hangchime, 1);
-            pausechimeId = ourSounds.load(this, R.raw.pausechime, 1);
             restwarningId = ourSounds.load(this, R.raw.restchime, 1);
             endAlarmId = ourSounds.load(this, R.raw.countdownchime, 1);
+            fivesecondsId = ourSounds.load(this, R.raw.fivesecondschime, 1);
         }
     }
 
@@ -238,9 +251,38 @@ public class TimerActivity extends AppCompatActivity implements TimerActivityVie
                 if (soundSwitch) {
                     soundSwitch = false;
                     mSoundButton.setImageResource(R.drawable.ic_volume_off_white_36dp);
+                    Toast soundOff = Toast.makeText(getApplicationContext(),
+                            "Sound Off",
+                            Toast.LENGTH_SHORT);
+
+                    soundOff.show();
                 } else {
                     soundSwitch = true;
                     mSoundButton.setImageResource(R.drawable.ic_volume_up_white_36dp);
+                    Toast soundOn = Toast.makeText(getApplicationContext(),
+                            "Sound On",
+                            Toast.LENGTH_SHORT);
+
+                    soundOn.show();
+                }
+                break;
+            case (R.id.countSoundButton):
+                if (countSoundSwitch) {
+                    countSoundSwitch = false;
+                    mCountSoundButton.setImageResource(R.drawable.baseline_timer_off_white_36dp);
+                    Toast cntSoundOff = Toast.makeText(getApplicationContext(),
+                            "Countdown Sounds Off",
+                            Toast.LENGTH_SHORT);
+
+                    cntSoundOff.show();
+                } else {
+                    countSoundSwitch = true;
+                    mCountSoundButton.setImageResource(R.drawable.baseline_av_timer_white_36dp);
+                    Toast cntSoundOn = Toast.makeText(getApplicationContext(),
+                            "Countdown Sounds On",
+                            Toast.LENGTH_SHORT);
+
+                    cntSoundOn.show();
                 }
                 break;
         }
