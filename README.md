@@ -1,6 +1,8 @@
 # HangBoardRepeatersAndroid
 
 Rock Climbing Interval Timer for a hangboard/fingerboard that list seconds for hanging and resting to train fingers.
+# Privacy Policy
+This app does not collect any user data.
 
 #### Authors: Michael Schennum
 <https://www.mikeschen.com> | <mikeschenphoto@gmail.com>
